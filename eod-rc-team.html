@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EOD & RC — Команда / Team</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00FF7F;
+    --dark: #080C0A;
+    --dark-2: #0D1410;
+    --dark-3: #131A15;
+    --dark-4: #1A2420;
+    --gray: #8A9E94;
+    --gray-light: #C2D4CC;
+    --white: #F0F5F2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 72px; background: rgba(8,12,10,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,255,127,0.08); }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: 0.05em; }
+  .logo-text span { color: var(--green); }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--gray-light); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--green); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .lang-switcher { display: flex; gap: 4px; background: var(--dark-4); border-radius: 4px; padding: 3px; }
+  .lang-btn { padding: 4px 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; border: none; border-radius: 2px; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--gray); }
+  .lang-btn.active { background: var(--green); color: var(--dark); }
+  .btn-nav { padding: 8px 20px; background: var(--green); color: var(--dark); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+
+  /* LANG */
+  [data-en] { display: none; }
+  body.en [data-ua] { display: none; }
+  body.en [data-en] { display: block; }
+  body.en .inline-en { display: inline !important; }
+  body.en .inline-ua { display: none !important; }
+  .inline-ua { display: inline; }
+  .inline-en { display: none; }
+
+  /* BUTTONS */
+  .btn-primary { padding: 14px 32px; background: var(--green); color: var(--dark); font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--white); }
+  .btn-secondary { padding: 14px 32px; background: transparent; color: var(--gray-light); font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
+  .btn-secondary:hover { border-color: var(--green); color: var(--green); }
+
+  /* SECTION COMMONS */
+  .section-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--green); }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(32px, 4vw, 56px); font-weight: 700; text-transform: uppercase; line-height: 1; margin-bottom: 16px; }
+
+  /* PAGE HERO */
+  .page-hero {
+    padding: 120px 48px 80px;
+    background: var(--dark-2);
+    border-bottom: 1px solid rgba(0,255,127,0.08);
+  }
+  .hero-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+  }
+  .page-hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(48px, 6vw, 88px); font-weight: 800; text-transform: uppercase; line-height: 0.9; }
+  .page-hero h1 .accent { color: var(--green); }
+  .hero-right-text { }
+  .hero-stat-row { display: flex; gap: 40px; margin-top: 32px; }
+  .hero-stat-val { font-family: 'Barlow Condensed', sans-serif; font-size: 40px; font-weight: 800; color: var(--green); line-height: 1; }
+  .hero-stat-label { font-size: 12px; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+  /* TEAM GRID — LEADERSHIP */
+  .leadership-section { padding: 96px 48px; background: var(--dark); }
+
+  .member-featured {
+    display: grid; grid-template-columns: 400px 1fr; gap: 0;
+    background: var(--dark-3); margin-bottom: 1px;
+    border: 1px solid rgba(0,255,127,0.06);
+    cursor: pointer; transition: border-color 0.2s;
+  }
+  .member-featured:hover { border-color: rgba(0,255,127,0.2); }
+
+  .member-photo {
+    position: relative; overflow: hidden;
+    background: var(--dark-4);
+    min-height: 480px;
+  }
+  .member-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block; filter: grayscale(20%);
+    transition: filter 0.3s;
+  }
+  .member-featured:hover .member-photo img { filter: grayscale(0%); }
+
+  .member-photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end; padding: 24px;
+    background: linear-gradient(135deg, #0D1F16 0%, #080F0A 100%);
+  }
+  .member-photo-placeholder::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(0,255,127,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,127,0.03) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .photo-badge {
+    position: relative; z-index: 1;
+    font-size: 10px; color: rgba(255,255,255,0.2);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: 1px dashed rgba(255,255,255,0.1); padding: 6px 12px;
+  }
+
+  .photo-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+    background: linear-gradient(transparent, rgba(8,12,10,0.95));
+  }
+
+  .member-info {
+    padding: 48px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+
+  .member-role-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 20px;
+    background: rgba(0,255,127,0.06); border: 1px solid rgba(0,255,127,0.15);
+    padding: 5px 12px; width: fit-content;
+  }
+
+  .member-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(32px, 3.5vw, 52px); font-weight: 800;
+    text-transform: uppercase; line-height: 1; margin-bottom: 8px;
+  }
+
+  .member-name-en {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px; font-weight: 400; color: var(--gray);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px;
+  }
+
+  .member-bio {
+    font-size: 14px; color: var(--gray-light); line-height: 1.8;
+    margin-bottom: 28px; max-width: 520px;
+  }
+
+  .member-tags {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+  }
+  .tag {
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gray); border: 1px solid rgba(255,255,255,0.08);
+    padding: 4px 10px;
+  }
+
+  .member-quote {
+    border-left: 2px solid var(--green); padding: 16px 20px;
+    background: rgba(0,255,127,0.04);
+    font-size: 14px; color: var(--gray-light); line-height: 1.7;
+    font-style: italic;
+  }
+  .member-quote cite {
+    display: block; margin-top: 8px;
+    font-size: 11px; color: var(--gray); font-style: normal;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* TEAM ROW — 3 per row */
+  .team-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.04);
+    margin-top: 1px;
+  }
+
+  .member-card {
+    background: var(--dark-3); overflow: hidden;
+    transition: background 0.2s; cursor: default;
+  }
+  .member-card:hover { background: var(--dark-4); }
+
+  .card-photo {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--dark-4); position: relative; overflow: hidden;
+  }
+  .card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%); transition: filter 0.3s; }
+  .member-card:hover .card-photo img { filter: grayscale(0%); }
+  .card-photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end; padding: 16px;
+    background: linear-gradient(135deg, #0D1F16 0%, #080F0A 100%);
+  }
+  .card-photo-placeholder::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(0,255,127,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,127,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .card-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 35%; background: linear-gradient(transparent, rgba(8,12,10,0.95)); }
+
+  .card-info { padding: 24px 24px 28px; }
+  .card-role { font-size: 11px; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .card-name { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; text-transform: uppercase; line-height: 1; margin-bottom: 12px; }
+  .card-bio { font-size: 13px; color: var(--gray); line-height: 1.7; margin-bottom: 16px; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .card-tag { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); border: 1px solid rgba(255,255,255,0.07); padding: 3px 8px; }
+
+  /* SECTION — VALUES */
+  .values-section {
+    padding: 96px 48px; background: var(--dark-2);
+    border-top: 1px solid rgba(0,255,127,0.08);
+  }
+  .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.04); margin-top: 56px; }
+  .value-card { background: var(--dark-3); padding: 32px 28px; }
+  .value-num { font-family: 'Barlow Condensed', sans-serif; font-size: 40px; font-weight: 800; color: rgba(0,255,127,0.15); line-height: 1; margin-bottom: 12px; }
+  .value-title { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .value-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+  /* JOIN */
+  .join-section {
+    padding: 80px 48px; background: var(--dark-3);
+    border-top: 1px solid rgba(0,255,127,0.08);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .join-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(32px,4vw,56px); font-weight: 800; text-transform: uppercase; line-height: 1; margin-bottom: 20px; }
+  .join-title .accent { color: var(--green); }
+  .join-desc { font-size: 15px; color: var(--gray-light); line-height: 1.7; margin-bottom: 32px; }
+  .join-reqs { display: flex; flex-direction: column; gap: 12px; }
+  .join-req { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--gray-light); line-height: 1.6; }
+  .req-check { color: var(--green); flex-shrink: 0; font-size: 14px; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--dark-4); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="eod-rc-prototype.html" class="logo">
+    <svg width="40" height="46" viewBox="0 0 40 46" fill="none">
+      <path d="M20 1L38 8V22C38 33 29.5 41 20 44C10.5 41 2 33 2 22V8L20 1Z" fill="rgba(0,255,127,0.06)" stroke="#00FF7F" stroke-width="1.2"/>
+      <path d="M20 6L33 12V22C33 30.5 26.5 37 20 39C13.5 37 7 30.5 7 22V12L20 6Z" fill="rgba(0,255,127,0.04)" stroke="#00FF7F" stroke-width="0.8" stroke-opacity="0.6"/>
+      <path d="M20 11L28 15.5V22C28 27.5 24.2 32 20 33.5C15.8 32 12 27.5 12 22V15.5L20 11Z" fill="rgba(0,255,127,0.08)" stroke="#00FF7F" stroke-width="0.6" stroke-opacity="0.4"/>
+      <path d="M14.5 22L18.5 26L25.5 18" stroke="#00FF7F" stroke-width="2" stroke-linecap="square"/>
+    </svg>
+    <span class="logo-text">EOD <span>&</span> RC</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="eod-rc-prototype.html#services"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
+    <li><a href="eod-rc-prototype.html#operations"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    <li><a href="#" class="active"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
+    <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
+    <li><a href="#">Media</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('ua')">UA</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="eod-rc-prototype.html#contact" class="btn-nav">
+      <span class="inline-ua">Зв'язатися</span>
+      <span class="inline-en">Contact</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <!-- TEAM PHOTO BANNER -->
+  <div style="position:relative; overflow:hidden; height:340px; margin-bottom:0;">
+    <img src="photo_team.png" alt="Команда EOD & RC на операції" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:brightness(0.55);">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(8,12,10,0.7) 0%, transparent 50%, rgba(8,12,10,0.3) 100%);"></div>
+    <div style="position:absolute;bottom:32px;left:48px;">
+      <div style="font-size:11px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">EOD & RC · <span class="inline-ua">Харківська область</span><span class="inline-en">Kharkiv region</span></div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;"><span class="inline-ua">Інструктаж перед виходом на об'єкт</span><span class="inline-en">Briefing before field operation</span></div>
+    </div>
+  </div>
+
+  <div class="hero-inner">
+    <div>
+      <div class="section-tag">
+        <span class="inline-ua">Команда EOD & RC</span>
+        <span class="inline-en">EOD & RC Team</span>
+      </div>
+      <h1>
+        <span data-ua>Люди,<br>що роблять<br>землю<br><span class="accent">безпечною</span></span>
+        <span data-en>People<br>who make<br>land<br><span class="accent">safe</span></span>
+      </h1>
+    </div>
+    <div class="hero-right-text">
+      <p style="font-size:16px; color:var(--gray-light); line-height:1.7; margin-bottom:32px;">
+        <span data-ua>25 фахівців. Ветерани бойових дій, розробники державних стандартів, досвідчені сапери. Кожен — профі у своїй справі. Разом — команда, якій довіряють своє поле, свою землю, своє майбутнє.</span>
+        <span data-en>25 specialists. Combat veterans, state standards developers, experienced deminers. Each a professional. Together — a team trusted with fields, land, and futures.</span>
+      </p>
+      <div class="hero-stat-row">
+        <div>
+          <div class="hero-stat-val">25</div>
+          <div class="hero-stat-label"><span class="inline-ua">Фахівців</span><span class="inline-en">Specialists</span></div>
+        </div>
+        <div>
+          <div class="hero-stat-val">35+</div>
+          <div class="hero-stat-label"><span class="inline-ua">Років досвіду (макс.)</span><span class="inline-en">Years max. exp.</span></div>
+        </div>
+        <div>
+          <div class="hero-stat-val">2+</div>
+          <div class="hero-stat-label"><span class="inline-ua">Роки мін. досвіду</span><span class="inline-en">Years min. exp.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="leadership-section">
+  <div class="section-tag">
+    <span class="inline-ua">Керівництво</span>
+    <span class="inline-en">Leadership</span>
+  </div>
+  <h2 class="section-title" style="margin-bottom:48px;">
+    <span data-ua>Хто веде<br>команду</span>
+    <span data-en>Who leads<br>the team</span>
+  </h2>
+
+  <!-- VYUNYK — Director -->
+  <div class="member-featured">
+    <div class="member-photo">
+      <img src="photo_vyunyk.jpg" alt="Вьюник Володимир — Директор EOD & RC" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <div class="photo-overlay"></div>
+    </div>
+    <div class="member-info">
+      <div>
+        <div class="member-role-tag">
+          <span class="inline-ua">Директор</span>
+          <span class="inline-en">Director</span>
+        </div>
+        <div class="member-name">
+          <span class="inline-ua">Вьюник<br>Володимир</span>
+          <span class="inline-en">Volodymyr<br>Vyunyk</span>
+        </div>
+        <div class="member-name-en">
+          <span class="inline-ua">Volodymyr Vyunyk</span>
+          <span class="inline-en">Вьюник Володимир</span>
+        </div>
+        <p class="member-bio">
+          <span data-ua>Харків'янин. З квітня 2022 року — доброволець А0501 (92 ОМБр), командир мотопіхотної роти 22-го ОМПБ. Пройшов оборону Харкова від с. Циркуни, контрнаступ до с. Стельмахівка на Луганщині. У 2023 році отримав поранення. Демобілізувався у квітні 2024 року і став директором EOD & RC. Відповідає за операційну діяльність, документообіг та внутрішню звітність.</span>
+          <span data-en>Kharkiv native. From April 2022 — volunteer A0501 (92nd OMBr), infantry company commander of 22nd OMPB. Participated in Kharkiv defense from Tsyrkuny village, counteroffensive to Stelmakhivka in Luhansk region. Wounded in 2023. Demobilized April 2024 and became EOD & RC Director. Responsible for operational management, documentation and internal reporting.</span>
+        </p>
+        <div class="member-tags">
+          <span class="tag"><span class="inline-ua">Учасник бойових дій</span><span class="inline-en">Combat veteran</span></span>
+          <span class="tag"><span class="inline-ua">92 ОМБр</span><span class="inline-en">92nd OMBr</span></span>
+          <span class="tag"><span class="inline-ua">Операційне управління</span><span class="inline-en">Operations management</span></span>
+          <span class="tag"><span class="inline-ua">Командир роти</span><span class="inline-en">Company commander</span></span>
+        </div>
+      </div>
+      <div class="member-quote">
+        <span data-ua>Досвід організації роботи ротою в бойових умовах допомагає ефективно керувати процесами розмінування сьогодні.</span>
+        <span data-en>Experience organizing company operations in combat conditions helps effectively manage demining processes today.</span>
+        <cite>— <span class="inline-ua">Про підхід до керівництва</span><span class="inline-en">On leadership approach</span></cite>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMYONOV — Deputy Director -->
+  <div class="member-featured" style="margin-top:1px;">
+    <div class="member-photo">
+      <img src="photo_semyonov.jpg" alt="Семенов Антон — Перший заступник директора EOD & RC" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <div class="photo-overlay"></div>
+    </div>
+    <div class="member-info">
+      <div>
+        <div class="member-role-tag">
+          <span class="inline-ua">Перший заступник директора</span>
+          <span class="inline-en">First Deputy Director</span>
+        </div>
+        <div class="member-name">
+          <span class="inline-ua">Семенов<br>Антон</span>
+          <span class="inline-en">Anton<br>Semyonov</span>
+        </div>
+        <div class="member-name-en">
+          <span class="inline-ua">Anton Semyonov</span>
+          <span class="inline-en">Семенов Антон</span>
+        </div>
+        <p class="member-bio">
+          <span data-ua>Кандидат економічних наук. 20+ років у фінансовому менеджменті, ІТ, оборонних проєктах, будівництві, банківській справі. Генеральний директор URIDT — Українського науково-дослідного інституту оборонних технологій. Заступник директора Харківського заводу засобів індивідуального захисту. Колишній заступник голови правління Львівського оборонного кластеру, який передав 100 000 бронежилетів ЗСУ. Відзнака Київського міського голови «Честь. Слава. Держава».</span>
+          <span data-en>PhD in Economics. 20+ years in financial management, IT, defense projects, construction, banking. CEO of URIDT — Ukrainian Research Institute of Defense Technologies. Deputy Director of Kharkiv PPE Manufacturing Plant. Former Deputy Chairman of Lviv Defense Cluster, which donated 100,000 body armors to the Ukrainian Armed Forces. Kyiv Mayor's Award "Honor. Glory. State."</span>
+        </p>
+        <div class="member-tags">
+          <span class="tag"><span class="inline-ua">Канд. екон. наук</span><span class="inline-en">PhD Economics</span></span>
+          <span class="tag">URIDT</span>
+          <span class="tag"><span class="inline-ua">Оборонні технології</span><span class="inline-en">Defense tech</span></span>
+          <span class="tag"><span class="inline-ua">Міжнародні партнери</span><span class="inline-en">Intl. partners</span></span>
+          <span class="tag"><span class="inline-ua">ІТ-інновації</span><span class="inline-en">IT innovations</span></span>
+        </div>
+      </div>
+      <div class="member-quote">
+        <span data-ua>Разом ми робимо нашу землю безпечною.</span>
+        <span data-en>Together we make our land safe.</span>
+        <cite>— <span class="inline-ua">На конференції DEMINING TECH 2024</span><span class="inline-en">At DEMINING TECH 2024 conference</span></cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORE TEAM -->
+<section style="padding: 0 48px 96px; background: var(--dark);">
+  <div class="section-tag" style="padding-top:0; margin-bottom:32px;">
+    <span class="inline-ua">Ключові фахівці</span>
+    <span class="inline-en">Key specialists</span>
+  </div>
+  <div class="team-row">
+
+    <!-- PUNDROVSKYI -->
+    <div class="member-card">
+      <div class="card-photo">
+        <img src="photo_pundrovskyi.jpg" alt="Пундровський Євген" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <div class="card-overlay"></div>
+      </div>
+      <div class="card-info">
+        <div class="card-role">
+          <span class="inline-ua">Заступник директора · Керівник саперних робіт</span>
+          <span class="inline-en">Deputy Director · EOD Operations Lead</span>
+        </div>
+        <div class="card-name">
+          <span class="inline-ua">Євген Пундровський</span>
+          <span class="inline-en">Yevhen Pundrovskyi</span>
+        </div>
+        <p class="card-bio">
+          <span data-ua>30+ років в інженерно-саперній справі. Командир взводу підготовки саперів, начальник штабу батальйону, заступник начальника Навчального центру ДСНС. Розробляв кваліфікаційні характеристики професії «сапер розмінування» та СОПи для гуманітарного розмінування. Керував очищенням 61 арсеналу у м. Лозова.</span>
+          <span data-en>30+ years in EOD engineering. Sapper training platoon commander, battalion chief of staff, Deputy Head of SESU Training Center. Developed qualification standards for "demining sapper" and SOPs for humanitarian demining. Led clearance of Arsenal 61 in Lozova.</span>
+        </p>
+        <div class="card-tags">
+          <span class="card-tag">30+ <span class="inline-ua">років</span><span class="inline-en">years</span></span>
+          <span class="card-tag">ДСНС</span>
+          <span class="card-tag"><span class="inline-ua">СОПи</span><span class="inline-en">SOPs</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VDOVYCHENKO -->
+    <div class="member-card">
+      <div class="card-photo">
+        <img src="photo_vdovychenko.jpg" alt="Вдовиченко Олександр" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <div class="card-overlay"></div>
+      </div>
+      <div class="card-info">
+        <div class="card-role">
+          <span class="inline-ua">Інженер з якості</span>
+          <span class="inline-en">Quality Engineer</span>
+        </div>
+        <div class="card-name">
+          <span class="inline-ua">Олександр Вдовиченко</span>
+          <span class="inline-en">Oleksandr Vdovychenko</span>
+        </div>
+        <p class="card-bio">
+          <span data-ua>10+ років розмінування, включно з залишками Другої світової. 10 років у навчальному центрі ДСНС — підготовка піротехніків, розробка навчальних планів і держстандарту «Сапер (розмінування)». 6 років у Харківському НДЕКЦ МВС — судова вибухотехнічна експертиза. Учасник бойових дій.</span>
+          <span data-en>10+ years demining including WWII remnants. 10 years at SESU Training Center — pyrotechnician training, curriculum and state standard "Demining Sapper" development. 6 years at Kharkiv FSEC MIA — forensic explosive examination. Combat veteran.</span>
+        </p>
+        <div class="card-tags">
+          <span class="card-tag">10+ <span class="inline-ua">років</span><span class="inline-en">years</span></span>
+          <span class="card-tag">IMAS</span>
+          <span class="card-tag"><span class="inline-ua">Держстандарт</span><span class="inline-en">State standard</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FURSA -->
+    <div class="member-card">
+      <div class="card-photo">
+        <img src="photo_fursa.png" alt="Фурса Андрій" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <div class="card-overlay"></div>
+      </div>
+      <div class="card-info">
+        <div class="card-role">
+          <span class="inline-ua">Діловод · Помічник директора</span>
+          <span class="inline-en">Records Officer · Director's Assistant</span>
+        </div>
+        <div class="card-name">
+          <span class="inline-ua">Андрій Фурса</span>
+          <span class="inline-en">Andriy Fursa</span>
+        </div>
+        <p class="card-bio">
+          <span data-ua>Дві вищі освіти — військово-політична та психологічна. Служив у ракетних військах стратегічного призначення. Викладав у Харківському педуніверситеті. З 2015 року — доброволець 5-ї Слобожанської бригади НГУ, пройшов шлях від заступника командира роти до заступника командира батальйону. Учасник бойових дій.</span>
+          <span data-en>Two higher degrees — military-political and psychology. Served in Strategic Missile Forces. Taught at Kharkiv Pedagogical University. From 2015 — volunteer in 5th Slobozhan Brigade NGU, from company deputy commander to battalion deputy commander. Combat veteran.</span>
+        </p>
+        <div class="card-tags">
+          <span class="card-tag"><span class="inline-ua">УБД</span><span class="inline-en">Combat vet.</span></span>
+          <span class="card-tag"><span class="inline-ua">Психологія</span><span class="inline-en">Psychology</span></span>
+          <span class="card-tag"><span class="inline-ua">НГУ</span><span class="inline-en">NGU</span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECOND ROW — медик + спеціаліст з інформації + заглушка -->
+  <div class="team-row" style="margin-top:1px;">
+
+    <!-- LYKHYKH -->
+    <div class="member-card">
+      <div class="card-photo">
+        <img src="photo_lykhykh.png" alt="Лихих Валерій" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <div class="card-overlay"></div>
+      </div>
+      <div class="card-info">
+        <div class="card-role">
+          <span class="inline-ua">Штатний медик</span>
+          <span class="inline-en">Medical Officer</span>
+        </div>
+        <div class="card-name">
+          <span class="inline-ua">Валерій Лихих</span>
+          <span class="inline-en">Valeriy Lykhykh</span>
+        </div>
+        <p class="card-bio">
+          <span data-ua>Фельдшер (Лебединське медучилище, 1990). Служив на Флоті в аварійно-рятувальному підрозділі. Завідувач фельдшерського пункту в Сумщині. Відповідає за медичне забезпечення команди: щоденний огляд, домедична підготовка, план медевакуації, взаємодія з медзакладами в зоні операцій.</span>
+          <span data-en>Paramedic (Lebedyn Medical College, 1990). Served in Navy emergency rescue unit. Head of paramedic station in Sumy region. Responsible for team medical support: daily checks, first aid training, medevac plan, coordination with medical facilities in operations zone.</span>
+        </p>
+        <div class="card-tags">
+          <span class="card-tag"><span class="inline-ua">Фельдшер</span><span class="inline-en">Paramedic</span></span>
+          <span class="card-tag"><span class="inline-ua">Медевакуація</span><span class="inline-en">Medevac</span></span>
+          <span class="card-tag"><span class="inline-ua">Флот</span><span class="inline-en">Navy</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KRYVONOSOV -->
+    <div class="member-card">
+      <div class="card-photo">
+        <img src="photo_kryvonosov.png" alt="Кривоносов Роман" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <div class="card-overlay"></div>
+      </div>
+      <div class="card-info">
+        <div class="card-role">
+          <span class="inline-ua">Фахівець з управління інформацією</span>
+          <span class="inline-en">Information Management Specialist</span>
+        </div>
+        <div class="card-name">
+          <span class="inline-ua">Роман Кривоносов</span>
+          <span class="inline-en">Roman Kryvonosov</span>
+        </div>
+        <p class="card-bio">
+          <span data-ua>Геодезист і картограф (ХНУМГ ім. Бекетова). Спеціаліст з оцінки землі та нерухомості. 5 років у Національній поліції. Відповідає за систему управління інформацією в гуманітарному розмінуванні: координати, карти, внесення даних до IMSMA.</span>
+          <span data-en>Geodesist and cartographer (O.M. Beketov NUWEE). Land and real estate assessment specialist. 5 years in National Police. Responsible for information management in humanitarian demining: coordinates, maps, IMSMA data entry.</span>
+        </p>
+        <div class="card-tags">
+          <span class="card-tag"><span class="inline-ua">Геодезія</span><span class="inline-en">Geodesy</span></span>
+          <span class="card-tag">IMSMA</span>
+          <span class="card-tag"><span class="inline-ua">Картографія</span><span class="inline-en">Cartography</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLACEHOLDER — решта 19 -->
+    <div class="member-card" style="display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:400px; background:var(--dark-4); border: 1px dashed rgba(255,255,255,0.06);">
+      <div style="text-align:center; padding:40px;">
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:800; color:rgba(0,255,127,0.15); line-height:1; margin-bottom:16px;">+19</div>
+        <div style="font-size:12px; color:var(--gray); letter-spacing:0.1em; text-transform:uppercase; line-height:1.7;">
+          <span data-ua>Фахівців команди.<br>Сапери, піротехніки,<br>польовий персонал.</span>
+          <span data-en>Team specialists.<br>Sappers, pyrotechnicians,<br>field personnel.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="section-tag">
+    <span class="inline-ua">Чому вони тут</span>
+    <span class="inline-en">Why they're here</span>
+  </div>
+  <h2 class="section-title">
+    <span data-ua>Що об'єднує<br>команду</span>
+    <span data-en>What unites<br>the team</span>
+  </h2>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-num">01</div>
+      <div class="value-title"><span class="inline-ua">Досвід</span><span class="inline-en">Experience</span></div>
+      <div class="value-desc">
+        <span data-ua>Кожен член команди має реальний польовий досвід. Ніхто не прийшов з теорії — тільки практика.</span>
+        <span data-en>Every team member has real field experience. No one came from theory — only practice.</span>
+      </div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">02</div>
+      <div class="value-title"><span class="inline-ua">Місія</span><span class="inline-en">Mission</span></div>
+      <div class="value-desc">
+        <span data-ua>Однодумці з єдиною метою — зробити українські землі безпечними і повернути людей до нормального життя.</span>
+        <span data-en>Like-minded people with one goal — make Ukrainian land safe and return people to normal life.</span>
+      </div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">03</div>
+      <div class="value-title"><span class="inline-ua">Стандарти</span><span class="inline-en">Standards</span></div>
+      <div class="value-desc">
+        <span data-ua>Робота за міжнародними стандартами IMAS — не формальність, а принцип. Помилка тут коштує занадто дорого.</span>
+        <span data-en">Working to IMAS international standards is not a formality but a principle. A mistake here costs too much.</span>
+      </div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">04</div>
+      <div class="value-title"><span class="inline-ua">Відповідальність</span><span class="inline-en">Responsibility</span></div>
+      <div class="value-desc">
+        <span data-ua>Кожна підписана ділянка — це гарантія безпеки. Команда несе особисту відповідальність за результат.</span>
+        <span data-en>Every cleared area signed off is a safety guarantee. The team bears personal responsibility for results.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="join-section">
+  <div>
+    <div class="section-tag">
+      <span class="inline-ua">Вакансії</span>
+      <span class="inline-en">Careers</span>
+    </div>
+    <h2 class="join-title">
+      <span data-ua>Приєднатись<br>до <span class="accent">команди</span></span>
+      <span data-en>Join<br>the <span class="accent">team</span></span>
+    </h2>
+    <p class="join-desc">
+      <span data-ua>EOD & RC постійно розвивається. Якщо ви фахівець у сфері розмінування, піротехніки, геодезії або медицини — ми будемо раді поговорити.</span>
+      <span data-en>EOD & RC is constantly growing. If you are a specialist in demining, pyrotechnics, geodesy or medicine — we would be glad to talk.</span>
+    </p>
+    <div class="join-reqs">
+      <div class="join-req">
+        <span class="req-check">✓</span>
+        <span data-ua>Досвід роботи у сфері EOD/ПМД або суміжних галузях</span>
+        <span data-en>Experience in EOD/mine action or related fields</span>
+      </div>
+      <div class="join-req">
+        <span class="req-check">✓</span>
+        <span data-ua>Відповідальність, дисципліна, командний дух</span>
+        <span data-en>Responsibility, discipline, team spirit</span>
+      </div>
+      <div class="join-req">
+        <span class="req-check">✓</span>
+        <span data-ua>Готовність працювати в Харківській та Сумській областях</span>
+        <span data-en>Readiness to work in Kharkiv and Sumy regions</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p style="font-size:14px; color:var(--gray-light); line-height:1.7; margin-bottom:28px;">
+      <span data-ua>Напишіть нам — коротко про себе, досвід і чому хочете приєднатись до EOD & RC.</span>
+      <span data-en>Write to us — briefly about yourself, experience and why you want to join EOD & RC.</span>
+    </p>
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <a href="/cdn-cgi/l/email-protection#e58c8b838aa5808a81c89786cb868a88" class="btn-primary">
+        <span class="inline-ua">Написати нам →</span>
+        <span class="inline-en">Write to us →</span>
+      </a>
+      <a href="eod-rc-prototype.html#contact" class="btn-secondary">
+        <span class="inline-ua">Форма зв'язку</span>
+        <span class="inline-en">Contact form</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    if (lang === 'en') {
+      document.body.classList.add('en');
+      document.querySelector('.lang-btn:last-child').classList.add('active');
+    } else {
+      documen

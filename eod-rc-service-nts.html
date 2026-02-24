@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EOD & RC — Нетехнічне обстеження / Non-Technical Survey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00FF7F;
+    --dark: #080C0A;
+    --dark-2: #0D1410;
+    --dark-3: #131A15;
+    --dark-4: #1A2420;
+    --gray: #8A9E94;
+    --gray-light: #C2D4CC;
+    --white: #F0F5F2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 72px; background: rgba(8,12,10,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,255,127,0.08); }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: 0.05em; }
+  .logo-text span { color: var(--green); }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--gray-light); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--green); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .lang-switcher { display: flex; gap: 4px; background: var(--dark-4); border-radius: 4px; padding: 3px; }
+  .lang-btn { padding: 4px 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; border: none; border-radius: 2px; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--gray); }
+  .lang-btn.active { background: var(--green); color: var(--dark); }
+  .btn-nav { padding: 8px 20px; background: var(--green); color: var(--dark); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+
+  /* LANG */
+  [data-en] { display: none; }
+  body.en [data-ua] { display: none; }
+  body.en [data-en] { display: block; }
+  body.en .inline-en { display: inline !important; }
+  body.en .inline-ua { display: none !important; }
+  .inline-ua { display: inline; }
+  .inline-en { display: none; }
+
+  /* BUTTONS */
+  .btn-primary { padding: 14px 32px; background: var(--green); color: var(--dark); font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--white); }
+  .btn-secondary { padding: 14px 32px; background: transparent; color: var(--gray-light); font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
+  .btn-secondary:hover { border-color: var(--green); color: var(--green); }
+
+  /* ── SERVICE NAV BREADCRUMB ── */
+  .service-nav {
+    position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
+    background: var(--dark-3);
+    border-bottom: 1px solid rgba(0,255,127,0.06);
+    padding: 0 48px;
+    display: flex; align-items: center; gap: 0;
+    height: 44px; overflow-x: auto;
+  }
+  .svc-step {
+    display: flex; align-items: center; gap: 0;
+    text-decoration: none; white-space: nowrap;
+  }
+  .svc-step-inner {
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 20px; height: 44px;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray); transition: color 0.2s;
+    border-right: 1px solid rgba(255,255,255,0.05);
+  }
+  .svc-step:hover .svc-step-inner { color: var(--gray-light); }
+  .svc-step.active .svc-step-inner { color: var(--green); background: rgba(0,255,127,0.04); }
+  .svc-step-num { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; opacity: 0.4; }
+  .svc-step.active .svc-step-num { opacity: 1; color: var(--green); }
+
+  /* ── HERO ── */
+  .service-hero {
+    padding: 140px 48px 0;
+    background: var(--dark-2);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    padding-bottom: 80px;
+    padding-right: 64px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .step-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 32px; width: fit-content;
+  }
+  .step-badge-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--dark);
+    background: var(--green); padding: 4px 10px;
+  }
+  .step-badge-label {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--green);
+  }
+
+  .service-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(44px, 5.5vw, 80px);
+    font-weight: 800; text-transform: uppercase; line-height: 0.92;
+    margin-bottom: 28px;
+  }
+  .service-title .accent { color: var(--green); }
+
+  .service-lead {
+    font-size: 16px; color: var(--gray-light); line-height: 1.7;
+    max-width: 480px; margin-bottom: 40px;
+  }
+
+  .hero-meta {
+    display: flex; gap: 32px; margin-bottom: 40px;
+  }
+  .meta-item { }
+  .meta-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px; font-weight: 800; color: var(--green); line-height: 1;
+  }
+  .meta-label {
+    font-size: 11px; color: var(--gray); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--dark-3);
+    border-left: 1px solid rgba(0,255,127,0.06);
+  }
+  .hero-photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end; padding: 40px;
+    background: linear-gradient(135deg, #0D1F16 0%, #080F0A 100%);
+  }
+  .hero-photo-placeholder::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(0,255,127,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,127,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .photo-label {
+    font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em;
+    text-transform: uppercase; border: 1px dashed rgba(255,255,255,0.1);
+    padding: 8px 16px; position: relative; z-index: 1;
+  }
+
+  /* ── WHAT IS IT ── */
+  .what-section {
+    padding: 96px 48px;
+    background: var(--dark);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  .section-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--green); }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; text-transform: uppercase; line-height: 1; margin-bottom: 20px; }
+
+  .definition-block {
+    background: var(--dark-3); border-left: 3px solid var(--green);
+    padding: 28px 32px; margin-bottom: 28px;
+  }
+  .definition-text {
+    font-size: 15px; color: var(--gray-light); line-height: 1.8;
+  }
+
+  .goal-list { display: flex; flex-direction: column; gap: 16px; }
+  .goal-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 18px; background: var(--dark-3);
+  }
+  .goal-icon {
+    width: 36px; height: 36px; background: rgba(0,255,127,0.1);
+    border: 1px solid rgba(0,255,127,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .goal-text { font-size: 13px; color: var(--gray-light); line-height: 1.6; }
+  .goal-text strong { display: block; font-size: 14px; color: var(--white); font-weight: 500; margin-bottom: 3px; }
+
+  /* ── PROCESS ── */
+  .process-section { padding: 96px 48px; background: var(--dark-2); }
+  .process-flow {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.04);
+  }
+  .process-step { background: var(--dark-3); padding: 32px 28px; position: relative; }
+  .process-step::after {
+    content: '→';
+    position: absolute; top: 32px; right: -12px;
+    font-size: 16px; color: var(--green); z-index: 1;
+    background: var(--dark-3); padding: 0 4px;
+  }
+  .process-step:last-child::after { display: none; }
+  .process-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 48px; font-weight: 800;
+    color: rgba(0,255,127,0.1); line-height: 1; margin-bottom: 16px;
+  }
+  .process-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 10px;
+  }
+  .process-desc { font-size: 12px; color: var(--gray); line-height: 1.7; }
+
+  /* ── RESULTS ── */
+  .results-section { padding: 96px 48px; background: var(--dark); }
+  .results-layout { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.04); }
+  .result-card {
+    background: var(--dark-3); padding: 36px 32px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .result-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 5px 12px; width: fit-content;
+    font-weight: 600;
+  }
+  .status-probable { background: rgba(255,200,0,0.1); color: #FFC800; border: 1px solid rgba(255,200,0,0.2); }
+  .status-confirmed { background: rgba(255,70,70,0.1); color: #FF4646; border: 1px solid rgba(255,70,70,0.2); }
+  .status-excluded { background: rgba(0,255,127,0.08); color: var(--green); border: 1px solid rgba(0,255,127,0.2); }
+  .result-title { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .result-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
+  .result-next { margin-top: auto; font-size: 12px; color: var(--gray); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 16px; }
+  .result-next a { color: var(--green); text-decoration: none; }
+
+  /* ── NEXT SERVICE ── */
+  .next-service {
+    background: var(--dark-3); border-top: 1px solid rgba(0,255,127,0.08);
+    padding: 64px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .next-label { font-size: 11px; color: var(--gray); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+  .next-title { font-family: 'Barlow Condensed', sans-serif; font-size: 40px; font-weight: 800; text-transform: uppercase; }
+  .next-title .accent { color: var(--green); }
+  .next-desc { font-size: 14px; color: var(--gray-light); margin-top: 8px; max-width: 400px; line-height: 1.6; }
+
+  /* ── ORDER CTA ── */
+  .order-section {
+    padding: 80px 48px; background: var(--dark-2);
+    border-top: 1px solid rgba(0,255,127,0.08);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .order-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(28px,3.5vw,48px); font-weight: 800; text-transform: uppercase; line-height: 1; margin-bottom: 16px; }
+  .order-title .accent { color: var(--green); }
+  .order-desc { font-size: 14px; color: var(--gray-light); line-height: 1.7; margin-bottom: 32px; }
+  .order-steps { display: flex; flex-direction: column; gap: 12px; }
+  .order-step { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--gray-light); line-height: 1.6; }
+  .order-step-num { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--green); min-width: 24px; }
+  .contact-mini { background: var(--dark-4); border: 1px solid rgba(0,255,127,0.08); padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .contact-row { display: flex; align-items: center; gap: 12px; }
+  .contact-ico { width: 36px; height: 36px; background: rgba(0,255,127,0.08); border: 1px solid rgba(0,255,127,0.15); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .contact-lbl { font-size: 10px; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
+  .contact-val { font-size: 14px; color: var(--white); text-decoration: none; }
+  .contact-val:hover { color: var(--green); }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--dark-4); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="eod-rc-prototype.html" class="logo">
+    <svg width="40" height="46" viewBox="0 0 40 46" fill="none">
+      <path d="M20 1L38 8V22C38 33 29.5 41 20 44C10.5 41 2 33 2 22V8L20 1Z" fill="rgba(0,255,127,0.06)" stroke="#00FF7F" stroke-width="1.2"/>
+      <path d="M20 6L33 12V22C33 30.5 26.5 37 20 39C13.5 37 7 30.5 7 22V12L20 6Z" fill="rgba(0,255,127,0.04)" stroke="#00FF7F" stroke-width="0.8" stroke-opacity="0.6"/>
+      <path d="M20 11L28 15.5V22C28 27.5 24.2 32 20 33.5C15.8 32 12 27.5 12 22V15.5L20 11Z" fill="rgba(0,255,127,0.08)" stroke="#00FF7F" stroke-width="0.6" stroke-opacity="0.4"/>
+      <path d="M14.5 22L18.5 26L25.5 18" stroke="#00FF7F" stroke-width="2" stroke-linecap="square"/>
+    </svg>
+    <span class="logo-text">EOD <span>&</span> RC</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="eod-rc-prototype.html#services" class="active"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
+    <li><a href="eod-rc-prototype.html#operations"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    <li><a href="eod-rc-prototype.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
+    <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
+    <li><a href="#">Media</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('ua')">UA</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="eod-rc-prototype.html#contact" class="btn-nav">
+      <span class="inline-ua">Зв'язатися</span>
+      <span class="inline-en">Contact</span>
+    </a>
+  </div>
+</nav>
+
+<!-- SERVICE NAV — всі 5 послуг як кроки -->
+<div class="service-nav">
+  <a href="#" class="svc-step active">
+    <div class="svc-step-inner">
+      <span class="svc-step-num">01</span>
+      <span class="inline-ua">Нетехнічне обстеження</span>
+      <span class="inline-en">Non-Technical Survey</span>
+    </div>
+  </a>
+  <a href="#" class="svc-step">
+    <div class="svc-step-inner">
+      <span class="svc-step-num">02</span>
+      <span class="inline-ua">Технічне обстеження</span>
+      <span class="inline-en">Technical Survey</span>
+    </div>
+  </a>
+  <a href="#" class="svc-step">
+    <div class="svc-step-inner">
+      <span class="svc-step-num">03</span>
+      <span class="inline-ua">Розмінування вручну</span>
+      <span class="inline-en">Manual Demining</span>
+    </div>
+  </a>
+  <a href="#" class="svc-step">
+    <div class="svc-step-inner">
+      <span class="svc-step-num">04</span>
+      <span class="inline-ua">Очищення районів БД</span>
+      <span class="inline-en">Battlefield Clearance</span>
+    </div>
+  </a>
+  <a href="#" class="svc-step">
+    <div class="svc-step-inner">
+      <span class="svc-step-num">05</span>
+      <span class="inline-ua">Рекультивація</span>
+      <span class="inline-en">Recultivation</span>
+    </div>
+  </a>
+</div>
+
+<!-- HERO -->
+<section class="service-hero">
+  <div class="hero-left">
+    <div class="step-badge">
+      <span class="step-badge-num"><span class="inline-ua">КРОК 01</span><span class="inline-en">STEP 01</span></span>
+      <span class="step-badge-label"><span class="inline-ua">З 5 етапів розмінування</span><span class="inline-en">of 5 demining stages</span></span>
+    </div>
+    <h1 class="service-title">
+      <span data-ua>Нетехнічне<br><span class="accent">обстеження</span></span>
+      <span data-en>Non-Technical<br><span class="accent">Survey</span></span>
+    </h1>
+    <p class="service-lead">
+      <span data-ua>Перший і найважливіший крок. До того, як сапер ступить на поле, ми повинні зрозуміти: що там є, де це є і наскільки це небезпечно.</span>
+      <span data-en>The first and most critical step. Before a deminer sets foot on land, we must understand what is there, where it is, and how dangerous it is.</span>
+    </p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-val">№080</div>
+        <div class="meta-label"><span class="inline-ua">Держ. сертифікат</span><span class="inline-en">State certificate</span></div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-val">3</div>
+        <div class="meta-label"><span class="inline-ua">Можливі статуси території</span><span class="inline-en">Possible area statuses</span></div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-val">IMAS</div>
+        <div class="meta-label"><span class="inline-ua">Відповідність стандарту</span><span class="inline-en">Standards compliant</span></div>
+      </div>
+    </div>
+    <div style="display:flex; gap:16px;">
+      <a href="#order" class="btn-primary">
+        <span class="inline-ua">Замовити обстеження</span>
+        <span class="inline-en">Order survey</span>
+      </a>
+      <a href="#what" class="btn-secondary">
+        <span class="inline-ua">Дізнатись більше ↓</span>
+        <span class="inline-en">Learn more ↓</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-placeholder">
+      <span class="photo-label">
+        <span class="inline-ua">[ ФОТО — НЕТЕХНІЧНЕ ОБСТЕЖЕННЯ ]</span>
+        <span class="inline-en">[ PHOTO — NON-TECHNICAL SURVEY ]</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS IT -->
+<section class="what-section" id="what">
+  <div>
+    <div class="section-tag">
+      <span class="inline-ua">Що це таке</span>
+      <span class="inline-en">What it is</span>
+    </div>
+    <h2 class="section-title">
+      <span data-ua>Мета та<br>завдання</span>
+      <span data-en>Purpose &<br>objectives</span>
+    </h2>
+    <div class="definition-block">
+      <p class="definition-text">
+        <span data-ua>Нетехнічне обстеження — це збір та аналіз інформації про можливе забруднення території вибухонебезпечними предметами <strong>без безпосереднього виходу на підозрілу ділянку</strong>. Це розвідка перед розвідкою.</span>
+        <span data-en>Non-Technical Survey is the collection and analysis of information about possible explosive contamination <strong>without physically entering the suspected area</strong>. It is reconnaissance before reconnaissance.</span>
+      </p>
+    </div>
+    <p style="font-size:14px; color:var(--gray); line-height:1.7;">
+      <span data-ua>Основна мета — класифікувати територію за статусом небезпеки, щоб правильно спланувати подальші дії і не витрачати ресурси там, де загрози немає.</span>
+      <span data-en>The primary goal is to classify the area by hazard status in order to correctly plan further actions and not waste resources where there is no threat.</span>
+    </p>
+  </div>
+  <div>
+    <div class="section-tag" style="margin-bottom:24px;">
+      <span class="inline-ua">Як це відбувається</span>
+      <span class="inline-en">How it works</span>
+    </div>
+    <div class="goal-list">
+      <div class="goal-item">
+        <div class="goal-icon">🗣️</div>
+        <div class="goal-text">
+          <strong><span class="inline-ua">Опитування місцевих мешканців</span><span class="inline-en">Local community interviews</span></strong>
+          <span data-ua>Збір свідчень людей, які жили або працювали на цій території. Очевидці бачили те, що не покажуть жодні мапи.</span>
+          <span data-en>Collecting testimonies from people who lived or worked in the area. Eyewitnesses see what no map can show.</span>
+        </div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-icon">🗺️</div>
+        <div class="goal-text">
+          <strong><span class="inline-ua">Аналіз архівних матеріалів</span><span class="inline-en">Archival materials analysis</span></strong>
+          <span data-ua>Вивчення карт, звітів, супутникових знімків та документації про бойові дії в даному районі.</span>
+          <span data-en>Studying maps, reports, satellite imagery and documentation about hostilities in the area.</span>
+        </div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-icon">👁️</div>
+        <div class="goal-text">
+          <strong><span class="inline-ua">Візуальне спостереження</span><span class="inline-en">Visual observation</span></strong>
+          <span data-ua>Огляд периметру та прилеглих безпечних зон без входу на потенційно небезпечну ділянку.</span>
+          <span data-en>Perimeter inspection and adjacent safe zones without entering the potentially hazardous area.</span>
+        </div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-icon">📍</div>
+        <div class="goal-text">
+          <strong><span class="inline-ua">Визначення меж та ризиків</span><span class="inline-en">Boundary & risk definition</span></strong>
+          <span data-ua>Встановлення попередніх меж потенційно небезпечної зони та оцінка характеру можливого забруднення.</span>
+          <span data-en>Establishing preliminary boundaries of the potentially hazardous zone and assessing the nature of possible contamination.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="section-tag">
+    <span class="inline-ua">Етапи роботи</span>
+    <span class="inline-en">Work stages</span>
+  </div>
+  <h2 class="section-title">
+    <span data-ua>Як проходить<br>обстеження</span>
+    <span data-en>How the survey<br>is conducted</span>
+  </h2>
+  <div class="process-flow">
+    <div class="process-step">
+      <div class="process-num">01</div>
+      <div class="process-name"><span class="inline-ua">Запит</span><span class="inline-en">Request</span></div>
+      <div class="process-desc">
+        <span data-ua>Власник або підприємство звертається до EOD&RC. Визначаємо координати та площу ділянки.</span>
+        <span data-en>Owner or company contacts EOD&RC. We determine coordinates and area size.</span>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">02</div>
+      <div class="process-name"><span class="inline-ua">Збір даних</span><span class="inline-en">Data collection</span></div>
+      <div class="process-desc">
+        <span data-ua>Опитування свідків, аналіз архівів, перегляд супутникових знімків і бойових карт.</span>
+        <span data-en>Witness interviews, archive analysis, satellite imagery and battle map review.</span>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">03</div>
+      <div class="process-name"><span class="inline-ua">Польовий огляд</span><span class="inline-en">Field observation</span></div>
+      <div class="process-desc">
+        <span data-ua>Огляд периметру без входу на небезпечну ділянку. Фіксація видимих ознак забруднення.</span>
+        <span data-en>Perimeter inspection without entering the hazardous area. Recording visible contamination signs.</span>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">04</div>
+      <div class="process-name"><span class="inline-ua">Класифікація</span><span class="inline-en">Classification</span></div>
+      <div class="process-desc">
+        <span data-ua>Присвоєння офіційного статусу небезпеки та підготовка звіту з рекомендаціями.</span>
+        <span data-en>Assigning official hazard status and preparing a report with recommendations.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results-section">
+  <div class="section-tag">
+    <span class="inline-ua">Результат обстеження</span>
+    <span class="inline-en">Survey outcome</span>
+  </div>
+  <h2 class="section-title">
+    <span data-ua>Три можливих<br>статуси території</span>
+    <span data-en>Three possible<br>area statuses</span>
+  </h2>
+  <p style="font-size:15px; color:var(--gray-light); max-width:560px; line-height:1.7; margin: 16px 0 48px;">
+    <span data-ua>Після завершення нетехнічного обстеження кожна ділянка отримує один із трьох офіційних статусів, який визначає подальші дії.</span>
+    <span data-en>After completing the non-technical survey, each area receives one of three official statuses that determines next steps.</span>
+  </p>
+  <div class="results-layout">
+    <div class="result-card">
+      <span class="result-status status-probable">
+        <span class="inline-ua">⚠ Ймовірно небезпечна</span>
+        <span class="inline-en">⚠ Probably Hazardous</span>
+      </span>
+      <div class="result-title">
+        <span class="inline-ua">SHA</span>
+        <span class="inline-en">SHA</span>
+      </div>
+      <div class="result-desc">
+        <span data-ua>Є непрямі ознаки можливого забруднення. Не достатньо даних для підтвердження, але й не достатньо для виключення.</span>
+        <span data-en>Indirect signs of possible contamination. Insufficient data to confirm, but also insufficient to exclude.</span>
+      </div>
+      <div class="result-next">
+        <span data-ua>Наступний крок: <a href="#">Технічне обстеження →</a></span>
+        <span data-en>Next step: <a href="#">Technical Survey →</a></span>
+      </div>
+    </div>
+    <div class="result-card">
+      <span class="result-status status-confirmed">
+        <span class="inline-ua">✕ Підтверджено небезпечна</span>
+        <span class="inline-en">✕ Confirmed Hazardous</span>
+      </span>
+      <div class="result-title">
+        <span class="inline-ua">CHA</span>
+        <span class="inline-en">CHA</span>
+      </div>
+      <div class="result-desc">
+        <span data-ua>Прямі докази наявності вибухонебезпечних предметів. Необхідні технічне обстеження та розмінування.</span>
+        <span data-en>Direct evidence of explosive items present. Technical survey and demining required.</span>
+      </div>
+      <div class="result-next">
+        <span data-ua>Наступний крок: <a href="#">Технічне обстеження + Розмінування →</a></span>
+        <span data-en>Next step: <a href="#">Technical Survey + Demining →</a></span>
+      </div>
+    </div>
+    <div class="result-card">
+      <span class="result-status status-excluded">
+        <span class="inline-ua">✓ Виключена територія</span>
+        <span class="inline-en">✓ Cancelled Area</span>
+      </span>
+      <div class="result-title">
+        <span class="inline-ua">CA</span>
+        <span class="inline-en">CA</span>
+      </div>
+      <div class="result-desc">
+        <span data-ua>Докази свідчать, що ділянка не забруднена. Територія виводиться з переліку небезпечних зон.</span>
+        <span data-en>Evidence indicates the area is not contaminated. Territory removed from hazardous zones list.</span>
+      </div>
+      <div class="result-next">
+        <span data-ua>Наступний крок: <a href="#">Ділянка передається в експлуатацію →</a></span>
+        <span data-en>Next step: <a href="#">Area returned to use →</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT SERVICE -->
+<div class="next-service">
+  <div>
+    <div class="next-label">
+      <span class="inline-ua">Наступний етап розмінування</span>
+      <span class="inline-en">Next demining stage</span>
+    </div>
+    <div class="next-title">
+      <span data-ua><span class="accent">02 —</span> Технічне обстеження</span>
+      <span data-en><span class="accent">02 —</span> Technical Survey</span>
+    </div>
+    <div class="next-desc">
+      <span data-ua>Прямі докази наявності або відсутності ВНП з використанням технічних засобів виявлення.</span>
+      <span data-en>Direct evidence of UXO presence or absence using technical detection equipment.</span>
+    </div>
+  </div>
+  <a href="#" class="btn-primary">
+    <span class="inline-ua">Дізнатись про ТО →</span>
+    <span class="inline-en">Learn about TS →</span>
+  </a>
+</div>
+
+<!-- ORDER -->
+<section class="order-section" id="order">
+  <div>
+    <div class="section-tag">
+      <span class="inline-ua">Замовити послугу</span>
+      <span class="inline-en">Order service</span>
+    </div>
+    <h2 class="order-title">
+      <span data-ua>Як <span class="accent">замовити</span><br>обстеження</span>
+      <span data-en">How to <span class="accent">order</span><br>a survey</span>
+    </h2>
+    <p class="order-desc">
+      <span data-ua>Процес простий. Нам потрібні лише базові дані про вашу ділянку — решту зробимо ми.</span>
+      <span data-en>The process is straightforward. We only need basic data about your plot — we'll handle the rest.</span>
+    </p>
+    <div class="order-steps">
+      <div class="order-step">
+        <span class="order-step-num">1.</span>
+        <span data-ua>Зв'яжіться з нами зручним способом — телефон, email або Instagram.</span>
+        <span data-en>Contact us in any convenient way — phone, email or Instagram.</span>
+      </div>
+      <div class="order-step">
+        <span class="order-step-num">2.</span>
+        <span data-ua>Надайте координати або адресу ділянки та коротко опишіть ситуацію.</span>
+        <span data-en>Provide coordinates or address of the plot and briefly describe the situation.</span>
+      </div>
+      <div class="order-step">
+        <span class="order-step-num">3.</span>
+        <span data-ua>Наші фахівці зв'яжуться з вами протягом 24 годин для узгодження деталей.</span>
+        <span data-en">Our specialists will contact you within 24 hours to agree on details.</span>
+      </div>
+      <div class="order-step">
+        <span class="order-step-num">4.</span>
+        <span data-ua>Виїзд на об'єкт та початок обстеження у погоджені строки.</span>
+        <span data-en>Field visit and survey start on agreed terms.</span>
+      </div>
+    </div>
+  </div>
+  <div class="contact-mini">
+    <div style="font-size:11px; color:var(--green); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:4px;">
+      <span class="inline-ua">Зв'яжіться з нами</span>
+      <span class="inline-en">Contact us</span>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">📞</div>
+      <div>
+        <div class="contact-lbl"><span class="inline-ua">Телефон</span><span class="inline-en">Phone</span></div>
+        <a href="tel:+380677773579" class="contact-val">+38 067 777 35 79</a>
+      </div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">✉️</div>
+      <div>
+        <div class="contact-lbl">Email</div>
+        <a href="/cdn-cgi/l/email-protection#ff96919990bf9a909bd28d9cd19c9092" class="contact-val"><span class="__cf_email__" data-cfemail="3e575058517e5b515a134c5d105d5153">[email&#160;protected]</span></a>
+      </div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">📷</div>
+      <div>
+        <div class="contact-lbl">Instagram</div>
+        <a href="https://instagram.com/eod_and_rc" class="contact-val">@eod_and_rc</a>
+      </div>
+    </div>
+    <a href="eod-rc-prototype.html#contact" class="btn-primary" style="text-align:center; margin-top:8px;">
+      <span class="inline-ua">Заповнити форму →</span>
+      <span class="inline-en">Fill out form →</span>
+    </a>
+  </div>
+</section>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    if (lang === 'en') {
+      document.body.classList.add('en');
+      document.

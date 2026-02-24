@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EOD & RC — Операції / Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<style>
+  :root {
+    --green: #00FF7F;
+    --dark: #080C0A;
+    --dark-2: #0D1410;
+    --dark-3: #131A15;
+    --dark-4: #1A2420;
+    --gray: #8A9E94;
+    --gray-light: #C2D4CC;
+    --white: #F0F5F2;
+    --red: #FF4646;
+    --yellow: #FFC800;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 72px; background: rgba(8,12,10,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,255,127,0.08); }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: 0.05em; }
+  .logo-text span { color: var(--green); }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--gray-light); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--green); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .lang-switcher { display: flex; gap: 4px; background: var(--dark-4); border-radius: 4px; padding: 3px; }
+  .lang-btn { padding: 4px 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; border: none; border-radius: 2px; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--gray); }
+  .lang-btn.active { background: var(--green); color: var(--dark); }
+  .btn-nav { padding: 8px 20px; background: var(--green); color: var(--dark); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+
+  /* LANG */
+  [data-en] { display: none; }
+  body.en [data-ua] { display: none; }
+  body.en [data-en] { display: block; }
+  body.en .inline-en { display: inline !important; }
+  body.en .inline-ua { display: none !important; }
+  .inline-ua { display: inline; }
+  .inline-en { display: none; }
+
+  /* PAGE HERO — compact */
+  .page-hero {
+    padding: 100px 48px 48px;
+    background: var(--dark-2);
+    border-bottom: 1px solid rgba(0,255,127,0.08);
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .hero-left h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 5vw, 72px); font-weight: 800;
+    text-transform: uppercase; line-height: 0.95; margin-bottom: 12px;
+  }
+  .hero-left h1 .accent { color: var(--green); }
+  .hero-left p { font-size: 14px; color: var(--gray); max-width: 480px; line-height: 1.6; }
+  .section-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--green); }
+
+  .hero-stats { display: flex; gap: 40px; }
+  .hstat-val { font-family: 'Barlow Condensed', sans-serif; font-size: 40px; font-weight: 800; color: var(--green); line-height: 1; }
+  .hstat-label { font-size: 11px; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+  /* MAP LAYOUT */
+  .map-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    height: calc(100vh - 72px - 130px);
+    min-height: 600px;
+    position: relative;
+  }
+
+  /* MAP */
+  #map {
+    width: 100%; height: 100%;
+    background: var(--dark-3);
+    z-index: 1;
+  }
+
+  /* Leaflet dark overrides */
+  .leaflet-container { background: #0D1F16 !important; }
+  .leaflet-control-zoom { border: 1px solid rgba(0,255,127,0.2) !important; background: var(--dark-3) !important; }
+  .leaflet-control-zoom a { background: var(--dark-3) !important; color: var(--green) !important; border-bottom: 1px solid rgba(0,255,127,0.15) !important; }
+  .leaflet-control-zoom a:hover { background: var(--dark-4) !important; }
+  .leaflet-control-attribution { background: rgba(8,12,10,0.7) !important; color: var(--gray) !important; font-size: 9px !important; }
+  .leaflet-control-attribution a { color: var(--gray) !important; }
+
+  /* Custom map markers */
+  .marker-completed {
+    width: 16px; height: 16px;
+    background: var(--green);
+    border: 2px solid rgba(0,255,127,0.3);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(0,255,127,0.15), 0 0 20px rgba(0,255,127,0.3);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .marker-completed:hover, .marker-completed.active { transform: scale(1.4); }
+
+  .marker-active {
+    width: 14px; height: 14px;
+    background: var(--yellow);
+    border: 2px solid rgba(255,200,0,0.3);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255,200,0,0.1), 0 0 16px rgba(255,200,0,0.2);
+    cursor: pointer;
+    animation: pulse-yellow 2s infinite;
+  }
+  @keyframes pulse-yellow {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(255,200,0,0.1); }
+    50% { box-shadow: 0 0 0 8px rgba(255,200,0,0.2), 0 0 20px rgba(255,200,0,0.15); }
+  }
+
+  .marker-region {
+    width: 12px; height: 12px;
+    background: rgba(0,255,127,0.4);
+    border: 1px solid var(--green);
+    border-radius: 50%;
+  }
+
+  /* SIDE PANEL */
+  .side-panel {
+    background: var(--dark-3);
+    border-left: 1px solid rgba(0,255,127,0.08);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+
+  .panel-header {
+    padding: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: var(--dark-4);
+    flex-shrink: 0;
+  }
+  .panel-title {
+    font-size: 11px; color: var(--green); letter-spacing: 0.15em;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .panel-subtitle {
+    font-size: 13px; color: var(--gray-light);
+  }
+
+  .panel-legend {
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    flex-shrink: 0;
+  }
+  .legend-title {
+    font-size: 10px; color: var(--gray); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .legend-items { display: flex; flex-direction: column; gap: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--gray-light); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .legend-dot.completed { background: var(--green); box-shadow: 0 0 6px rgba(0,255,127,0.4); }
+  .legend-dot.active { background: var(--yellow); }
+  .legend-dot.region { background: rgba(0,255,127,0.3); border: 1px solid var(--green); }
+
+  /* OBJECT LIST */
+  .panel-list {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .panel-list::-webkit-scrollbar { width: 3px; }
+  .panel-list::-webkit-scrollbar-track { background: transparent; }
+  .panel-list::-webkit-scrollbar-thumb { background: var(--dark-4); }
+
+  .obj-card {
+    padding: 14px 16px;
+    background: var(--dark-4);
+    border: 1px solid rgba(255,255,255,0.05);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .obj-card:hover { border-color: rgba(0,255,127,0.2); background: rgba(0,255,127,0.03); }
+  .obj-card.selected { border-color: var(--green); background: rgba(0,255,127,0.06); }
+  .obj-card-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .obj-card-status .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .obj-card-status.s-completed { color: var(--green); }
+  .obj-card-status.s-completed .dot { background: var(--green); }
+  .obj-card-status.s-active { color: var(--yellow); }
+  .obj-card-status.s-active .dot { background: var(--yellow); }
+  .obj-card-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; margin-bottom: 4px;
+  }
+  .obj-card-meta { font-size: 11px; color: var(--gray); }
+  .obj-card-arrow {
+    position: absolute; right: 16px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--green); font-size: 14px; opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .obj-card:hover .obj-card-arrow, .obj-card.selected .obj-card-arrow { opacity: 1; }
+
+  /* DETAIL PANEL — shown on click */
+  .detail-panel {
+    position: absolute; inset: 0;
+    background: var(--dark-3);
+    z-index: 10;
+    display: flex; flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+  .detail-panel.open { transform: translateX(0); }
+  .detail-panel::-webkit-scrollbar { width: 3px; }
+  .detail-panel::-webkit-scrollbar-thumb { background: var(--dark-4); }
+
+  .detail-back {
+    display: flex; align-items: center; gap: 8px;
+    padding: 16px 20px;
+    font-size: 11px; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: var(--dark-4); flex-shrink: 0;
+  }
+  .detail-back:hover { color: var(--green); }
+
+  .detail-photo {
+    width: 100%; height: 180px; background: var(--dark-4);
+    position: relative; overflow: hidden; flex-shrink: 0;
+  }
+  .detail-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.7); }
+  .detail-photo-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #0D1F16, #080F0A);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: rgba(255,255,255,0.15); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .detail-photo::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(0,255,127,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,127,0.03) 1px, transparent 1px);
+    background-size: 24px 24px; z-index: 1;
+  }
+
+  .detail-body { padding: 24px; }
+
+  .detail-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 10px; margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .detail-status.completed { background: rgba(0,255,127,0.08); color: var(--green); border: 1px solid rgba(0,255,127,0.2); }
+  .detail-status.active { background: rgba(255,200,0,0.08); color: var(--yellow); border: 1px solid rgba(255,200,0,0.2); }
+
+  .detail-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px; font-weight: 800; text-transform: uppercase; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .detail-region {
+    font-size: 12px; color: var(--gray); margin-bottom: 20px;
+    letter-spacing: 0.06em;
+  }
+
+  .detail-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: rgba(255,255,255,0.04);
+    margin-bottom: 20px;
+  }
+  .dstat {
+    background: var(--dark-4); padding: 14px;
+  }
+  .dstat-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px; font-weight: 800; color: var(--green); line-height: 1;
+  }
+  .dstat-label {
+    font-size: 10px; color: var(--gray); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-top: 3px;
+  }
+
+  .detail-desc {
+    font-size: 13px; color: var(--gray-light); line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .detail-checklist { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .detail-check {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 12px; color: var(--gray-light); line-height: 1.5;
+  }
+  .detail-check-icon { color: var(--green); flex-shrink: 0; font-size: 12px; margin-top: 1px; }
+  .detail-check-icon.pending { color: var(--yellow); }
+
+  .detail-date {
+    font-size: 11px; color: var(--gray); letter-spacing: 0.08em;
+    padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* BOTTOM STATS BAR */
+  .stats-bar {
+    background: var(--dark-4);
+    border-top: 1px solid rgba(0,255,127,0.08);
+    padding: 0 48px;
+    display: flex; align-items: center; gap: 0;
+    height: 56px; flex-shrink: 0;
+  }
+  .stats-bar-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 0 32px; height: 100%;
+    border-right: 1px solid rgba(255,255,255,0.05);
+  }
+  .stats-bar-item:first-child { padding-left: 0; }
+  .sbi-val { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 800; color: var(--green); }
+  .sbi-label { font-size: 11px; color: var(--gray); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* REGION TOOLTIP */
+  .leaflet-tooltip {
+    background: var(--dark-3) !important;
+    border: 1px solid rgba(0,255,127,0.2) !important;
+    color: var(--gray-light) !important;
+    font-family: 'Barlow Condensed', sans-serif !important;
+    font-size: 12px !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 6px 12px !important;
+  }
+  .leaflet-tooltip::before { display: none !important; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--dark-4); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="eod-rc-prototype.html" class="logo">
+    <svg width="40" height="46" viewBox="0 0 40 46" fill="none">
+      <path d="M20 1L38 8V22C38 33 29.5 41 20 44C10.5 41 2 33 2 22V8L20 1Z" fill="rgba(0,255,127,0.06)" stroke="#00FF7F" stroke-width="1.2"/>
+      <path d="M20 6L33 12V22C33 30.5 26.5 37 20 39C13.5 37 7 30.5 7 22V12L20 6Z" fill="rgba(0,255,127,0.04)" stroke="#00FF7F" stroke-width="0.8" stroke-opacity="0.6"/>
+      <path d="M20 11L28 15.5V22C28 27.5 24.2 32 20 33.5C15.8 32 12 27.5 12 22V15.5L20 11Z" fill="rgba(0,255,127,0.08)" stroke="#00FF7F" stroke-width="0.6" stroke-opacity="0.4"/>
+      <path d="M14.5 22L18.5 26L25.5 18" stroke="#00FF7F" stroke-width="2" stroke-linecap="square"/>
+    </svg>
+    <span class="logo-text">EOD <span>&</span> RC</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="eod-rc-prototype.html#services"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
+    <li><a href="#" class="active"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    <li><a href="eod-rc-team.html"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
+    <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
+    <li><a href="#">Media</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('ua')">UA</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="eod-rc-prototype.html#contact" class="btn-nav">
+      <span class="inline-ua">Зв'язатися</span>
+      <span class="inline-en">Contact</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-left">
+    <div class="section-tag">
+      <span class="inline-ua">Карта операцій EOD & RC</span>
+      <span class="inline-en">EOD & RC Operations map</span>
+    </div>
+    <h1>
+      <span data-ua>Де ми<br><span class="accent">працюємо</span></span>
+      <span data-en>Where we<br><span class="accent">operate</span></span>
+    </h1>
+    <p style="margin-top:12px;">
+      <span data-ua>Інтерактивна карта завершених та активних операцій з розмінування. Натисніть на точку — побачите деталі об'єкта.</span>
+      <span data-en>Interactive map of completed and active demining operations. Click a marker to see object details.</span>
+    </p>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="hstat-val">2</div>
+      <div class="hstat-label"><span class="inline-ua">Га розміновано</span><span class="inline-en">Ha cleared</span></div>
+    </div>
+    <div>
+      <div class="hstat-val">1</div>
+      <div class="hstat-label"><span class="inline-ua">Завершений об'єкт</span><span class="inline-en">Completed site</span></div>
+    </div>
+    <div>
+      <div class="hstat-val">2</div>
+      <div class="hstat-label"><span class="inline-ua">Активних регіони</span><span class="inline-en">Active regions</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP + PANEL -->
+<div class="map-layout">
+  <div id="map"></div>
+
+  <!-- SIDE PANEL -->
+  <div class="side-panel" id="sidePanel">
+    <div class="panel-header">
+      <div class="panel-title">
+        <span class="inline-ua">Об'єкти розмінування</span>
+        <span class="inline-en">Demining sites</span>
+      </div>
+      <div class="panel-subtitle">
+        <span data-ua>Оберіть точку на карті або зі списку</span>
+        <span data-en>Select a point on the map or from the list</span>
+      </div>
+    </div>
+
+    <div class="panel-legend">
+      <div class="legend-title">
+        <span class="inline-ua">Легенда</span>
+        <span class="inline-en">Legend</span>
+      </div>
+      <div class="legend-items">
+        <div class="legend-item">
+          <div class="legend-dot completed"></div>
+          <span data-ua>Завершений об'єкт — офіційно прийнятий</span>
+          <span data-en>Completed site — officially accepted</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot active"></div>
+          <span data-ua>Активна операція</span>
+          <span data-en>Active operation</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot region"></div>
+          <span data-ua>Регіон присутності EOD&RC</span>
+          <span data-en>EOD&RC presence region</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-list">
+
+      <!-- Yavirske — completed -->
+      <div class="obj-card" id="card-yavirske" onclick="selectObject('yavirske')">
+        <div class="obj-card-status s-completed">
+          <div class="dot"></div>
+          <span class="inline-ua">Завершено</span>
+          <span class="inline-en">Completed</span>
+        </div>
+        <div class="obj-card-name">
+          <span class="inline-ua">с. Явірське</span>
+          <span class="inline-en">Yavirske village</span>
+        </div>
+        <div class="obj-card-meta">
+          <span data-ua>Ізюмський р-н · Харківська обл. · 2 га</span>
+          <span data-en>Izium district · Kharkiv region · 2 ha</span>
+        </div>
+        <div class="obj-card-arrow">→</div>
+      </div>
+
+      <!-- Kharkiv region — active -->
+      <div class="obj-card" id="card-kharkiv" onclick="selectObject('kharkiv')">
+        <div class="obj-card-status s-active">
+          <div class="dot"></div>
+          <span class="inline-ua">Активна операція</span>
+          <span class="inline-en">Active operation</span>
+        </div>
+        <div class="obj-card-name">
+          <span class="inline-ua">Харківська область</span>
+          <span class="inline-en">Kharkiv region</span>
+        </div>
+        <div class="obj-card-meta">
+          <span data-ua>НТО та технічне обстеження · Нова локація</span>
+          <span data-en>NTS and technical survey · New location</span>
+        </div>
+        <div class="obj-card-arrow">→</div>
+      </div>
+
+      <!-- Sumy region — active -->
+      <div class="obj-card" id="card-sumy" onclick="selectObject('sumy')">
+        <div class="obj-card-status s-active">
+          <div class="dot"></div>
+          <span class="inline-ua">Активна операція</span>
+          <span class="inline-en">Active operation</span>
+        </div>
+        <div class="obj-card-name">
+          <span class="inline-ua">Сумська область</span>
+          <span class="inline-en">Sumy region</span>
+        </div>
+        <div class="obj-card-meta">
+          <span data-ua>Розмінування · В процесі</span>
+          <span data-en>Demining · In progress</span>
+        </div>
+        <div class="obj-card-arrow">→</div>
+      </div>
+
+    </div>
+
+    <!-- DETAIL PANEL — slides in -->
+    <div class="detail-panel" id="detailPanel">
+
+      <div class="detail-back" onclick="closeDetail()">
+        ← <span class="inline-ua">Всі об'єкти</span><span class="inline-en">All sites</span>
+      </div>
+
+      <!-- Content injected by JS -->
+      <div id="detailContent"></div>
+
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-item">
+    <div class="sbi-val">156 000</div>
+    <div class="sbi-label">
+      <span data-ua>км² потенційно забруднено в Україні</span>
+      <span data-en">km² potentially contaminated in Ukraine</span>
+    </div>
+  </div>
+  <div class="stats-bar-item">
+    <div class="sbi-val">757</div>
+    <div class="sbi-label">
+      <span data-ua>років — без приватних операторів</span>
+      <span data-en>years — without private operators</span>
+    </div>
+  </div>
+  <div class="stats-bar-item">
+    <div class="sbi-val">EOD&RC</div>
+    <div class="sbi-label">
+      <span data-ua>прискорює цей процес</span>
+      <span data-en>accelerates this process</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+// ── DATA ──────────────────────────────────────────────────
+const objects = {
+  yavirske: {
+    lat: 49.158, lng: 37.294,
+    type: 'completed',
+    nameUa: 'с. Явірське',
+    nameEn: 'Yavirske village',
+    regionUa: 'Ізюмський р-н, Харківська обл.',
+    regionEn: 'Izium district, Kharkiv region',
+    statusUa: 'Завершено · Прийнято інспекцією',
+    statusEn: 'Completed · Inspection approved',
+    stats: [
+      { val: '2', labelUa: 'Га розміновано', labelEn: 'Ha cleared' },
+      { val: '20 000', labelUa: 'М² площа', labelEn: 'M² area' },
+      { val: '0', labelUa: 'Критичних невідп.', labelEn: 'Critical nonconf.' },
+      { val: '4', labelUa: 'Сертифікати', labelEn: 'Certificates' },
+    ],
+    descUa: 'Перший завершений об\'єкт EOD & RC. Ділянка знаходилась у районі, де до осені 2022 року перебували окупаційні війська та велись активні бойові дії. Площа 20 000 м² (3 футбольних поля) повністю очищена від вибухонебезпечних предметів.',
+    descEn: 'EOD & RC\'s first completed site. The area was occupied by Russian forces until autumn 2022 with active fighting. 20,000 m² (3 football fields) fully cleared of explosive ordnance.',
+    checksUa: [
+      { done: true, text: 'Нетехнічне обстеження (НТО)' },
+      { done: true, text: 'Технічне обстеження' },
+      { done: true, text: 'Розмінування вручну' },
+      { done: true, text: 'Внутрішній контроль якості' },
+      { done: true, text: 'Державна інспекція — 20 листопада 2024' },
+      { done: true, text: 'Передача в експлуатацію замовнику' },
+    ],
+    checksEn: [
+      { done: true, text: 'Non-Technical Survey (NTS)' },
+      { done: true, text: 'Technical Survey' },
+      { done: true, text: 'Manual demining' },
+      { done: true, text: 'Internal quality control' },
+      { done: true, text: 'State inspection — November 20, 2024' },
+      { done: true, text: 'Handover to client' },
+    ],
+    dateUa: 'Завершено: листопад 2024',
+    dateEn: 'Completed: November 2024',
+    photo: null,
+  },
+  kharkiv: {
+    lat: 49.95, lng: 36.55,
+    type: 'active',
+    nameUa: 'Харківська область',
+    nameEn: 'Kharkiv region',
+    regionUa: 'Харківська обл. — нова локація',
+    regionEn: 'Kharkiv region — new location',
+    statusUa: 'Активна операція',
+    statusEn: 'Active operation',
+    stats: [
+      { val: 'НТО', labelUa: 'Поточний етап', labelEn: 'Current stage' },
+      { val: '2025', labelUa: 'Рік операції', labelEn: 'Operation year' },
+      { val: '—', labelUa: 'Площа (уточн.)', labelEn: 'Area (TBD)' },
+      { val: '25', labelUa: 'Фахівців', labelEn: 'Specialists' },
+    ],
+    descUa: 'EOD & RC розпочали роботи на новій локації в Харківській області. На першому етапі проводиться нетехнічне обстеження для визначення небезпечних зон та планування подальшого очищення.',
+    descEn: 'EOD & RC has started operations at a new location in Kharkiv region. The first stage involves a non-technical survey to identify hazardous zones and plan further clearance.',
+    checksUa: [
+      { done: true, text: 'Нетехнічне обстеження — розпочато' },
+      { done: false, text: 'Технічне обстеження — планується' },
+      { done: false, text: 'Розмінування — планується' },
+    ],
+    checksEn: [
+      { done: true, text: 'Non-Technical Survey — started' },
+      { done: false, text: 'Technical Survey — planned' },
+      { done: false, text: 'Demining — planned' },
+    ],
+    dateUa: 'Розпочато: 2025',
+    dateEn: 'Started: 2025',
+    photo: null,
+  },
+  sumy: {
+    lat: 50.9077, lng: 34.7981,
+    type: 'active',
+    nameUa: 'Сумська область',
+    nameEn: 'Sumy region',
+    regionUa: 'Сумська обл. — активні роботи',
+    regionEn: 'Sumy region — active works',
+    statusUa: 'Активна операція',
+    statusEn: 'Active operation',
+    stats: [
+      { val: 'РОЗМ.', labelUa: 'Поточний етап', labelEn: 'Current stage' },
+      { val: '2024', labelUa: 'Рік старту', labelEn: 'Start year' },
+      { val: '—', labelUa: 'Площа (уточн.)', labelEn: 'Area (TBD)' },
+      { val: '25', labelUa: 'Фахівців', labelEn: 'Specialists' },
+    ],
+    descUa: 'Сумська область — один із двох пріоритетних регіонів присутності EOD & RC. Команда веде активні роботи з розмінування на декількох ділянках.',
+    descEn: 'Sumy region is one of the two priority regions for EOD & RC. The team conducts active demining operations across several sites.',
+    checksUa: [
+      { done: true, text: 'Нетехнічне обстеження — завершено' },
+      { done: true, text: 'Технічне обстеження — завершено' },
+      { done: false, text: 'Розмінування — в процесі' },
+    ],
+    checksEn: [
+      { done: true, text: 'Non-Technical Survey — completed' },
+      { done: true, text: 'Technical Survey — completed' },
+      { done: false, text: 'Demining — in progress' },
+    ],
+    dateUa: 'Старт: 2024',
+    dateEn: 'Start: 2024',
+    photo: null,
+  },
+};
+
+// ── MAP INIT ──────────────────────────────────────────────
+const map = L.map('map', {
+  center: [49.5, 36.5],
+  zoom: 7,
+  zoomControl: true,
+  attributionControl: true,
+});
+
+// Dark tile layer
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© OpenStreetMap © CARTO',
+  subdomains: 'abcd',
+  maxZoom: 16,
+}).addTo(map);
+
+// ── MARKERS ───────────────────────────────────────────────
+const markers = {};
+
+function createMarkerIcon(type) {
+  return L.divIcon({
+    className: '',
+    html: `<div class="marker-${type}"></div>`,
+    iconSize: [16, 16],
+    iconAnchor: [8, 8],
+  });
+}
+
+Object.entries(objects).forEach(([id, obj]) => {
+  const icon = createMarkerIcon(obj.type === 'completed' ? 'completed' : 'active');
+  const marker = L.marker([obj.lat, obj.lng], { icon })
+    .addTo(map)
+    .bindTooltip(document.body.classList.contains('en') ? obj.nameEn : obj.nameUa, {
+      permanent: false, direction: 'top', offset: [0, -10]
+    });
+
+  marker.on('click', () => selectObject(id));
+  markers[id] = marker;
+});
+
+// ── Kharkiv region polygon (approximate) ──
+const kharkivPoly = L.polygon([
+  [50.35, 35.3], [50.35, 38.2],
+  [48.9, 38.4], [48.7, 37.1],
+  [49.1, 35.6],
+], {
+  color: 'rgba(0,255,127,0.5)',
+  fillColor: 'rgba(0,255,127,0.05)',
+  fillOpacity: 1,
+  weight: 1,
+  dashArray: '4 4',
+}).addTo(map);
+
+// ── Sumy region polygon (approximate) ──
+const sumyPoly = L.polygon([
+  [52.4, 33.2], [52.4, 35.2],
+  [50.5, 35.4], [50.3, 34.2],
+  [50.6, 33.0],
+], {
+  color: 'rgba(255,200,0,0.4)',
+  fillColor: 'rgba(255,200,0,0.04)',
+  fillOpacity: 1,
+  weight: 1,
+  dashArray: '4 4',
+}).addTo(map);
+
+// ── OBJECT SELECTION ──────────────────────────────────────
+let currentId = null;
+
+function selectObject(id) {
+  currentId = id;
+  const obj = objects[id];
+  const isEn = document.body.classList.contains('en');
+
+  // Highlight card
+  document.querySelectorAll('.obj-card').forEach(c => c.classList.remove('selected'));
+  const card = document.getElementById('card-' + id);
+  if (card) card.classList.add('selected');
+
+  // Fly map to marker
+  map.flyTo([obj.lat, obj.lng], 10, { duration: 0.8 });
+
+  // Build detail content
+  const statusClass = obj.type === 'completed' ? 'completed' : 'active';
+  const statusText = isEn ? obj.statusEn : obj.statusUa;
+  const name = isEn ? obj.nameEn : obj.nameUa;
+  const region = isEn ? obj.regionEn : obj.regionUa;
+  const desc = isEn ? obj.descEn : obj.descUa;
+  const checks = isEn ? obj.checksEn : obj.checksUa;
+  const date = isEn ? obj.dateEn : obj.dateUa;
+
+  const statsHtml = obj.stats.map(s => `
+    <div class="dstat">
+      <div class="dstat-val">${s.val}</div>
+      <div class="dstat-label">${isEn ? s.labelEn : s.labelUa}</div>
+    </div>
+  `).join('');
+
+  const checksHtml = checks.map(c => `
+    <div class="detail-check">
+      <span class="detail-check-icon ${c.done ? '' : 'pending'}">${c.done ? '✓' : '○'}</span>
+      <span>${c.text}</span>
+    </div>
+  `).join('');
+
+  const photoHtml = obj.photo
+    ? `<img src="${obj.photo}" alt="${name}">`
+    : `<div class="detail-photo-placeholder">[ ${isEn ? 'PHOTO' : 'ФОТО'} — ${name.toUpperCase()} ]</div>`;
+
+  document.getElementById('detailContent').innerHTML = `
+    <div class="detail-photo">${photoHtml}</div>
+    <div class="detail-body">
+      <div class="detail-status ${statusClass}">${statusText}</div>
+      <div class="detail-name">${name}</div>
+      <div class="detail-region">${region}</div>
+      <div class="detail-stats">${statsHtml}</div>
+      <p class="detail-desc">${desc}</p>
+      <div class="detail-checklist">${checksHtml}</div>
+      <div class="detail-date">${date}</div>
+    </div>
+  `;
+
+  // Open detail panel
+  document.getElementById('detailPanel').classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detailPanel').classList.remove('open');
+  document.querySelectorAll('.obj-card').forEach(c => c.classList.remove('selected'));
+  currentId = null;
+  map.flyTo([49.5, 36.5], 7, { duration: 0.8 });
+}
+
+// ── LANG ──────────────────────────────────────────────────
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  if (lang === 'en') {
+    document.body.classList.add('en');
+    document.querySelector('.lang-btn:last-child').classList.add('active');
+  } else {
+    document.body.classList.remove('en');
+    document.querySelector('.lang-btn:first-child').classList.add('active');
+  }
+  // Refresh tooltips
+  Object.entries(objects).forEach(([id, obj]) => {
+    const m = markers[id];
+    if (m) m.setTooltipContent(lang === 'en' ? obj.nameEn : obj.nameUa);
+  });
+  // Refresh detail if open
+  if (currentId) selectObject(currentId);
+}
+
+// Auto-open first marker on load
+setTimeout(() => selectObject('yavirske'), 600);
+</script>
+</body>
+</html>

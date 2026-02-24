@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EOD & RC — Your Safety Is Our Priority</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00FF7F;
+    --green-dim: #00C060;
+    --dark: #080C0A;
+    --dark-2: #0D1410;
+    --dark-3: #131A15;
+    --dark-4: #1A2420;
+    --gray: #8A9E94;
+    --gray-light: #C2D4CC;
+    --white: #F0F5F2;
+    --danger: #FF4444;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVIGATION ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+    background: rgba(8,12,10,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,255,127,0.08);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  .logo-text span {
+    color: var(--green);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray-light);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .lang-switcher {
+    display: flex;
+    gap: 4px;
+    background: var(--dark-4);
+    border-radius: 4px;
+    padding: 3px;
+  }
+
+  .lang-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    color: var(--gray);
+  }
+
+  .lang-btn.active {
+    background: var(--green);
+    color: var(--dark);
+  }
+
+  .btn-contact {
+    padding: 8px 20px;
+    background: var(--green);
+    color: var(--dark);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-contact:hover {
+    background: var(--white);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,255,127,0.08);
+    border: 1px solid rgba(0,255,127,0.2);
+    padding: 6px 14px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(48px, 5.5vw, 80px);
+    font-weight: 800;
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+
+  .hero-title .accent { color: var(--green); }
+
+  .hero-subtitle {
+    font-size: 16px;
+    color: var(--gray-light);
+    line-height: 1.6;
+    max-width: 440px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-certs {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .cert-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(0,255,127,0.25);
+    padding: 6px 12px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--gray-light);
+  }
+
+  .cert-tag .checkmark {
+    color: var(--green);
+    font-size: 12px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    padding: 14px 32px;
+    background: var(--green);
+    color: var(--dark);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--white); }
+
+  .btn-secondary {
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--gray-light);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-placeholder {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, var(--dark) 0%, transparent 25%),
+      linear-gradient(135deg, #0D2018 0%, #0A1A12 50%, #050D08 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 48px;
+  }
+
+  .hero-image-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px dashed rgba(255,255,255,0.1);
+    padding: 8px 16px;
+  }
+
+  /* Grid pattern overlay */
+  .hero-right::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,127,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,127,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    background: var(--dark-3);
+    border-top: 1px solid rgba(0,255,127,0.1);
+    border-bottom: 1px solid rgba(0,255,127,0.1);
+    padding: 32px 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .stat-item {
+    padding: 0 32px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .stat-item:first-child { padding-left: 0; }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-placeholder {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(0,255,127,0.3);
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ─── SECTION COMMONS ─── */
+  section { padding: 96px 48px; }
+
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--gray-light);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* ─── CERTIFICATIONS ─── */
+  .cert-section {
+    background: var(--dark-2);
+  }
+
+  .cert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 56px;
+  }
+
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .cert-card {
+    background: var(--dark-3);
+    padding: 32px 28px;
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .cert-card:hover {
+    background: var(--dark-4);
+  }
+
+  .cert-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(0,255,127,0.1);
+    border: 1px solid rgba(0,255,127,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .cert-card-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cert-card-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .cert-status {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: rgba(0,255,127,0.08);
+    padding: 3px 8px;
+  }
+
+  /* ─── OPERATIONS MAP ─── */
+  .ops-section {
+    background: var(--dark);
+  }
+
+  .ops-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+    align-items: center;
+    margin-top: 56px;
+  }
+
+  .ops-info {}
+
+  .ops-region {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ops-region:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+
+  .ops-region-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ops-region-status {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+  }
+
+  .status-active {
+    background: rgba(0,255,127,0.1);
+    color: var(--green);
+    border: 1px solid rgba(0,255,127,0.2);
+  }
+
+  .map-placeholder {
+    background: var(--dark-3);
+    border: 1px solid rgba(0,255,127,0.08);
+    height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,127,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,127,0.04) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .map-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    border: 1px dashed rgba(255,255,255,0.1);
+    padding: 12px 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── TEAM TEASER ─── */
+  .team-section {
+    background: var(--dark-2);
+  }
+
+  .team-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 56px;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .team-card {
+    background: var(--dark-3);
+    padding: 0;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .team-card:hover { background: var(--dark-4); }
+
+  .team-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--dark-4);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .team-photo-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px dashed rgba(255,255,255,0.1);
+    padding: 6px 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .team-photo::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(transparent, rgba(8,12,10,0.9));
+  }
+
+  .team-info {
+    padding: 20px 20px 24px;
+  }
+
+  .team-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  .team-role {
+    font-size: 12px;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .team-exp {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  /* ─── PARTNERS CTA ─── */
+  .partners-section {
+    background: var(--dark);
+    border-top: 1px solid rgba(0,255,127,0.08);
+  }
+
+  .partners-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 96px;
+    align-items: center;
+  }
+
+  .standards-list {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .standard-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 14px;
+    color: var(--gray-light);
+  }
+
+  .standard-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+
+  .standard-check {
+    width: 24px;
+    height: 24px;
+    background: rgba(0,255,127,0.1);
+    border: 1px solid rgba(0,255,127,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--green);
+    flex-shrink: 0;
+  }
+
+  .partners-cta {
+    background: var(--dark-3);
+    border: 1px solid rgba(0,255,127,0.1);
+    padding: 48px;
+  }
+
+  .partners-cta-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .partners-cta p {
+    font-size: 14px;
+    color: var(--gray-light);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+
+  .footer-brand .logo-text {
+    font-size: 18px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .footer-tagline {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .footer-col-title {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-bottom {
+    background: var(--dark);
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .footer-bottom-text {
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  /* ─── LANGUAGE SWITCH ─── */
+  [data-en] { display: none; }
+
+  body.en [data-ua] { display: none; }
+  body.en [data-en] { display: block; }
+  body.en .inline-en { display: inline !important; }
+  body.en .inline-ua { display: none !important; }
+
+  .inline-ua { display: inline; }
+  .inline-en { display: none; }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--dark-4); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--green-dim); }
+
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#" class="logo">
+    <svg class="logo-icon" viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer shield -->
+      <path d="M20 1L38 8V22C38 33 29.5 41 20 44C10.5 41 2 33 2 22V8L20 1Z" fill="rgba(0,255,127,0.06)" stroke="#00FF7F" stroke-width="1.2"/>
+      <!-- Middle shield layer -->
+      <path d="M20 6L33 12V22C33 30.5 26.5 37 20 39C13.5 37 7 30.5 7 22V12L20 6Z" fill="rgba(0,255,127,0.04)" stroke="#00FF7F" stroke-width="0.8" stroke-opacity="0.6"/>
+      <!-- Inner shield -->
+      <path d="M20 11L28 15.5V22C28 27.5 24.2 32 20 33.5C15.8 32 12 27.5 12 22V15.5L20 11Z" fill="rgba(0,255,127,0.08)" stroke="#00FF7F" stroke-width="0.6" stroke-opacity="0.4"/>
+      <!-- Checkmark -->
+      <path d="M14.5 22L18.5 26L25.5 18" stroke="#00FF7F" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+    </svg>
+    <span class="logo-text">EOD <span>&</span> RC</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#services"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
+    <li><a href="#operations"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    <li><a href="#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
+    <li><a href="#partners"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
+    <li><a href="#media">Media</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('ua')">UA</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="#contact" class="btn-contact">
+      <span class="inline-ua">Зв'язатися</span>
+      <span class="inline-en">Contact</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="inline-ua">Сертифікований оператор ПМД</span>
+      <span class="inline-en">Certified demining operator</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span data-ua>Гуманітарне<br>розміну&shy;<span class="accent">вання</span><br>України</span>
+      <span data-en>Humanitarian<br>Demining<br>of <span class="accent">Ukraine</span></span>
+    </h1>
+
+    <p class="hero-subtitle">
+      <span data-ua>Приватний оператор протимінної діяльності. Харківська та Сумська області. Державна сертифікація. Стандарти IMAS.</span>
+      <span data-en>Private humanitarian demining operator. Kharkiv and Sumy regions. State certified. IMAS compliant.</span>
+    </p>
+
+    <div class="hero-certs">
+      <div class="cert-tag">
+        <span class="checkmark">✓</span>
+        <span class="inline-ua">Нетехнічне обстеження</span>
+        <span class="inline-en">Non-Technical Survey</span>
+      </div>
+      <div class="cert-tag">
+        <span class="checkmark">✓</span>
+        <span class="inline-ua">Технічне обстеження</span>
+        <span class="inline-en">Technical Survey</span>
+      </div>
+      <div class="cert-tag">
+        <span class="checkmark">✓</span>
+        <span class="inline-ua">Розмінування</span>
+        <span class="inline-en">Manual Demining</span>
+      </div>
+      <div class="cert-tag">
+        <span class="checkmark">✓</span>
+        <span class="inline-ua">Очищення районів БД</span>
+        <span class="inline-en">Battlefield Clearance</span>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">
+        <span class="inline-ua">Наші послуги</span>
+        <span class="inline-en">Our services</span>
+      </a>
+      <a href="#partners" class="btn-secondary">
+        <span class="inline-ua">Для партнерів</span>
+        <span class="inline-en">For partners</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-image-placeholder">
+      <span class="hero-image-label">
+        <span class="inline-ua">[ ФОТО З ОПЕРАЦІЙ ]</span>
+        <span class="inline-en">[ OPERATIONS PHOTO ]</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number">25</div>
+    <div class="stat-label">
+      <span class="inline-ua">Фахівців у команді</span>
+      <span class="inline-en">Specialists</span>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">2</div>
+    <div class="stat-label">
+      <span class="inline-ua">Га розмінованих земель</span>
+      <span class="inline-en">Ha cleared</span>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">4</div>
+    <div class="stat-label">
+      <span class="inline-ua">Держ. сертифікати</span>
+      <span class="inline-en">State certificates</span>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">35+</div>
+    <div class="stat-label">
+      <span class="inline-ua">Років досвіду (макс.)</span>
+      <span class="inline-en">Years max. expertise</span>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS / SERVICES -->
+<section class="cert-section" id="services">
+  <div class="cert-header">
+    <div>
+      <div class="section-tag">
+        <span class="inline-ua">Послуги</span>
+        <span class="inline-en">Services</span>
+      </div>
+      <h2 class="section-title">
+        <span data-ua>Державна<br>сертифікація</span>
+        <span data-en>State<br>Certified</span>
+      </h2>
+    </div>
+    <p class="section-desc" style="text-align:right; max-width:360px;">
+      <span data-ua>ТОВ «Центр знешкодження ВНП та рекультивації» отримало державні сертифікати відповідності на всі види послуг гуманітарного розмінування.</span>
+      <span data-en>EOD & RC holds state certificates of conformity for all humanitarian demining service types.</span>
+    </p>
+  </div>
+
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🔍</div>
+      <div class="cert-card-title">
+        <span class="inline-ua">Нетехнічне обстеження</span>
+        <span class="inline-en">Non-Technical Survey</span>
+      </div>
+      <div class="cert-card-desc">
+        <span data-ua>Класифікація території за статусом небезпеки. Збір доказів щодо можливого забруднення ВНП.</span>
+        <span data-en>Classifying areas by hazard status. Evidence collection for possible UXO contamination.</span>
+      </div>
+      <span class="cert-status">
+        <span class="inline-ua">Сертифіковано · №080</span>
+        <span class="inline-en">Certified · №080</span>
+      </span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">📡</div>
+      <div class="cert-card-title">
+        <span class="inline-ua">Технічне обстеження</span>
+        <span class="inline-en">Technical Survey</span>
+      </div>
+      <div class="cert-card-desc">
+        <span data-ua>Прямі докази наявності або відсутності ВНП з використанням технічних засобів.</span>
+        <span data-en>Direct evidence of UXO presence or absence using technical detection means.</span>
+      </div>
+      <span class="cert-status">
+        <span class="inline-ua">Сертифіковано · №081</span>
+        <span class="inline-en">Certified · №081</span>
+      </span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🛡️</div>
+      <div class="cert-card-title">
+        <span class="inline-ua">Розмінування вручну</span>
+        <span class="inline-en">Manual Demining</span>
+      </div>
+      <div class="cert-card-desc">
+        <span data-ua>Очищення від протипіхотних мін, протитанкових мін, СВП та боєприпасів на розтяжках.</span>
+        <span data-en>Clearance of AP mines, AT mines, IEDs and tripwire munitions per IMAS standards.</span>
+      </div>
+      <span class="cert-status">
+        <span class="inline-ua">Сертифіковано · №082</span>
+        <span class="inline-en">Certified · №082</span>
+      </span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">⚡</div>
+      <div class="cert-card-title">
+        <span class="inline-ua">Очищення районів БД</span>
+        <span class="inline-en">Battlefield Clearance</span>
+      </div>
+      <div class="cert-card-desc">
+        <span data-ua>Знешкодження ВНП на відповідній території. Поверхневе та підповерхневе очищення.</span>
+        <span data-en>UXO disposal on site. Surface and sub-surface clearance operations.</span>
+      </div>
+      <span class="cert-status">
+        <span class="inline-ua">Сертифіковано · №083</span>
+        <span class="inline-en">Certified · №083</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONS MAP -->
+<section class="ops-section" id="operations">
+  <div class="section-tag">
+    <span class="inline-ua">Операції</span>
+    <span class="inline-en">Operations</span>
+  </div>
+  <h2 class="section-title">
+    <span data-ua>Де ми<br>працюємо</span>
+    <span data-en>Where we<br>operate</span>
+  </h2>
+
+  <div class="ops-layout">
+    <div class="ops-info">
+      <p class="section-desc" style="margin-bottom:32px;">
+        <span data-ua>Наразі EOD & RC надає послуги у Харківській та Сумській областях — регіонах, де тривали або тривають активні бойові дії.</span>
+        <span data-en>EOD & RC currently operates in Kharkiv and Sumy regions — areas affected by active hostilities.</span>
+      </p>
+      <div class="standards-list">
+        <div class="ops-region">
+          <span class="ops-region-name">
+            <span class="inline-ua">Харківська обл.</span>
+            <span class="inline-en">Kharkiv Region</span>
+          </span>
+          <span class="ops-region-status status-active">
+            <span class="inline-ua">Активна</span>
+            <span class="inline-en">Active</span>
+          </span>
+        </div>
+        <div class="ops-region">
+          <span class="ops-region-name">
+            <span class="inline-ua">Сумська обл.</span>
+            <span class="inline-en">Sumy Region</span>
+          </span>
+          <span class="ops-region-status status-active">
+            <span class="inline-ua">Активна</span>
+            <span class="inline-en">Active</span>
+          </span>
+        </div>
+      </div>
+      <div style="margin-top:32px; padding:20px; background:var(--dark-3); border-left:2px solid var(--green);">
+        <div style="font-size:11px; color:var(--gray); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">
+          <span class="inline-ua">Остання операція</span>
+          <span class="inline-en">Latest operation</span>
+        </div>
+        <div style="font-size:14px; color:var(--gray-light); line-height:1.6;">
+          <span data-ua>с. Явірське, Ізюмський район — 20 000 м² успішно розміновано. Листопад 2024.</span>
+          <span data-en>Yavirske village, Izyum district — 20,000 m² successfully cleared. November 2024.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-placeholder">
+      <div class="map-label">
+        <span class="inline-ua">[ ІНТЕРАКТИВНА КАРТА ОПЕРАЦІЙ ]</span>
+        <span class="inline-en">[ INTERACTIVE OPERATIONS MAP ]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="about">
+  <div class="team-header">
+    <div>
+      <div class="section-tag">
+        <span class="inline-ua">Команда</span>
+        <span class="inline-en">Team</span>
+      </div>
+      <h2 class="section-title">
+        <span data-ua>25 фахівців.<br>Досвід до 35 років.</span>
+        <span data-en>25 specialists.<br>Up to 35 years experience.</span>
+      </h2>
+    </div>
+    <a href="#" class="btn-secondary">
+      <span class="inline-ua">Вся команда →</span>
+      <span class="inline-en">Full team →</span>
+    </a>
+  </div>
+
+  <div class="team-grid">
+    <!-- Vyunyk -->
+    <div class="team-card">
+      <div class="team-photo">
+        <span class="team-photo-label">[ ФОТО ]</span>
+      </div>
+      <div class="team-info">
+        <div class="team-name">
+          <span class="inline-ua">Вьюник В.Б.</span>
+          <span class="inline-en">V. Vyunyk</span>
+        </div>
+        <div class="team-role">
+          <span class="inline-ua">Директор</span>
+          <span class="inline-en">Director</span>
+        </div>
+        <div class="team-exp">
+          <span data-ua>Учасник бойових дій. 92 ОМБр.</span>
+          <span data-en>Combat veteran. 92nd OMBr.</span>
+        </div>
+      </div>
+    </div>
+    <!-- Semyonov -->
+    <div class="team-card">
+      <div class="team-photo">
+        <span class="team-photo-label">[ ФОТО ]</span>
+      </div>
+      <div class="team-info">
+        <div class="team-name">
+          <span class="inline-ua">Семенов А.</span>
+          <span class="inline-en">A. Semyonov</span>
+        </div>
+        <div class="team-role">
+          <span class="inline-ua">Перший заступник директора</span>
+          <span class="inline-en">Deputy Director</span>
+        </div>
+        <div class="team-exp">
+          <span data-ua>20+ років у фін. менеджменті та оборонних технологіях.</span>
+          <span data-en>20+ yrs finance & defense tech.</span>
+        </div>
+      </div>
+    </div>
+    <!-- Pudrovsky -->
+    <div class="team-card">
+      <div class="team-photo">
+        <span class="team-photo-label">[ ФОТО ]</span>
+      </div>
+      <div class="team-info">
+        <div class="team-name">
+          <span class="inline-ua">Пундровський Є.</span>
+          <span class="inline-en">Ye. Pundrovskyi</span>
+        </div>
+        <div class="team-role">
+          <span class="inline-ua">Заступник директора, кер. саперних робіт</span>
+          <span class="inline-en">Deputy Director, EOD Ops</span>
+        </div>
+        <div class="team-exp">
+          <span data-ua>30+ років в інженерно-саперній справі.</span>
+          <span data-en>30+ yrs EOD engineering.</span>
+        </div>
+      </div>
+    </div>
+    <!-- Vdovychenko -->
+    <div class="team-card">
+      <div class="team-photo">
+        <span class="team-photo-label">[ ФОТО ]</span>
+      </div>
+      <div class="team-info">
+        <div class="team-name">
+          <span class="inline-ua">Вдовиченко О.</span>
+          <span class="inline-en">O. Vdovychenko</span>
+        </div>
+        <div class="team-role">
+          <span class="inline-ua">Інженер з якості</span>
+          <span class="inline-en">Quality Engineer</span>
+        </div>
+        <div class="team-exp">
+          <span data-ua>10+ років розмінування. Розробник стандартів ДСНС.</span>
+          <span data-en>10+ yrs demining. SESU standards developer.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners-section" id="partners">
+  <div class="partners-layout">
+    <div>
+      <div class="section-tag">
+        <span class="inline-ua">Міжнародне співробітництво</span>
+        <span class="inline-en">International cooperation</span>
+      </div>
+      <h2 class="section-title">
+        <span data-ua>Стандарти,<br>яким довіряють</span>
+        <span data-en>Standards<br>you can trust</span>
+      </h2>
+      <p class="section-desc" style="margin-top:16px;">
+        <span data-ua>EOD & RC працює відповідно до міжнародних стандартів протимінної діяльності (IMAS) і відкрита до співпраці з міжнародними організаціями, фондами та донорами.</span>
+        <span data-en>EOD & RC operates in full compliance with International Mine Action Standards (IMAS) and welcomes cooperation with international organizations, foundations and donors.</span>
+      </p>
+      <div class="standards-list">
+        <div class="standard-item">
+          <div class="standard-check">✓</div>
+          <span class="inline-ua">Відповідність міжнародним стандартам IMAS</span>
+          <span class="inline-en">IMAS international standards compliance</span>
+        </div>
+        <div class="standard-item">
+          <div class="standard-check">✓</div>
+          <span class="inline-ua">Державна сертифікація (4 напрямки послуг)</span>
+          <span class="inline-en">State certification (4 service areas)</span>
+        </div>
+        <div class="standard-item">
+          <div class="standard-check">✓</div>
+          <span class="inline-ua">Внутрішній контроль якості після кожної операції</span>
+          <span class="inline-en">Internal QA after every operation</span>
+        </div>
+        <div class="standard-item">
+          <div class="standard-check">✓</div>
+          <span class="inline-ua">Реєстрація в державному реєстрі очищених ділянок</span>
+          <span class="inline-en">Registration in state cleared areas registry</span>
+        </div>
+        <div class="standard-item">
+          <div class="standard-check">✓</div>
+          <span class="inline-ua">Звітність та прозорість операцій</span>
+          <span class="inline-en">Operational reporting and transparency</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="partners-cta">
+      <div class="partners-cta-title">
+        <span data-ua>Розглядаєте партнерство?</span>
+        <span data-en>Considering partnership?</span>
+      </div>
+      <p>
+        <span data-ua>Ми готові надати детальну інформацію про операційну діяльність, фінансову звітність та плани розвитку для потенційних партнерів і донорів.</span>
+        <span data-en>We are ready to provide detailed information about operational activities, financial reporting and development plans for potential partners and donors.</span>
+      </p>
+      <a href="#contact" class="btn-primary" style="margin-bottom:12px; display:block; text-align:center;">
+        <span class="inline-ua">Зв'язатися з нами</span>
+        <span class="inline-en">Get in touch</span>
+      </a>
+      <a href="#" class="btn-secondary" style="display:block; text-align:center;">
+        <span class="inline-ua">Завантажити прес-кіт</span>
+        <span class="inline-en">Download press kit</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section style="background:var(--dark-3); border-top:1px solid rgba(0,255,127,0.08); padding:80px 48px;" id="contact">
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;">
+    <div>
+      <div class="section-tag">
+        <span class="inline-ua">Зв'язатися</span>
+        <span class="inline-en">Contact</span>
+      </div>
+      <h2 class="section-title">
+        <span data-ua>Залишіть<br>заявку</span>
+        <span data-en>Get in<br>touch</span>
+      </h2>
+      <p class="section-desc" style="margin-top:16px; margin-bottom:40px;">
+        <span data-ua>Для отримання консультації щодо послуг з розмінування або для обговорення партнерства — заповніть форму або зв'яжіться з нами напряму.</span>
+        <span data-en>For demining service consultation or partnership discussions — fill out the form or contact us directly.</span>
+      </p>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:40px;height:40px;background:rgba(0,255,127,0.08);border:1px solid rgba(0,255,127,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📞</div>
+          <div>
+            <div style="font-size:11px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px;"><span class="inline-ua">Телефон</span><span class="inline-en">Phone</span></div>
+            <a href="tel:+380677773579" style="font-size:15px;color:var(--white);text-decoration:none;">+38 067 777 35 79</a>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:40px;height:40px;background:rgba(0,255,127,0.08);border:1px solid rgba(0,255,127,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">✉️</div>
+          <div>
+            <div style="font-size:11px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px;">Email</div>
+            <a href="/cdn-cgi/l/email-protection#0861666e67486d676c257a6b266b6765" style="font-size:15px;color:var(--white);text-decoration:none;"><span class="__cf_email__" data-cfemail="bfd6d1d9d0ffdad0db92cddc91dcd0d2">[email&#160;protected]</span></a>
+          </div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="width:40px;height:40px;background:rgba(0,255,127,0.08);border:1px solid rgba(0,255,127,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📍</div>
+          <div>
+            <div style="font-size:11px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px;"><span class="inline-ua">Адреса</span><span class="inline-en">Address</span></div>
+            <div style="font-size:14px;color:var(--gray-light);line-height:1.6;">
+              <span data-ua>с. Циркуни, вул. Кооперативна, 1<br>Харківський р-н, Харківська обл., 62441<br>Україна</span>
+              <span data-en>1 Kooperatyvna St., Tsyrkuny<br>Kharkiv district, Kharkiv region, 62441<br>Ukraine</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--dark-4);border:1px solid rgba(0,255,127,0.08);padding:40px;">
+      <div style="font-size:11px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:24px;">
+        <span class="inline-ua">Форма зворотнього зв'язку</span>
+        <span class="inline-en">Contact form</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div>
+          <label style="font-size:11px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:6px;"><span class="inline-ua">Ім'я</span><span class="inline-en">Name</span></label>
+          <div style="border:1px solid rgba(255,255,255,0.1);padding:10px 14px;font-size:13px;color:var(--gray);background:var(--dark-3);">
+            <span class="inline-ua">Ваше ім'я</span><span class="inline-en">Your name</span>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:6px;"><span class="inline-ua">Телефон / Email</span><span class="inline-en">Phone / Email</span></label>
+          <div style="border:1px solid rgba(255,255,255,0.1);padding:10px 14px;font-size:13px;color:var(--gray);background:var(--dark-3);">
+            <span class="inline-ua">Контакт для зв'язку</span><span class="inline-en">Contact details</span>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:6px;"><span class="inline-ua">Повідомлення</span><span class="inline-en">Message</span></label>
+          <div style="border:1px solid rgba(255,255,255,0.1);padding:10px 14px;font-size:13px;color:var(--gray);background:var(--dark-3);height:80px;">
+            <span class="inline-ua">Опишіть вашу ситуацію або запит</span><span class="inline-en">Describe your request</span>
+          </div>
+        </div>
+        <div style="border:1px solid rgba(0,255,127,0.3);padding:14px;background:rgba(0,255,127,0.05);text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);cursor:pointer;">
+          <span class="inline-ua">Надіслати →</span><span class="inline-en">Send →</span>
+        </div>
+        <div style="font-size:11px;color:var(--gray);text-align:center;line-height:1.5;">
+          <span data-ua>Або напишіть нам в Instagram: <a href="https://instagram.com/eod_and_rc" style="color:var(--green);text-decoration:none;">@eod_and_rc</a></span>
+          <span data-en>Or message us on Instagram: <a href="https://instagram.com/eod_and_rc" style="color:var(--green);text-decoration:none;">@eod_and_rc</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="logo-text">EOD <span style="color:var(--green)">&</span> RC</span>
+    <div class="footer-tagline">Your safety is our priority</div>
+    <div style="font-size:12px; color:var(--gray); line-height:1.7;">
+      <span data-ua>ТОВ «Центр знешкодження вибухонебезпечних предметів та рекультивації»</span>
+      <span data-en>Center for Explosive Ordnance Disposal and Recultivation LLC</span>
+    </div>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Послуги</span>
+      <span class="inline-en">Services</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#"><span class="inline-ua">Нетехнічне обстеження</span><span class="inline-en">Non-Technical Survey</span></a></li>
+      <li><a href="#"><span class="inline-ua">Технічне обстеження</span><span class="inline-en">Technical Survey</span></a></li>
+      <li><a href="#"><span class="inline-ua">Розмінування вручну</span><span class="inline-en">Manual Demining</span></a></li>
+      <li><a href="#"><span class="inline-ua">Очищення районів БД</span><span class="inline-en">Battlefield Clearance</span></a></li>
+      <li><a href="#"><span class="inline-ua">Рекультивація</span><span class="inline-en">Recultivation</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Компанія</span>
+      <span class="inline-en">Company</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#"><span class="inline-ua">Про нас</span><span class="inline-en">About us</span></a></li>
+      <li><a href="#"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></a></li>
+      <li><a href="#"><span class="inline-ua">Сертифікати</span><span class="inline-en">Certificates</span></a></li>
+      <li><a href="#"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+      <li><a href="#"><span class="inline-ua">Новини</span><span class="inline-en">News</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Контакти</span>
+      <span class="inline-en">Contact</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://eod-rc.com">eod-rc.com</a></li>
+      <li><a href="https://instagram.com/eod_and_rc">@eod_and_rc</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#11787f777e51747e753c63723f727e7c"><span class="__cf_email__" data-cfemail="147d7a727b54717b703966773a777b79">[email&#160;protected]</span></a></li>
+      <li><a href="tel:+380677773579">+38 067 777 35 79</a></li>
+      <li style="color:var(--gray); font-size:12px; line-height:1.5; margin-top:4px;">
+        <span class="inline-ua">с. Циркуни, вул. Кооперативна, 1<br>Харківська обл., 62441</span>
+        <span class="inline-en">1 Kooperatyvna St., Tsyrkuny<br>Kharkiv region, 62441</span>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <span class="footer-bottom-text">© 2025 EOD & RC. 
+    <span class="inline-ua">Всі права захищені.</span>
+    <span class="inline-en">All rights reserved.</span>
+  </span>
+  <span class="footer-bottom-text" style="color:rgba(255,255,255,0.2);">
+    <span class="inline-ua">Харків, Україна</span>
+    <span class="inline-en">Kharkiv, Ukraine</span>
+  </span>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    if (lang === 'en') {
+      document.bod
