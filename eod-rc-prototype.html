@@ -1043,6 +1043,182 @@
   }
   .form-note a { color: var(--green); text-decoration: none; }
 
+  /* ─── E1 · SCROLL REVEAL ─── */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  [data-animate].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── E3 · NAV SCROLLED STATE ─── */
+  nav {
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  nav.scrolled {
+    background: rgba(8,12,10,0.98);
+    border-bottom-color: rgba(85,191,120,0.15);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+  }
+
+  /* ─── E4 · HERO LOAD ANIMATION ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-badge    { animation: fadeUp 0.55s ease forwards 0.05s; opacity: 0; }
+  .hero-title    { animation: fadeUp 0.6s  ease forwards 0.18s; opacity: 0; }
+  .hero-tagline  { animation: fadeUp 0.5s  ease forwards 0.32s; opacity: 0; }
+  .hero-subtitle { animation: fadeUp 0.5s  ease forwards 0.42s; opacity: 0; }
+  .hero-certs    { animation: fadeUp 0.5s  ease forwards 0.52s; opacity: 0; }
+  .hero-actions  { animation: fadeUp 0.5s  ease forwards 0.62s; opacity: 0; }
+
+  /* ─── E5 · SECTION DIVIDERS ─── */
+  .stats-bar {
+    position: relative;
+  }
+  .stats-bar::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(85,191,120,0.15) 30%, rgba(85,191,120,0.15) 70%, transparent);
+    pointer-events: none;
+  }
+
+  /* ─── E8 · MICRO-DETAILS ─── */
+  ::selection {
+    background: rgba(85,191,120,0.25);
+    color: var(--white);
+  }
+  ::-webkit-scrollbar-thumb { background: var(--dark-4); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(85,191,120,0.35); }
+
+  /* ─── E6 · HAMBURGER ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 38px;
+    height: 38px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block;
+    height: 1.5px;
+    background: var(--gray-light);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+  /* ─── E6 · RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .cert-grid   { grid-template-columns: repeat(2, 1fr); }
+    .team-grid   { grid-template-columns: repeat(2, 1fr); }
+    footer       { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 768px) {
+    /* Nav */
+    nav {
+      padding: 0 20px;
+      height: 60px;
+    }
+    .nav-links {
+      position: absolute;
+      top: 60px; left: 0; right: 0;
+      background: rgba(8,12,10,0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(85,191,120,0.12);
+      padding: 8px 20px 20px;
+      flex-direction: column;
+      gap: 0;
+      display: none;
+      z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li   { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links li:last-child { border-bottom: none; }
+    .nav-links a    { font-size: 14px; letter-spacing: 0.06em; }
+    .nav-right      { display: none; }
+    .hamburger      { display: flex; }
+
+    /* Hero */
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left {
+      padding: 90px 20px 56px;
+      background: none;
+    }
+    .hero-right { height: 280px; }
+    .hero-img-overlay {
+      background:
+        linear-gradient(to bottom, var(--dark) 0%, rgba(8,12,10,0.4) 60%, transparent 100%),
+        linear-gradient(to top, rgba(8,12,10,0.85) 0%, transparent 50%);
+    }
+    .wheat-bg { display: none; }
+    .hero-title { font-size: clamp(40px, 10vw, 60px); }
+    .hero-certs { gap: 10px; }
+
+    /* Stats */
+    .stats-bar {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 20px;
+      gap: 0;
+    }
+    .stat-item {
+      padding: 16px 16px;
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-item:nth-child(odd)       { border-right: 1px solid rgba(255,255,255,0.06); }
+    .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+
+    /* Sections */
+    section { padding: 56px 20px; }
+
+    /* Ops */
+    .ops-layout { grid-template-columns: 1fr; gap: 32px; }
+
+    /* Team */
+    .team-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+
+    /* Partners */
+    .partners-layout { grid-template-columns: 1fr; gap: 40px; }
+    .partners-cta    { padding: 28px 20px; }
+
+    /* Contact */
+    .contact-layout  { grid-template-columns: 1fr; gap: 36px; }
+    .contact-section { padding: 56px 20px; }
+
+    /* Footer */
+    footer        { grid-template-columns: 1fr 1fr; gap: 28px; padding: 36px 20px; }
+    .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .cert-grid  { grid-template-columns: 1fr; }
+    .team-grid  { grid-template-columns: 1fr; }
+    footer      { grid-template-columns: 1fr; }
+    .hero-certs { flex-direction: column; gap: 8px; }
+    .hero-actions { flex-direction: column; gap: 10px; }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-secondary { width: 100%; text-align: center; }
+    .stats-bar  { grid-template-columns: 1fr 1fr; }
+    section     { padding: 48px 16px; }
+    .contact-form-wrap { padding: 24px 16px; }
+  }
+
 </style>
 </head>
 <body>
@@ -1071,6 +1247,11 @@
       <span class="inline-en">Contact</span>
     </a>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1808,6 +1989,92 @@
     });
     homeMap.getContainer().style.cursor = 'pointer';
   }
+</script>
+
+<script>
+/* ─── BLOCK E: FINAL POLISH ─── */
+
+// E3 · Navbar scroll behaviour
+(function () {
+  var nav = document.querySelector('nav');
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      requestAnimationFrame(function () {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}());
+
+// E6 · Hamburger menu
+(function () {
+  var btn     = document.getElementById('hamburger');
+  var links   = document.querySelector('.nav-links');
+  if (!btn || !links) return;
+
+  btn.addEventListener('click', function () {
+    var open = links.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+  });
+
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      links.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+}());
+
+// E1 · Scroll reveal via Intersection Observer
+(function () {
+  var targets = document.querySelectorAll(
+    '.stat-item, .cert-card, .team-card, ' +
+    '.ops-layout, .partners-layout, ' +
+    '.contact-layout, .cert-header, .team-header'
+  );
+
+  targets.forEach(function (el) {
+    el.setAttribute('data-animate', '');
+  });
+
+  // Stagger siblings inside card grids
+  ['.cert-grid', '.team-grid', '.stats-bar'].forEach(function (sel) {
+    var parent = document.querySelector(sel);
+    if (!parent) return;
+    parent.querySelectorAll('[data-animate]').forEach(function (child, i) {
+      child._animDelay = i * 100;
+    });
+  });
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var delay = entry.target._animDelay || 0;
+      setTimeout(function () {
+        entry.target.classList.add('visible');
+      }, delay);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+  targets.forEach(function (el) { observer.observe(el); });
+}());
+
+// E7 · Lazy-loading for below-fold images
+(function () {
+  document.querySelectorAll('img').forEach(function (img) {
+    if (img.classList.contains('hero-img') || img.classList.contains('logo-img') || img.classList.contains('footer-logo-img')) {
+      img.setAttribute('loading', 'eager');
+    } else if (!img.hasAttribute('loading')) {
+      img.setAttribute('loading', 'lazy');
+    }
+  });
+}());
 </script>
 </body>
 </html>
