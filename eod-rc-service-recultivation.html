@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EOD & RC — Рекультивація / Recultivation</title>
+<link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#55BF78;--green-light:#81F2A9;--green-dim:#075B35;--dark:#080C0A;--dark-2:#0D1410;--dark-3:#131A15;--dark-4:#1A2420;--gray:#8A9E94;--gray-light:#C2D4CC;--white:#F0F5F2;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:var(--dark);color:var(--white);font-family:'Barlow',sans-serif;font-weight:400;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(8,12,10,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(85,191,120,0.08);}
+  .logo{display:flex;align-items:center;gap:12px;text-decoration:none;}.logo-img{height:36px;width:auto;display:block;}
+  .nav-links{display:flex;align-items:center;gap:32px;list-style:none;}.nav-links a{color:var(--gray-light);text-decoration:none;font-size:13px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}.nav-links a:hover,.nav-links a.active{color:var(--green);}
+  .nav-right{display:flex;align-items:center;gap:20px;}.lang-switcher{display:flex;gap:4px;background:var(--dark-4);border-radius:4px;padding:3px;}.lang-btn{padding:4px 10px;font-size:11px;font-weight:600;letter-spacing:0.1em;border:none;border-radius:2px;cursor:pointer;transition:background 0.2s,color 0.2s;background:transparent;color:var(--gray);}.lang-btn.active{background:var(--green);color:var(--dark);}
+  .btn-nav{padding:8px 20px;background:transparent;color:var(--green);font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(85,191,120,0.4);cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s,border-color 0.2s;}.btn-nav:hover{background:rgba(85,191,120,0.08);border-color:var(--green);}
+  [data-en]{display:none;}body.en [data-ua]{display:none;}body.en [data-en]{display:block;}body.en .inline-en{display:inline!important;}body.en .inline-ua{display:none!important;}.inline-ua{display:inline;}.inline-en{display:none;}
+  .btn-primary{padding:14px 32px;background:var(--green);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s;}.btn-primary:hover{background:var(--green-light);}
+  .btn-secondary{padding:14px 32px;background:transparent;color:var(--gray-light);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.15);cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}.btn-secondary:hover{border-color:var(--green-light);color:var(--green-light);}
+  .service-nav{position:fixed;top:72px;left:0;right:0;z-index:99;background:var(--dark-3);border-bottom:1px solid rgba(85,191,120,0.06);padding:0 48px;display:flex;align-items:center;height:44px;overflow-x:auto;}
+  .svc-step{display:flex;align-items:center;text-decoration:none;white-space:nowrap;}.svc-step-inner{display:flex;align-items:center;gap:8px;padding:0 20px;height:44px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);transition:color 0.2s;border-right:1px solid rgba(255,255,255,0.05);}.svc-step:hover .svc-step-inner{color:var(--gray-light);}.svc-step.active .svc-step-inner{color:var(--green);background:rgba(85,191,120,0.04);}
+  .svc-step-num{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;opacity:0.4;}.svc-step.active .svc-step-num{opacity:1;color:var(--green);}
+  .service-hero{padding:140px 48px 0;background:var(--dark-2);min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;position:relative;overflow:hidden;}
+  .hero-left{padding-bottom:80px;padding-right:64px;display:flex;flex-direction:column;justify-content:center;}
+  .step-badge{display:flex;align-items:center;gap:12px;margin-bottom:28px;}.step-badge-num{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);padding:5px 12px;border:1px solid rgba(85,191,120,0.3);background:rgba(85,191,120,0.06);}.step-badge-label{font-size:11px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;}
+  .service-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,6vw,84px);font-weight:800;text-transform:uppercase;line-height:0.95;letter-spacing:-0.01em;margin-bottom:24px;}.service-title .accent{color:var(--green);}
+  .service-lead{font-size:16px;color:var(--gray-light);line-height:1.65;max-width:480px;margin-bottom:36px;}
+  .hero-meta{display:flex;gap:32px;margin-bottom:40px;}.meta-item{border-left:2px solid rgba(85,191,120,0.25);padding-left:14px;}.meta-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--green);}.meta-label{font-size:10px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;}
+  .hero-right{display:flex;align-items:stretch;}.hero-photo-placeholder{flex:1;background:var(--dark-3);display:flex;align-items:center;justify-content:center;position:relative;min-height:500px;border-left:1px solid rgba(85,191,120,0.06);}.hero-photo-placeholder::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(85,191,120,0.03) 39px,rgba(85,191,120,0.03) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(85,191,120,0.03) 39px,rgba(85,191,120,0.03) 40px);}.photo-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(85,191,120,0.25);position:relative;z-index:1;}
+  .section-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:16px;display:flex;align-items:center;gap:10px;}.section-tag::before{content:'';display:block;width:20px;height:1px;background:var(--green);}
+  .section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:800;text-transform:uppercase;line-height:1.05;margin-bottom:24px;}.section-title .accent{color:var(--green);}
+  .what-section{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:96px 48px;background:var(--dark);}
+  .definition-block{border-left:2px solid var(--green);padding-left:20px;margin:20px 0 24px;}.definition-text{font-size:15px;color:var(--gray-light);line-height:1.7;}
+  .goal-list{display:flex;flex-direction:column;gap:16px;}.goal-item{display:flex;gap:16px;align-items:flex-start;padding:18px;background:var(--dark-3);}.goal-icon{width:36px;height:36px;background:rgba(85,191,120,0.1);border:1px solid rgba(85,191,120,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--green);}.goal-text{font-size:13px;color:var(--gray-light);line-height:1.6;}.goal-text strong{display:block;font-size:14px;color:var(--white);font-weight:500;margin-bottom:3px;}
+  .process-section{padding:96px 48px;background:var(--dark-2);}.process-flow{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.04);}.process-step{background:var(--dark-3);padding:32px 28px;position:relative;}.process-step::after{content:'→';position:absolute;top:32px;right:-12px;font-size:16px;color:var(--green);z-index:1;background:var(--dark-3);padding:0 4px;}.process-step:last-child::after{display:none;}.process-num{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:800;color:rgba(85,191,120,0.15);line-height:1;margin-bottom:16px;}.process-name{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;}.process-desc{font-size:12px;color:var(--gray);line-height:1.7;}
+
+  /* ── NO-CERT BLOCK (замість cert-section) ── */
+  .nocert-section{padding:80px 48px;background:var(--dark);border-top:1px solid rgba(85,191,120,0.06);}
+  .nocert-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .nocert-eyebrow{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px;}.nocert-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--green);flex-shrink:0;}
+  .nocert-heading{font-family:'Barlow Condensed',sans-serif;font-size:clamp(22px,2.5vw,32px);font-weight:800;text-transform:uppercase;line-height:1.1;color:var(--white);margin-bottom:14px;}.nocert-heading .accent{color:var(--green);}
+  .nocert-subtext{font-size:13px;color:var(--gray);line-height:1.7;max-width:380px;}
+  .nocert-card{background:var(--dark-2);border:1px dashed rgba(85,191,120,0.2);padding:32px;display:flex;flex-direction:column;gap:20px;}
+  .nocert-status{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);font-weight:600;padding:6px 14px;border:1px solid rgba(85,191,120,0.2);background:rgba(85,191,120,0.05);width:fit-content;}
+  .nocert-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--white);}
+  .nocert-desc{font-size:13px;color:var(--gray);line-height:1.7;}
+  .nocert-note{font-size:11px;color:var(--gray);border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;display:flex;align-items:flex-start;gap:8px;}
+  .nocert-note svg{flex-shrink:0;margin-top:1px;color:var(--green);}
+
+  .results-section{padding:96px 48px;background:var(--dark);}.results-layout{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.04);}.result-card{background:var(--dark-3);padding:36px 32px;display:flex;flex-direction:column;gap:16px;}.result-status{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:5px 12px;width:fit-content;font-weight:600;}.status-excluded{background:rgba(85,191,120,0.08);color:var(--green);border:1px solid rgba(85,191,120,0.2);}.status-agro{background:rgba(100,200,130,0.06);color:#81D4A0;border:1px solid rgba(100,200,130,0.18);}.result-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;}.result-desc{font-size:13px;color:var(--gray);line-height:1.7;}.result-next{margin-top:auto;font-size:12px;color:var(--gray);border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;}.result-next a{color:var(--green);text-decoration:none;}
+
+  /* Cycle block — весь цикл одним поглядом */
+  .cycle-section{padding:80px 48px;background:var(--dark-3);border-top:1px solid rgba(85,191,120,0.06);}
+  .cycle-inner{max-width:960px;margin:0 auto;}
+  .cycle-grid{margin-top:48px;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,0.04);}
+  .cycle-step{background:var(--dark-4);padding:24px 20px;text-decoration:none;transition:background 0.2s;}
+  .cycle-step:hover{background:var(--dark-2);}
+  .cycle-step.current{background:rgba(85,191,120,0.06);border-top:2px solid var(--green);}
+  .cycle-num{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:rgba(85,191,120,0.15);line-height:1;margin-bottom:8px;}
+  .cycle-step.current .cycle-num{color:rgba(85,191,120,0.4);}
+  .cycle-name{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-light);margin-bottom:6px;}
+  .cycle-step.current .cycle-name{color:var(--green);}
+  .cycle-desc{font-size:11px;color:var(--gray);line-height:1.6;}
+
+  .order-section{padding:80px 48px;background:var(--dark-2);border-top:1px solid rgba(85,191,120,0.08);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}.order-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:800;text-transform:uppercase;line-height:1;margin-bottom:16px;}.order-title .accent{color:var(--green);}.order-desc{font-size:14px;color:var(--gray-light);line-height:1.7;margin-bottom:32px;}.order-steps{display:flex;flex-direction:column;gap:12px;}.order-step{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--gray-light);line-height:1.6;}.order-step-num{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--green);min-width:24px;}
+  .contact-mini{background:var(--dark-4);border:1px solid rgba(85,191,120,0.08);padding:32px;display:flex;flex-direction:column;gap:16px;}.contact-row{display:flex;align-items:center;gap:12px;}.contact-ico{width:36px;height:36px;background:rgba(85,191,120,0.08);border:1px solid rgba(85,191,120,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}.contact-lbl{font-size:10px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px;}.contact-val{font-size:14px;color:var(--white);text-decoration:none;}.contact-val:hover{color:var(--green);}
+  ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--dark);}::-webkit-scrollbar-thumb{background:var(--dark-4);}::selection{background:rgba(85,191,120,0.25);color:var(--white);}
+  nav{transition:background 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease;}nav.scrolled{background:rgba(8,12,10,0.98);border-bottom-color:rgba(85,191,120,0.15);box-shadow:0 4px 32px rgba(0,0,0,0.35);}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  .step-badge{animation:fadeUp 0.55s ease forwards 0.05s;opacity:0;}.service-title{animation:fadeUp 0.6s ease forwards 0.18s;opacity:0;}.service-lead{animation:fadeUp 0.5s ease forwards 0.32s;opacity:0;}.hero-meta{animation:fadeUp 0.5s ease forwards 0.42s;opacity:0;}.hero-left>div:last-child{animation:fadeUp 0.5s ease forwards 0.52s;opacity:0;}
+  [data-animate]{opacity:0;transform:translateY(22px);transition:opacity 0.6s ease,transform 0.6s ease;}[data-animate].visible{opacity:1;transform:translateY(0);}
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:none;cursor:pointer;padding:6px;}.hamburger span{display:block;height:1.5px;background:var(--gray-light);border-radius:2px;transition:transform 0.25s ease,opacity 0.2s ease;}.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
+  @media(max-width:1024px){.service-hero{grid-template-columns:1fr;min-height:auto;padding:140px 32px 0;}.hero-left{padding-right:0;padding-bottom:48px;}.hero-right{min-height:320px;}.what-section{grid-template-columns:1fr;gap:48px;padding:64px 32px;}.process-section{padding:64px 32px;}.process-flow{grid-template-columns:1fr 1fr;}.results-section{padding:64px 32px;}.results-layout{grid-template-columns:1fr;}.order-section{grid-template-columns:1fr;gap:32px;padding:64px 32px;}nav{padding:0 32px;}.service-nav{padding:0 32px;}.nocert-section{padding:64px 32px;}.nocert-inner{grid-template-columns:1fr;gap:40px;}.cycle-section{padding:64px 32px;}.cycle-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:768px){.hamburger{display:flex;}.nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,12,10,0.98);backdrop-filter:blur(16px);flex-direction:column;padding:24px 32px;gap:20px;border-bottom:1px solid rgba(85,191,120,0.08);}.nav-links.open{display:flex;}nav{padding:0 24px;}.service-nav{padding:0 24px;}.service-hero{padding:130px 24px 0;}.what-section{padding:48px 24px;}.process-section{padding:48px 24px;}.process-flow{grid-template-columns:1fr;}.process-step::after{display:none;}.results-section{padding:48px 24px;}.results-layout{grid-template-columns:1fr;}.order-section{padding:48px 24px;}.nocert-section{padding:48px 24px;}.cycle-section{padding:48px 24px;}.cycle-grid{grid-template-columns:1fr;}}
+  @media(max-width:480px){.service-hero{padding:120px 16px 0;}.what-section,.process-section,.results-section,.order-section{padding:40px 16px;}nav,.service-nav{padding:0 16px;}.hero-left>div:last-child{flex-direction:column;}.btn-primary,.btn-secondary{width:100%;text-align:center;}.contact-mini{padding:20px;}.nocert-section{padding:40px 16px;}.cycle-section{padding:40px 16px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="eod-rc-prototype.html" class="logo">
+    <img src="logo-horizontal-white.svg" class="logo-img" alt="EOD&RC" width="140" height="40" loading="eager">
+  </a>
+  <ul class="nav-links">
+    <li><a href="eod-rc-prototype.html#services" class="active"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
+    <li><a href="eod-rc-prototype.html#operations"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    <li><a href="eod-rc-prototype.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
+    <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
+    <li><a href="#">Media</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('ua')">UA</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="eod-rc-prototype.html#contact" class="btn-nav"><span class="inline-ua">Зв'язатися</span><span class="inline-en">Contact</span></a>
+  </div>
+</nav>
+
+<div class="service-nav">
+  <a href="eod-rc-service-nts.html" class="svc-step"><div class="svc-step-inner"><span class="svc-step-num">01</span><span class="inline-ua">Нетехнічне обстеження</span><span class="inline-en">Non-Technical Survey</span></div></a>
+  <a href="eod-rc-service-ts.html" class="svc-step"><div class="svc-step-inner"><span class="svc-step-num">02</span><span class="inline-ua">Технічне обстеження</span><span class="inline-en">Technical Survey</span></div></a>
+  <a href="eod-rc-service-manual.html" class="svc-step"><div class="svc-step-inner"><span class="svc-step-num">03</span><span class="inline-ua">Розмінування вручну</span><span class="inline-en">Manual Demining</span></div></a>
+  <a href="eod-rc-service-clearance.html" class="svc-step"><div class="svc-step-inner"><span class="svc-step-num">04</span><span class="inline-ua">Очищення районів БД</span><span class="inline-en">Battlefield Clearance</span></div></a>
+  <a href="eod-rc-service-recultivation.html" class="svc-step active"><div class="svc-step-inner"><span class="svc-step-num">05</span><span class="inline-ua">Рекультивація</span><span class="inline-en">Recultivation</span></div></a>
+</div>
+
+<section class="service-hero">
+  <div class="hero-left">
+    <div class="step-badge">
+      <span class="step-badge-num"><span class="inline-ua">КРОК 05</span><span class="inline-en">STEP 05</span></span>
+      <span class="step-badge-label"><span class="inline-ua">Фінальний етап — повернення землі</span><span class="inline-en">Final stage — returning land to life</span></span>
+    </div>
+    <h1 class="service-title">
+      <span data-ua><span class="accent">Рекульти</span>-<br>вація</span>
+      <span data-en><span class="accent">Recul</span>-<br>tivation</span>
+    </h1>
+    <p class="service-lead">
+      <span data-ua>Після повного очищення ділянки від ВНП ми відновлюємо ґрунт, рельєф і рослинний покрив. Земля знову стає придатною для сільського господарства, будівництва або природного використання.</span>
+      <span data-en>After full UXO clearance, we restore the soil, terrain, and vegetation. The land becomes suitable again for agriculture, construction, or natural use.</span>
+    </p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-val">05</div>
+        <div class="meta-label"><span class="inline-ua">Завершальний етап</span><span class="inline-en">Final stage</span></div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-val">IMAS</div>
+        <div class="meta-label"><span class="inline-ua">Відповідність стандарту</span><span class="inline-en">Standards compliant</span></div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-val">↩</div>
+        <div class="meta-label"><span class="inline-ua">Повернення землі власнику</span><span class="inline-en">Land returned to owner</span></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;">
+      <a href="#order" class="btn-primary"><span class="inline-ua">Замовити рекультивацію</span><span class="inline-en">Order recultivation</span></a>
+      <a href="#what" class="btn-secondary"><span class="inline-ua">Дізнатись більше ↓</span><span class="inline-en">Learn more ↓</span></a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-placeholder">
+      <span class="photo-label">
+        <span class="inline-ua">[ ФОТО — РЕКУЛЬТИВАЦІЯ ДІЛЯНКИ ]</span>
+        <span class="inline-en">[ PHOTO — LAND RECULTIVATION ]</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<section class="what-section" id="what">
+  <div>
+    <div class="section-tag"><span class="inline-ua">Що це таке</span><span class="inline-en">What it is</span></div>
+    <h2 class="section-title"><span data-ua>Мета та<br>завдання</span><span data-en>Purpose &<br>objectives</span></h2>
+    <div class="definition-block">
+      <p class="definition-text">
+        <span data-ua>Рекультивація — це <strong>відновлення землі після розмінування</strong>: вирівнювання рельєфу, відновлення ґрунтового шару, посів трав або підготовка до сільськогосподарського використання. Це перетворення бойової зони на мирну ділянку.</span>
+        <span data-en>Recultivation is <strong>land restoration after demining</strong>: terrain levelling, topsoil restoration, grass seeding, or preparation for agricultural use. It is the transformation of a battlefield into peaceful, usable land.</span>
+      </p>
+    </div>
+    <p style="font-size:14px;color:var(--gray);line-height:1.7;">
+      <span data-ua>Рекультивація виконується лише після підписання акта про повне очищення ділянки від ВНП та отримання відповідного дозволу уповноважених органів. Результат — земля, повернута до господарського обігу.</span>
+      <span data-en>Recultivation is performed only after the full UXO clearance certificate is signed and relevant permits are obtained. The result is land returned to economic use.</span>
+    </p>
+  </div>
+  <div>
+    <div class="section-tag" style="margin-bottom:24px;"><span class="inline-ua">Як це відбувається</span><span class="inline-en">How it works</span></div>
+    <div class="goal-list">
+      <div class="goal-item">
+        <div class="goal-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <div class="goal-text">
+          <strong><span class="inline-ua">Оцінка стану ґрунту</span><span class="inline-en">Soil condition assessment</span></strong>
+          <span data-ua>Аналіз пошкоджень ґрунтового покриву, рельєфу, наявних траншей, воронок та інших наслідків бойових дій.</span>
+          <span data-en>Analysis of topsoil damage, terrain disruption, existing trenches, craters, and other battlefield consequences.</span>
+        </div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="goal-text">
+          <strong><span class="inline-ua">Планування робіт</span><span class="inline-en">Work planning</span></strong>
+          <span data-ua>Розробка плану рекультивації з урахуванням майбутнього призначення ділянки: аграрне, будівельне чи природне.</span>
+          <span data-en>Developing a recultivation plan based on future land use: agricultural, construction, or natural restoration.</span>
+        </div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M5 17H2a10 10 0 0 0 20 0h-3"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 5-3 5s-3-3-3-5z"/></svg></div>
+        <div class="goal-text">
+          <strong><span class="inline-ua">Відновлення ґрунту та рельєфу</span><span class="inline-en">Soil & terrain restoration</span></strong>
+          <span data-ua>Засипання воронок і траншей, вирівнювання поверхні, внесення родючого ґрунту та підготовка до посіву.</span>
+          <span data-en>Filling craters and trenches, levelling the surface, applying fertile topsoil, and preparation for seeding.</span>
+        </div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="goal-text">
+          <strong><span class="inline-ua">Передача ділянки</span><span class="inline-en">Site handover</span></strong>
+          <span data-ua>Офіційна передача рекультивованої ділянки власнику з усією документацією про виконані роботи.</span>
+          <span data-en>Official handover of the recultivated plot to the owner with full documentation of completed works.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section">
+  <div class="section-tag"><span class="inline-ua">Етапи роботи</span><span class="inline-en">Work stages</span></div>
+  <h2 class="section-title"><span data-ua>Як проходить<br>рекультивація</span><span data-en>How recultivation<br>is conducted</span></h2>
+  <div class="process-flow">
+    <div class="process-step">
+      <div class="process-num">01</div>
+      <div class="process-name"><span class="inline-ua">Оцінка</span><span class="inline-en">Assessment</span></div>
+      <div class="process-desc"><span data-ua>Детальний огляд стану ділянки після розмінування. Картографування пошкоджень, замір площ та визначення обсягу робіт.</span><span data-en>Detailed inspection of the plot after demining. Damage mapping, area measurement, and determination of work scope.</span></div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">02</div>
+      <div class="process-name"><span class="inline-ua">Планування</span><span class="inline-en">Planning</span></div>
+      <div class="process-desc"><span data-ua>Узгодження плану рекультивації з власником. Вибір технологій відновлення відповідно до призначення землі.</span><span data-en>Agreeing the recultivation plan with the owner. Selecting restoration technologies according to intended land use.</span></div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">03</div>
+      <div class="process-name"><span class="inline-ua">Відновлення</span><span class="inline-en">Restoration</span></div>
+      <div class="process-desc"><span data-ua>Технічний етап: засипання, вирівнювання, нанесення ґрунту, посів або підготовка основи для будівництва.</span><span data-en>Technical stage: filling, levelling, topsoil application, seeding, or foundation preparation for construction.</span></div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">04</div>
+      <div class="process-name"><span class="inline-ua">Передача</span><span class="inline-en">Handover</span></div>
+      <div class="process-desc"><span data-ua>Підписання акта виконаних робіт. Передача ділянки власнику разом із повним пакетом документів та рекомендаціями.</span><span data-en>Signing the work completion certificate. Handing over the plot with the full document package and recommendations.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- NO CERT BLOCK -->
+<section class="nocert-section">
+  <div class="nocert-inner">
+    <div data-animate>
+      <div class="nocert-eyebrow"><span data-ua>Сертифікація</span><span data-en>Certification</span></div>
+      <h3 class="nocert-heading"><span data-ua>Ліцензування<br><span class="accent">у процесі</span></span><span data-en>Licensing<br><span class="accent">in progress</span></span></h3>
+      <p class="nocert-subtext">
+        <span data-ua>Рекультивація є завершальним та невід'ємним етапом повного циклу розмінування EOD&RC. Окремий сертифікат ДСНС для цього виду робіт наразі оформлюється.</span>
+        <span data-en>Recultivation is the final and integral stage of EOD&RC's complete demining cycle. A separate SESU certificate for this service type is currently being processed.</span>
+      </p>
+    </div>
+    <div data-animate>
+      <div class="nocert-card">
+        <span class="nocert-status">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span data-ua>У процесі сертифікації</span>
+          <span data-en>Certification in progress</span>
+        </span>
+        <div class="nocert-title">
+          <span data-ua>Рекультивація земель після розмінування</span>
+          <span data-en>Post-demining land recultivation</span>
+        </div>
+        <div class="nocert-desc">
+          <span data-ua>Послуга виконується у складі повного пакету робіт з розмінування EOD&RC. Сертифікат відповідності ДСТУ 8820:2023 для рекультивації знаходиться на стадії отримання в ДСНС України.</span>
+          <span data-en>Service is performed as part of EOD&RC's full demining package. DSTU 8820:2023 compliance certificate for recultivation is pending from SESU Ukraine.</span>
+        </div>
+        <div class="nocert-note">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span data-ua>Усі роботи з рекультивації виконуються виключно після отримання підтвердженого акта про повне очищення ділянки від ВНП</span>
+          <span data-en>All recultivation works are performed exclusively after receiving a confirmed UXO clearance certificate for the plot</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="results-section">
+  <div class="section-tag"><span class="inline-ua">Результат рекультивації</span><span class="inline-en">Recultivation outcome</span></div>
+  <h2 class="section-title"><span data-ua>Два напрями<br>відновлення</span><span data-en>Two restoration<br>directions</span></h2>
+  <p style="font-size:15px;color:var(--gray-light);max-width:560px;line-height:1.7;margin:16px 0 48px;">
+    <span data-ua>Залежно від призначення землі та стану ділянки рекультивація виконується за аграрним або загальним напрямом відновлення.</span>
+    <span data-en>Depending on land use and site conditions, recultivation is carried out in either an agricultural or general restoration direction.</span>
+  </p>
+  <div class="results-layout">
+    <div class="result-card">
+      <span class="result-status status-excluded">✓ <span class="inline-ua">Аграрне відновлення</span><span class="inline-en">Agricultural restoration</span></span>
+      <div class="result-title"><span data-ua>Підготовка до посіву</span><span data-en>Prepared for cultivation</span></div>
+      <div class="result-desc">
+        <span data-ua>Ділянка вирівняна, ґрунт відновлений і збагачений. Проведено первинний посів трав-меліорантів. Земля готова до сільськогосподарського обробітку сезону.</span>
+        <span data-en>Plot levelled, soil restored and enriched. Initial ameliorant grass seeding completed. Land ready for agricultural cultivation this season.</span>
+      </div>
+      <div class="result-next"><span data-ua>Ділянка передана власнику для подальшого використання</span><span data-en>Plot returned to owner for further use</span></div>
+    </div>
+    <div class="result-card">
+      <span class="result-status status-agro">↺ <span class="inline-ua">Загальне відновлення</span><span class="inline-en">General restoration</span></span>
+      <div class="result-title"><span data-ua>Підготовка основи</span><span data-en>Base preparation</span></div>
+      <div class="result-desc">
+        <span data-ua>Засипання воронок, вирівнювання рельєфу, стабілізація ґрунту. Ділянка підготовлена для будівництва, озеленення або природного відновлення.</span>
+        <span data-en>Crater filling, terrain levelling, soil stabilization. Plot prepared for construction, landscaping, or natural regeneration.</span>
+      </div>
+      <div class="result-next"><span data-ua>Ділянка готова до наступного цільового використання</span><span data-en>Plot ready for intended future use</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL CYCLE OVERVIEW -->
+<section class="cycle-section">
+  <div class="cycle-inner">
+    <div class="section-tag"><span class="inline-ua">Повний цикл</span><span class="inline-en">Full cycle</span></div>
+    <h2 class="section-title"><span data-ua>Від небезпечної зони<br>до <span class="accent">мирної землі</span></span><span data-en>From hazardous zone<br>to <span class="accent">peaceful land</span></span></h2>
+    <div class="cycle-grid">
+      <a href="eod-rc-service-nts.html" class="cycle-step">
+        <div class="cycle-num">01</div>
+        <div class="cycle-name"><span class="inline-ua">НТО</span><span class="inline-en">NTS</span></div>
+        <div class="cycle-desc"><span data-ua>Нетехнічне обстеження та класифікація</span><span data-en>Non-technical survey & classification</span></div>
+      </a>
+      <a href="eod-rc-service-ts.html" class="cycle-step">
+        <div class="cycle-num">02</div>
+        <div class="cycle-name"><span class="inline-ua">ТО</span><span class="inline-en">TS</span></div>
+        <div class="cycle-desc"><span data-ua>Технічне обстеження з обладнанням</span><span data-en>Technical survey with equipment</span></div>
+      </a>
+      <a href="eod-rc-service-manual.html" class="cycle-step">
+        <div class="cycle-num">03</div>
+        <div class="cycle-name"><span class="inline-ua">Розмін.</span><span class="inline-en">Demin.</span></div>
+        <div class="cycle-desc"><span data-ua>Виявлення та знищення ВНП</span><span data-en>UXO detection & destruction</span></div>
+      </a>
+      <a href="eod-rc-service-clearance.html" class="cycle-step">
+        <div class="cycle-num">04</div>
+        <div class="cycle-name"><span class="inline-ua">Очищення</span><span class="inline-en">Clearance</span></div>
+        <div class="cycle-desc"><span data-ua>Залишки БД та озброєння</span><span data-en>Battlefield debris & weapons</span></div>
+      </a>
+      <a href="eod-rc-service-recultivation.html" class="cycle-step current">
+        <div class="cycle-num">05</div>
+        <div class="cycle-name"><span class="inline-ua">Рекульт.</span><span class="inline-en">Recult.</span></div>
+        <div class="cycle-desc"><span data-ua>Відновлення та повернення землі</span><span data-en>Restoration & land return</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="order-section" id="order">
+  <div>
+    <div class="section-tag"><span class="inline-ua">Замовити послугу</span><span class="inline-en">Order service</span></div>
+    <h2 class="order-title"><span data-ua>Як <span class="accent">замовити</span><br>рекультивацію</span><span data-en>How to <span class="accent">order</span><br>recultivation</span></h2>
+    <p class="order-desc">
+      <span data-ua>Рекультивація виконується як фінальний етап після підписання акта про очищення. Також можлива як окрема послуга для вже очищених ділянок.</span>
+      <span data-en>Recultivation is performed as the final stage after the clearance certificate is signed. It is also available as a standalone service for already-cleared plots.</span>
+    </p>
+    <div class="order-steps">
+      <div class="order-step"><span class="order-step-num">1.</span><span data-ua>Зверніться до EOD&RC з актом про очищення або описом стану ділянки.</span><span data-en>Contact EOD&RC with the clearance certificate or a description of the plot's condition.</span></div>
+      <div class="order-step"><span class="order-step-num">2.</span><span data-ua>Наші фахівці проведуть оцінку стану та розрахують обсяг і вартість робіт.</span><span data-en>Our specialists will assess the condition and calculate the scope and cost of works.</span></div>
+      <div class="order-step"><span class="order-step-num">3.</span><span data-ua>Узгодимо план рекультивації та строки виконання, відповідно до призначення землі.</span><span data-en>We agree on the recultivation plan and timeline according to intended land use.</span></div>
+      <div class="order-step"><span class="order-step-num">4.</span><span data-ua>Виконання робіт, підписання акта та офіційна передача ділянки власнику.</span><span data-en>Works execution, certificate signing, and official handover of the plot to the owner.</span></div>
+    </div>
+  </div>
+  <div class="contact-mini">
+    <div style="font-size:11px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px;"><span class="inline-ua">Зв'яжіться з нами</span><span class="inline-en">Contact us</span></div>
+    <div class="contact-row"><div class="contact-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 5.37 5.37l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="contact-lbl"><span class="inline-ua">Телефон</span><span class="inline-en">Phone</span></div><a href="tel:+380677773579" class="contact-val">+38 067 777 35 79</a></div></div>
+    <div class="contact-row"><div class="contact-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-lbl">Email</div><a href="mailto:info@eod-rc.com" class="contact-val">info@eod-rc.com</a></div></div>
+    <div class="contact-row"><div class="contact-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="3"/></svg></div><div><div class="contact-lbl">Instagram</div><a href="https://instagram.com/eod_and_rc" class="contact-val">@eod_and_rc</a></div></div>
+    <a href="eod-rc-prototype.html#contact" class="btn-primary" style="text-align:center;margin-top:8px;"><span class="inline-ua">Заповнити форму →</span><span class="inline-en">Fill out form →</span></a>
+  </div>
+</section>
+
+<script>
+  function setLang(lang){document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});if(lang==='en'){document.body.classList.add('en');document.querySelector('.lang-btn:last-child').classList.add('active');}else{document.body.classList.remove('en');document.querySelector('.lang-btn:first-child').classList.add('active');}}
+  var nav=document.querySelector('nav');window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
+  var btn=document.getElementById('hamburger'),links=document.querySelector('.nav-links');if(btn&&links){btn.addEventListener('click',function(){var o=links.classList.toggle('open');btn.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);});}
+  var rt=document.querySelectorAll('.goal-item,.process-step,.result-card,.order-step,.contact-mini,.what-section>div,.process-section .section-tag,.results-section .section-tag,.cycle-step');rt.forEach(function(el,i){el.setAttribute('data-animate','');el._animDelay=(i%5)*70;});
+  var ro=new IntersectionObserver(function(entries){entries.forEach(function(e){if(!e.isIntersecting)return;var d=e.target._animDelay||0;setTimeout(function(){e.target.classList.add('visible');},d);ro.unobserve(e.target);});},{threshold:0.08});rt.forEach(function(el){ro.observe(el);});
+  document.querySelectorAll('img').forEach(function(img){if(!img.classList.contains('logo-img'))img.setAttribute('loading','lazy');});
+  document.querySelectorAll('[data-animate]').forEach(function(el,i){el._animDelay=i*100;ro.observe(el);});
+</script>
+</body>
+</html>

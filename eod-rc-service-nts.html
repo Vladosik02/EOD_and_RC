@@ -349,6 +349,197 @@
     .btn-primary, .btn-secondary { width: 100%; text-align: center; }
     .contact-mini { padding: 20px; }
   }
+
+  /* ── CERTIFICATE SECTION ── */
+  .cert-section {
+    padding: 80px 48px;
+    background: var(--dark);
+    border-top: 1px solid rgba(85,191,120,0.06);
+  }
+  .cert-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .cert-label-block { margin-bottom: 20px; }
+  .cert-eyebrow {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green); font-weight: 600; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cert-eyebrow::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--green); flex-shrink: 0;
+  }
+  .cert-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 800; text-transform: uppercase;
+    line-height: 1.1; color: var(--white);
+    margin-bottom: 14px;
+  }
+  .cert-heading .accent { color: var(--green); }
+  .cert-subtext {
+    font-size: 13px; color: var(--gray); line-height: 1.7; max-width: 380px;
+  }
+  /* Card */
+  .cert-card {
+    background: var(--dark-2);
+    border: 1px solid rgba(85,191,120,0.14);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cert-card:hover {
+    border-color: rgba(85,191,120,0.38);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(85,191,120,0.12);
+  }
+  .cert-card-header {
+    background: rgba(85,191,120,0.06);
+    border-bottom: 1px solid rgba(85,191,120,0.1);
+    padding: 16px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cert-card-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--green);
+  }
+  .cert-status-badge {
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 10px; font-weight: 600;
+    background: rgba(255,180,0,0.1);
+    color: #FFBA00;
+    border: 1px solid rgba(255,180,0,0.2);
+  }
+  .cert-card-body { padding: 22px 20px; }
+  .cert-field { margin-bottom: 14px; }
+  .cert-field:last-child { margin-bottom: 0; }
+  .cert-field-lbl {
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 4px;
+  }
+  .cert-field-val {
+    font-size: 13px; color: var(--white); line-height: 1.4;
+  }
+  .cert-field-val.mono {
+    font-family: 'Courier New', monospace;
+    font-size: 11px; color: var(--green); letter-spacing: 0.04em;
+  }
+  .cert-field-dates {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--white);
+  }
+  .cert-field-dates .sep { color: var(--gray); font-size: 11px; }
+  .cert-field-dates .expired { color: #FFBA00; font-size: 11px; }
+  .cert-card-footer {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cert-view-hint {
+    font-size: 11px; color: var(--gray);
+    display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s ease;
+  }
+  .cert-card:hover .cert-view-hint { color: var(--green); }
+  .cert-view-hint svg { transition: transform 0.2s ease; }
+  .cert-card:hover .cert-view-hint svg { transform: scale(1.1); }
+  .cert-shield-icon {
+    width: 32px; height: 32px;
+    color: rgba(85,191,120,0.25);
+    flex-shrink: 0;
+  }
+  /* Shine effect on hover */
+  .cert-card::before {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(85,191,120,0.04), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
+  }
+  .cert-card:hover::before { left: 150%; }
+
+  /* ── LIGHTBOX ── */
+  .cert-lightbox {
+    display: none;
+    position: fixed; inset: 0; z-index: 9000;
+    align-items: center; justify-content: center;
+  }
+  .cert-lightbox.open { display: flex; }
+  .cert-overlay {
+    position: absolute; inset: 0;
+    background: rgba(4,8,6,0.92);
+    backdrop-filter: blur(8px);
+    animation: overlayIn 0.25s ease forwards;
+  }
+  @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+  .cert-lightbox-inner {
+    position: relative; z-index: 1;
+    max-width: 760px; width: 90%;
+    animation: lightboxIn 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  @keyframes lightboxIn {
+    from { opacity: 0; transform: scale(0.92) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .cert-lightbox-header {
+    background: var(--dark-2);
+    border: 1px solid rgba(85,191,120,0.15);
+    border-bottom: none;
+    padding: 14px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cert-lightbox-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green);
+  }
+  .cert-close {
+    background: none; border: none; cursor: pointer;
+    color: var(--gray); padding: 4px;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 0.2s ease;
+    line-height: 1;
+  }
+  .cert-close:hover { color: var(--white); }
+  .cert-lightbox-img {
+    display: block; width: 100%;
+    border: 1px solid rgba(85,191,120,0.15);
+    border-top: none;
+    background: var(--dark-3);
+  }
+  .cert-lightbox-footer {
+    background: var(--dark-2);
+    border: 1px solid rgba(85,191,120,0.15);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 12px 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cert-lightbox-note {
+    font-size: 11px; color: var(--gray);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .cert-lightbox-note .warn { color: #FFBA00; }
+
+  @media (max-width: 1024px) {
+    .cert-section { padding: 64px 32px; }
+    .cert-inner { grid-template-columns: 1fr; gap: 40px; }
+    .cert-subtext { max-width: 100%; }
+  }
+  @media (max-width: 768px) {
+    .cert-section { padding: 48px 24px; }
+  }
+  @media (max-width: 480px) {
+    .cert-section { padding: 40px 16px; }
+    .cert-lightbox-inner { width: 95%; }
+  }
 </style>
 </head>
 <body>
@@ -382,35 +573,35 @@
 
 <!-- SERVICE NAV — всі 5 послуг як кроки -->
 <div class="service-nav">
-  <a href="#" class="svc-step active">
+  <a href="eod-rc-service-nts.html" class="svc-step active">
     <div class="svc-step-inner">
       <span class="svc-step-num">01</span>
       <span class="inline-ua">Нетехнічне обстеження</span>
       <span class="inline-en">Non-Technical Survey</span>
     </div>
   </a>
-  <a href="#" class="svc-step">
+  <a href="eod-rc-service-ts.html" class="svc-step">
     <div class="svc-step-inner">
       <span class="svc-step-num">02</span>
       <span class="inline-ua">Технічне обстеження</span>
       <span class="inline-en">Technical Survey</span>
     </div>
   </a>
-  <a href="#" class="svc-step">
+  <a href="eod-rc-service-manual.html" class="svc-step">
     <div class="svc-step-inner">
       <span class="svc-step-num">03</span>
       <span class="inline-ua">Розмінування вручну</span>
       <span class="inline-en">Manual Demining</span>
     </div>
   </a>
-  <a href="#" class="svc-step">
+  <a href="eod-rc-service-clearance.html" class="svc-step">
     <div class="svc-step-inner">
       <span class="svc-step-num">04</span>
       <span class="inline-ua">Очищення районів БД</span>
       <span class="inline-en">Battlefield Clearance</span>
     </div>
   </a>
-  <a href="#" class="svc-step">
+  <a href="eod-rc-service-recultivation.html" class="svc-step">
     <div class="svc-step-inner">
       <span class="svc-step-num">05</span>
       <span class="inline-ua">Рекультивація</span>
@@ -579,6 +770,125 @@
   </div>
 </section>
 
+<!-- CERTIFICATE -->
+<section class="cert-section">
+  <div class="cert-inner">
+
+    <!-- Left: text context -->
+    <div data-animate>
+      <div class="cert-label-block">
+        <div class="cert-eyebrow">
+          <span data-ua>Ліцензування</span>
+          <span data-en>Licensing</span>
+        </div>
+        <h3 class="cert-heading">
+          <span data-ua>Сертифікована<br><span class="accent">компетентність</span></span>
+          <span data-en>Certified<br><span class="accent">competence</span></span>
+        </h3>
+        <p class="cert-subtext">
+          <span data-ua>Нетехнічне обстеження EOD&RC виконується виключно в рамках чинного сертифіката відповідності ДСТУ 8820:2023, виданого уповноваженим органом ДСНС України.</span>
+          <span data-en>EOD&RC's non-technical survey is conducted exclusively under a valid DSTU 8820:2023 compliance certificate issued by the authorized SESU body of Ukraine.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Right: cert card -->
+    <div data-animate>
+      <div class="cert-card" onclick="openCertLightbox()" role="button" aria-label="Переглянути сертифікат №080" tabindex="0" onkeydown="if(event.key==='Enter')openCertLightbox()">
+        <div class="cert-card-header">
+          <span class="cert-card-num">
+            <span data-ua>Сертифікат №080</span>
+            <span data-en>Certificate №080</span>
+          </span>
+          <span class="cert-status-badge">
+            <span data-ua>⚠ Уточнюється</span>
+            <span data-en>⚠ Renewal pending</span>
+          </span>
+        </div>
+        <div class="cert-card-body">
+          <div class="cert-field">
+            <div class="cert-field-lbl">
+              <span data-ua>Вид роботи</span>
+              <span data-en>Service type</span>
+            </div>
+            <div class="cert-field-val">
+              <span data-ua>Нетехнічне обстеження (НТО)</span>
+              <span data-en>Non-Technical Survey (NTS)</span>
+            </div>
+          </div>
+          <div class="cert-field">
+            <div class="cert-field-lbl">
+              <span data-ua>Стандарт</span>
+              <span data-en>Standard</span>
+            </div>
+            <div class="cert-field-val mono">ДСТУ 8820:2023</div>
+          </div>
+          <div class="cert-field">
+            <div class="cert-field-lbl">
+              <span data-ua>Видавник</span>
+              <span data-en>Issuing body</span>
+            </div>
+            <div class="cert-field-val">
+              <span data-ua>МЦГР ШР ДСНС України</span>
+              <span data-en>IMAS HMA Centre, SESU Ukraine</span>
+            </div>
+          </div>
+          <div class="cert-field">
+            <div class="cert-field-lbl">
+              <span data-ua>Термін дії</span>
+              <span data-en>Valid period</span>
+            </div>
+            <div class="cert-field-dates">
+              <span>27.03.2024</span>
+              <span class="sep">—</span>
+              <span>26.03.2025</span>
+              <span class="expired">
+                <span data-ua>· термін вийшов</span>
+                <span data-en>· expired</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="cert-card-footer">
+          <div class="cert-view-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span data-ua>Переглянути оригінал</span>
+            <span data-en>View original</span>
+          </div>
+          <svg class="cert-shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERT LIGHTBOX -->
+<div class="cert-lightbox" id="certLightbox" role="dialog" aria-modal="true" aria-label="Сертифікат відповідності №080">
+  <div class="cert-overlay" onclick="closeCertLightbox()"></div>
+  <div class="cert-lightbox-inner">
+    <div class="cert-lightbox-header">
+      <span class="cert-lightbox-title">
+        <span data-ua>Сертифікат відповідності №080 — НТО</span>
+        <span data-en>Certificate of Conformity №080 — NTS</span>
+      </span>
+      <button class="cert-close" onclick="closeCertLightbox()" aria-label="Закрити">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <img class="cert-lightbox-img" src="certs/cert-080.jpg" alt="Сертифікат EOD&RC №080 — Нетехнічне обстеження" loading="lazy">
+    <div class="cert-lightbox-footer">
+      <div class="cert-lightbox-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span class="warn">
+          <span data-ua>⚠ Продовження сертифіката уточнюється у ДСНС України</span>
+          <span data-en>⚠ Certificate renewal is being clarified with SESU Ukraine</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- RESULTS -->
 <section class="results-section">
   <div class="section-tag">
@@ -608,8 +918,8 @@
         <span data-en>Indirect signs of possible contamination. Insufficient data to confirm, but also insufficient to exclude.</span>
       </div>
       <div class="result-next">
-        <span data-ua>Наступний крок: <a href="#">Технічне обстеження →</a></span>
-        <span data-en>Next step: <a href="#">Technical Survey →</a></span>
+        <span data-ua>Наступний крок: <a href="eod-rc-service-ts.html">Технічне обстеження →</a></span>
+        <span data-en>Next step: <a href="eod-rc-service-ts.html">Technical Survey →</a></span>
       </div>
     </div>
     <div class="result-card">
@@ -626,8 +936,8 @@
         <span data-en>Direct evidence of explosive items present. Technical survey and demining required.</span>
       </div>
       <div class="result-next">
-        <span data-ua>Наступний крок: <a href="#">Технічне обстеження + Розмінування →</a></span>
-        <span data-en>Next step: <a href="#">Technical Survey + Demining →</a></span>
+        <span data-ua>Наступний крок: <a href="eod-rc-service-ts.html">Технічне обстеження + Розмінування →</a></span>
+        <span data-en>Next step: <a href="eod-rc-service-ts.html">Technical Survey + Demining →</a></span>
       </div>
     </div>
     <div class="result-card">
@@ -667,7 +977,7 @@
       <span data-en>Direct evidence of UXO presence or absence using technical detection equipment.</span>
     </div>
   </div>
-  <a href="#" class="btn-primary">
+  <a href="eod-rc-service-ts.html" class="btn-primary">
     <span class="inline-ua">Дізнатись про ТО →</span>
     <span class="inline-en">Learn about TS →</span>
   </a>
@@ -682,7 +992,7 @@
     </div>
     <h2 class="order-title">
       <span data-ua>Як <span class="accent">замовити</span><br>обстеження</span>
-      <span data-en">How to <span class="accent">order</span><br>a survey</span>
+      <span data-en>How to <span class="accent">order</span><br>a survey</span>
     </h2>
     <p class="order-desc">
       <span data-ua>Процес простий. Нам потрібні лише базові дані про вашу ділянку — решту зробимо ми.</span>
@@ -702,7 +1012,7 @@
       <div class="order-step">
         <span class="order-step-num">3.</span>
         <span data-ua>Наші фахівці зв'яжуться з вами протягом 24 годин для узгодження деталей.</span>
-        <span data-en">Our specialists will contact you within 24 hours to agree on details.</span>
+        <span data-en>Our specialists will contact you within 24 hours to agree on details.</span>
       </div>
       <div class="order-step">
         <span class="order-step-num">4.</span>
@@ -795,6 +1105,32 @@
     if (!img.classList.contains('logo-img')) {
       img.setAttribute('loading', 'lazy');
     }
+  });
+
+  /* ── CERTIFICATE LIGHTBOX ── */
+  function openCertLightbox() {
+    var lb = document.getElementById('certLightbox');
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Focus trap: focus close button
+    setTimeout(function() {
+      var closeBtn = lb.querySelector('.cert-close');
+      if (closeBtn) closeBtn.focus();
+    }, 60);
+  }
+  function closeCertLightbox() {
+    var lb = document.getElementById('certLightbox');
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeCertLightbox();
+  });
+
+  /* ── CERT CARD IN SCROLL REVEAL ── */
+  document.querySelectorAll('[data-animate]').forEach(function(el, i) {
+    el._animDelay = i * 100;
+    revealObserver.observe(el);
   });
 </script>
 </body>
