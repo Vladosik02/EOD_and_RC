@@ -243,18 +243,65 @@
     .cert-section { padding: 40px 16px; }
     .cert-lightbox-inner { width: 95%; }
   }
+
+  /* ─── SITE FOOTER ─── */
+  .site-footer {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+  .footer-brand .footer-logo-img {
+    height: 32px; width: auto;
+    margin-bottom: 16px; display: block;
+  }
+  .footer-tagline {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 600;
+    color: var(--green); letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .footer-tagline::before {
+    content: ''; display: block;
+    width: 20px; height: 1px;
+    background: var(--green); flex-shrink: 0; opacity: 0.7;
+  }
+  .footer-col-title {
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 16px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    background: var(--dark);
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-bottom-text { font-size: 12px; color: var(--gray); }
+
+  @media (max-width: 1024px) { .site-footer { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  @media (max-width: 768px)  {
+    .site-footer { grid-template-columns: 1fr 1fr; gap: 28px; padding: 36px 20px; }
+    .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; }
+  }
+  @media (max-width: 480px)  { .site-footer { grid-template-columns: 1fr; } }
+
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="eod-rc-prototype.html" class="logo">
+  <a href="index.html" class="logo">
     <img src="logo-horizontal-white.svg" class="logo-img" alt="EOD&RC" width="140" height="40" loading="eager">
   </a>
   <ul class="nav-links">
-    <li><a href="eod-rc-prototype.html#services" class="active"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
-    <li><a href="eod-rc-prototype.html#operations"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
-    <li><a href="eod-rc-prototype.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
+    <li><a href="index.html#services" class="active"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
+    <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
     <li><a href="#">Media</a></li>
   </ul>
@@ -266,7 +313,7 @@
       <button class="lang-btn active" onclick="setLang('ua')">UA</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
     </div>
-    <a href="eod-rc-prototype.html#contact" class="btn-nav">
+    <a href="index.html#contact" class="btn-nav">
       <span class="inline-ua">Зв'язатися</span>
       <span class="inline-en">Contact</span>
     </a>
@@ -605,8 +652,8 @@
         <span data-en>No UXO found. Area receives a Cancelled Area status and can be returned to use without further operations.</span>
       </div>
       <div class="result-next">
-        <span data-ua>Наступний крок: <a href="eod-rc-prototype.html#contact">Ділянка передається власнику →</a></span>
-        <span data-en>Next step: <a href="eod-rc-prototype.html#contact">Area returned to owner →</a></span>
+        <span data-ua>Наступний крок: <a href="index.html#contact">Ділянка передається власнику →</a></span>
+        <span data-en>Next step: <a href="index.html#contact">Area returned to owner →</a></span>
       </div>
     </div>
   </div>
@@ -696,7 +743,7 @@
         <a href="https://instagram.com/eod_and_rc" class="contact-val">@eod_and_rc</a>
       </div>
     </div>
-    <a href="eod-rc-prototype.html#contact" class="btn-primary" style="text-align:center; margin-top:8px;">
+    <a href="index.html#contact" class="btn-primary" style="text-align:center; margin-top:8px;">
       <span class="inline-ua">Заповнити форму →</span>
       <span class="inline-en">Fill out form →</span>
     </a>
@@ -750,5 +797,74 @@
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCertLightbox(); });
   document.querySelectorAll('[data-animate]').forEach(function(el, i) { el._animDelay = i * 100; revealObserver.observe(el); });
 </script>
+
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <img src="logo-horizontal-white.svg" alt="EOD &amp; RC" class="footer-logo-img">
+    <div class="footer-tagline">
+      <span data-ua>Ваша безпека — наш пріоритет</span>
+      <span data-en>Your safety is our priority</span>
+    </div>
+    <div style="font-size:12px; color:var(--gray); line-height:1.7;">
+      <span data-ua>ТОВ «Центр знешкодження вибухонебезпечних предметів та рекультивації»</span>
+      <span data-en>Center for Explosive Ordnance Disposal and Recultivation LLC</span>
+    </div>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Послуги</span>
+      <span class="inline-en">Services</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="eod-rc-service-nts.html"><span class="inline-ua">Нетехнічне обстеження</span><span class="inline-en">Non-Technical Survey</span></a></li>
+      <li><a href="eod-rc-service-ts.html"><span class="inline-ua">Технічне обстеження</span><span class="inline-en">Technical Survey</span></a></li>
+      <li><a href="eod-rc-service-manual.html"><span class="inline-ua">Розмінування вручну</span><span class="inline-en">Manual Demining</span></a></li>
+      <li><a href="eod-rc-service-clearance.html"><span class="inline-ua">Очищення районів БД</span><span class="inline-en">Battlefield Clearance</span></a></li>
+      <li><a href="eod-rc-service-recultivation.html"><span class="inline-ua">Рекультивація</span><span class="inline-en">Recultivation</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Компанія</span>
+      <span class="inline-en">Company</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About us</span></a></li>
+      <li><a href="eod-rc-team.html"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></a></li>
+      <li><a href="index.html#services"><span class="inline-ua">Сертифікати</span><span class="inline-en">Certificates</span></a></li>
+      <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+      <li><a href="#"><span class="inline-ua">Новини</span><span class="inline-en">News</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Контакти</span>
+      <span class="inline-en">Contact</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://eod-rc.com">eod-rc.com</a></li>
+      <li><a href="https://instagram.com/eod_and_rc">@eod_and_rc</a></li>
+      <li><a href="mailto:info@eod-rc.com">info@eod-rc.com</a></li>
+      <li><a href="tel:+380677773579">+38 067 777 35 79</a></li>
+      <li style="color:var(--gray); font-size:12px; line-height:1.5; margin-top:4px;">
+        <span class="inline-ua">с. Циркуни, вул. Кооперативна, 1<br>Харківська обл., 62441</span>
+        <span class="inline-en">1 Kooperatyvna St., Tsyrkuny<br>Kharkiv region, 62441</span>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <span class="footer-bottom-text">© 2026 EOD &amp; RC.
+    <span class="inline-ua">Всі права захищені.</span>
+    <span class="inline-en">All rights reserved.</span>
+  </span>
+  <span class="footer-bottom-text" style="color:rgba(255,255,255,0.2);">
+    <span class="inline-ua">Харків, Україна</span>
+    <span class="inline-en">Kharkiv, Ukraine</span>
+  </span>
+</div>
+
 </body>
 </html>

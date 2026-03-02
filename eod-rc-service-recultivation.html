@@ -74,18 +74,65 @@
   @media(max-width:1024px){.service-hero{grid-template-columns:1fr;min-height:auto;padding:140px 32px 0;}.hero-left{padding-right:0;padding-bottom:48px;}.hero-right{min-height:320px;}.what-section{grid-template-columns:1fr;gap:48px;padding:64px 32px;}.process-section{padding:64px 32px;}.process-flow{grid-template-columns:1fr 1fr;}.results-section{padding:64px 32px;}.results-layout{grid-template-columns:1fr;}.order-section{grid-template-columns:1fr;gap:32px;padding:64px 32px;}nav{padding:0 32px;}.service-nav{padding:0 32px;}.nocert-section{padding:64px 32px;}.nocert-inner{grid-template-columns:1fr;gap:40px;}.cycle-section{padding:64px 32px;}.cycle-grid{grid-template-columns:1fr 1fr;}}
   @media(max-width:768px){.hamburger{display:flex;}.nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,12,10,0.98);backdrop-filter:blur(16px);flex-direction:column;padding:24px 32px;gap:20px;border-bottom:1px solid rgba(85,191,120,0.08);}.nav-links.open{display:flex;}nav{padding:0 24px;}.service-nav{padding:0 24px;}.service-hero{padding:130px 24px 0;}.what-section{padding:48px 24px;}.process-section{padding:48px 24px;}.process-flow{grid-template-columns:1fr;}.process-step::after{display:none;}.results-section{padding:48px 24px;}.results-layout{grid-template-columns:1fr;}.order-section{padding:48px 24px;}.nocert-section{padding:48px 24px;}.cycle-section{padding:48px 24px;}.cycle-grid{grid-template-columns:1fr;}}
   @media(max-width:480px){.service-hero{padding:120px 16px 0;}.what-section,.process-section,.results-section,.order-section{padding:40px 16px;}nav,.service-nav{padding:0 16px;}.hero-left>div:last-child{flex-direction:column;}.btn-primary,.btn-secondary{width:100%;text-align:center;}.contact-mini{padding:20px;}.nocert-section{padding:40px 16px;}.cycle-section{padding:40px 16px;}}
+
+  /* ─── SITE FOOTER ─── */
+  .site-footer {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+  .footer-brand .footer-logo-img {
+    height: 32px; width: auto;
+    margin-bottom: 16px; display: block;
+  }
+  .footer-tagline {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 600;
+    color: var(--green); letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .footer-tagline::before {
+    content: ''; display: block;
+    width: 20px; height: 1px;
+    background: var(--green); flex-shrink: 0; opacity: 0.7;
+  }
+  .footer-col-title {
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 16px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    background: var(--dark);
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-bottom-text { font-size: 12px; color: var(--gray); }
+
+  @media (max-width: 1024px) { .site-footer { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  @media (max-width: 768px)  {
+    .site-footer { grid-template-columns: 1fr 1fr; gap: 28px; padding: 36px 20px; }
+    .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; }
+  }
+  @media (max-width: 480px)  { .site-footer { grid-template-columns: 1fr; } }
+
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="eod-rc-prototype.html" class="logo">
+  <a href="index.html" class="logo">
     <img src="logo-horizontal-white.svg" class="logo-img" alt="EOD&RC" width="140" height="40" loading="eager">
   </a>
   <ul class="nav-links">
-    <li><a href="eod-rc-prototype.html#services" class="active"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
-    <li><a href="eod-rc-prototype.html#operations"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
-    <li><a href="eod-rc-prototype.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
+    <li><a href="index.html#services" class="active"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
+    <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
     <li><a href="#">Media</a></li>
   </ul>
@@ -95,7 +142,7 @@
       <button class="lang-btn active" onclick="setLang('ua')">UA</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
     </div>
-    <a href="eod-rc-prototype.html#contact" class="btn-nav"><span class="inline-ua">Зв'язатися</span><span class="inline-en">Contact</span></a>
+    <a href="index.html#contact" class="btn-nav"><span class="inline-ua">Зв'язатися</span><span class="inline-en">Contact</span></a>
   </div>
 </nav>
 
@@ -351,7 +398,7 @@
     <div class="contact-row"><div class="contact-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 5.37 5.37l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="contact-lbl"><span class="inline-ua">Телефон</span><span class="inline-en">Phone</span></div><a href="tel:+380677773579" class="contact-val">+38 067 777 35 79</a></div></div>
     <div class="contact-row"><div class="contact-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-lbl">Email</div><a href="mailto:info@eod-rc.com" class="contact-val">info@eod-rc.com</a></div></div>
     <div class="contact-row"><div class="contact-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="3"/></svg></div><div><div class="contact-lbl">Instagram</div><a href="https://instagram.com/eod_and_rc" class="contact-val">@eod_and_rc</a></div></div>
-    <a href="eod-rc-prototype.html#contact" class="btn-primary" style="text-align:center;margin-top:8px;"><span class="inline-ua">Заповнити форму →</span><span class="inline-en">Fill out form →</span></a>
+    <a href="index.html#contact" class="btn-primary" style="text-align:center;margin-top:8px;"><span class="inline-ua">Заповнити форму →</span><span class="inline-en">Fill out form →</span></a>
   </div>
 </section>
 
@@ -364,5 +411,74 @@
   document.querySelectorAll('img').forEach(function(img){if(!img.classList.contains('logo-img'))img.setAttribute('loading','lazy');});
   document.querySelectorAll('[data-animate]').forEach(function(el,i){el._animDelay=i*100;ro.observe(el);});
 </script>
+
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <img src="logo-horizontal-white.svg" alt="EOD &amp; RC" class="footer-logo-img">
+    <div class="footer-tagline">
+      <span data-ua>Ваша безпека — наш пріоритет</span>
+      <span data-en>Your safety is our priority</span>
+    </div>
+    <div style="font-size:12px; color:var(--gray); line-height:1.7;">
+      <span data-ua>ТОВ «Центр знешкодження вибухонебезпечних предметів та рекультивації»</span>
+      <span data-en>Center for Explosive Ordnance Disposal and Recultivation LLC</span>
+    </div>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Послуги</span>
+      <span class="inline-en">Services</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="eod-rc-service-nts.html"><span class="inline-ua">Нетехнічне обстеження</span><span class="inline-en">Non-Technical Survey</span></a></li>
+      <li><a href="eod-rc-service-ts.html"><span class="inline-ua">Технічне обстеження</span><span class="inline-en">Technical Survey</span></a></li>
+      <li><a href="eod-rc-service-manual.html"><span class="inline-ua">Розмінування вручну</span><span class="inline-en">Manual Demining</span></a></li>
+      <li><a href="eod-rc-service-clearance.html"><span class="inline-ua">Очищення районів БД</span><span class="inline-en">Battlefield Clearance</span></a></li>
+      <li><a href="eod-rc-service-recultivation.html"><span class="inline-ua">Рекультивація</span><span class="inline-en">Recultivation</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Компанія</span>
+      <span class="inline-en">Company</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About us</span></a></li>
+      <li><a href="eod-rc-team.html"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></a></li>
+      <li><a href="index.html#services"><span class="inline-ua">Сертифікати</span><span class="inline-en">Certificates</span></a></li>
+      <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+      <li><a href="#"><span class="inline-ua">Новини</span><span class="inline-en">News</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Контакти</span>
+      <span class="inline-en">Contact</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://eod-rc.com">eod-rc.com</a></li>
+      <li><a href="https://instagram.com/eod_and_rc">@eod_and_rc</a></li>
+      <li><a href="mailto:info@eod-rc.com">info@eod-rc.com</a></li>
+      <li><a href="tel:+380677773579">+38 067 777 35 79</a></li>
+      <li style="color:var(--gray); font-size:12px; line-height:1.5; margin-top:4px;">
+        <span class="inline-ua">с. Циркуни, вул. Кооперативна, 1<br>Харківська обл., 62441</span>
+        <span class="inline-en">1 Kooperatyvna St., Tsyrkuny<br>Kharkiv region, 62441</span>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <span class="footer-bottom-text">© 2026 EOD &amp; RC.
+    <span class="inline-ua">Всі права захищені.</span>
+    <span class="inline-en">All rights reserved.</span>
+  </span>
+  <span class="footer-bottom-text" style="color:rgba(255,255,255,0.2);">
+    <span class="inline-ua">Харків, Україна</span>
+    <span class="inline-en">Kharkiv, Ukraine</span>
+  </span>
+</div>
+
 </body>
 </html>
