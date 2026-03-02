@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EOD & RC — Партнерам / For Partners</title>
+<link rel="icon" href="favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green: #00FF7F;
+    --green: #55BF78;
     --green-dim: #00C060;
     --dark: #080C0A;
     --dark-2: #0D1410;
@@ -28,7 +29,7 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 48px; height: 72px;
     background: rgba(8,12,10,0.95); backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(0,255,127,0.08);
+    border-bottom: 1px solid rgba(85,191,120,0.08);
   }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: 0.05em; }
@@ -67,7 +68,7 @@
   .page-hero {
     padding: 140px 48px 80px;
     background: var(--dark-2);
-    border-bottom: 1px solid rgba(0,255,127,0.08);
+    border-bottom: 1px solid rgba(85,191,120,0.08);
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 80px;
@@ -118,12 +119,12 @@
   .how-step:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
   .step-num {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 48px; font-weight: 800; color: rgba(0,255,127,0.15);
-    line-height: 1;
+    font-size: 48px; font-weight: 800; color: var(--green);
+    line-height: 1; opacity: 0.6;
   }
   .step-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
   .step-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
-  .step-action { font-size: 13px; color: var(--gray-light); line-height: 1.7; padding: 16px; background: var(--dark-4); border-left: 2px solid rgba(0,255,127,0.3); }
+  .step-action { font-size: 13px; color: var(--gray-light); line-height: 1.7; padding: 16px; background: var(--dark-4); border-left: 2px solid rgba(85,191,120,0.3); }
 
   /* TRANSPARENCY */
   .transparency-section { padding: 96px 48px; background: var(--dark); }
@@ -134,15 +135,15 @@
     padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
   }
   .doc-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
-  .doc-icon { width: 40px; height: 40px; background: rgba(0,255,127,0.08); border: 1px solid rgba(0,255,127,0.2); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .doc-icon { width: 40px; height: 40px; background: rgba(85,191,120,0.08); border: 1px solid rgba(85,191,120,0.2); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
   .doc-info { flex: 1; }
   .doc-name { font-size: 14px; color: var(--white); margin-bottom: 2px; }
   .doc-meta { font-size: 11px; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; }
   .doc-status { font-size: 11px; padding: 3px 10px; }
-  .doc-available { background: rgba(0,255,127,0.08); color: var(--green); border: 1px solid rgba(0,255,127,0.2); }
+  .doc-available { background: rgba(85,191,120,0.08); color: var(--green); border: 1px solid rgba(85,191,120,0.2); }
   .doc-request { background: rgba(255,255,255,0.04); color: var(--gray); border: 1px solid rgba(255,255,255,0.1); }
 
-  .imas-block { background: var(--dark-3); border: 1px solid rgba(0,255,127,0.1); padding: 40px; }
+  .imas-block { background: var(--dark-3); border: 1px solid rgba(85,191,120,0.1); padding: 40px; }
   .imas-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; }
   .imas-list { display: flex; flex-direction: column; gap: 12px; }
   .imas-item { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--gray-light); line-height: 1.6; }
@@ -152,43 +153,99 @@
   /* CTA BLOCK */
   .cta-section {
     padding: 96px 48px; background: var(--dark-3);
-    border-top: 1px solid rgba(0,255,127,0.08);
+    border-top: 1px solid rgba(85,191,120,0.08);
     display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
   }
   .cta-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(32px, 3.5vw, 52px); font-weight: 800; text-transform: uppercase; line-height: 1; margin-bottom: 20px; }
   .cta-title .accent { color: var(--green); }
   .cta-desc { font-size: 15px; color: var(--gray-light); line-height: 1.7; margin-bottom: 36px; }
   .cta-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-  .contact-card { background: var(--dark-4); border: 1px solid rgba(0,255,127,0.08); padding: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .contact-card { background: var(--dark-4); border: 1px solid rgba(85,191,120,0.08); padding: 36px; display: flex; flex-direction: column; gap: 20px; }
   .contact-row { display: flex; align-items: center; gap: 14px; }
-  .contact-ico { width: 36px; height: 36px; background: rgba(0,255,127,0.08); border: 1px solid rgba(0,255,127,0.15); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .contact-ico { width: 36px; height: 36px; background: rgba(85,191,120,0.08); border: 1px solid rgba(85,191,120,0.15); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
   .contact-val { font-size: 14px; color: var(--white); text-decoration: none; }
   .contact-val:hover { color: var(--green); }
   .contact-lbl { font-size: 10px; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
+
+  /* SVG ICONS */
+  .why-icon { width: 40px; height: 40px; margin-bottom: 20px; color: var(--green); }
+  .why-icon svg { width: 40px; height: 40px; display: block; }
+  .doc-icon { width: 40px; height: 40px; background: rgba(85,191,120,0.08); border: 1px solid rgba(85,191,120,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--green); }
+  .doc-icon svg { width: 18px; height: 18px; display: block; }
+  .contact-ico { width: 36px; height: 36px; background: rgba(85,191,120,0.08); border: 1px solid rgba(85,191,120,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--green); }
+  .contact-ico svg { width: 16px; height: 16px; display: block; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark-2);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+    border-top: 1px solid rgba(85,191,120,0.07);
+  }
+  .footer-logo-img { height: 32px; width: auto; margin-bottom: 16px; display: block; }
+  .footer-tagline {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 600; color: var(--green);
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .footer-tagline::before {
+    content: ''; display: block; width: 20px; height: 1px;
+    background: var(--green); flex-shrink: 0; opacity: 0.7;
+  }
+  .footer-col-title {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 16px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    background: var(--dark);
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-bottom-text { font-size: 12px; color: var(--gray); }
 
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--dark); }
   ::-webkit-scrollbar-thumb { background: var(--dark-4); }
+  .logo-img { height: 38px; width: auto; display: block; filter: brightness(1); }
+  .logo { gap: 0; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .page-hero { grid-template-columns: 1fr; padding: 100px 20px 48px; gap: 40px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .how-step { grid-template-columns: 48px 1fr; grid-template-rows: auto auto; gap: 16px; }
+    .step-action { grid-column: 2; }
+    .transparency-section > div, .transparency-layout { grid-template-columns: 1fr !important; gap: 40px; }
+    .cta-section { grid-template-columns: 1fr; padding: 64px 20px; gap: 40px; }
+    nav { padding: 0 20px; }
+    .why-section, .how-section, .transparency-section { padding: 64px 20px; }
+    footer { grid-template-columns: 1fr 1fr; padding: 32px 20px; gap: 32px; }
+    .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    footer { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: column; gap: 20px; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="eod-rc-prototype.html" class="logo">
-    <svg width="40" height="46" viewBox="0 0 40 46" fill="none">
-      <path d="M20 1L38 8V22C38 33 29.5 41 20 44C10.5 41 2 33 2 22V8L20 1Z" fill="rgba(0,255,127,0.06)" stroke="#00FF7F" stroke-width="1.2"/>
-      <path d="M20 6L33 12V22C33 30.5 26.5 37 20 39C13.5 37 7 30.5 7 22V12L20 6Z" fill="rgba(0,255,127,0.04)" stroke="#00FF7F" stroke-width="0.8" stroke-opacity="0.6"/>
-      <path d="M20 11L28 15.5V22C28 27.5 24.2 32 20 33.5C15.8 32 12 27.5 12 22V15.5L20 11Z" fill="rgba(0,255,127,0.08)" stroke="#00FF7F" stroke-width="0.6" stroke-opacity="0.4"/>
-      <path d="M14.5 22L18.5 26L25.5 18" stroke="#00FF7F" stroke-width="2" stroke-linecap="square"/>
-    </svg>
-    <span class="logo-text">EOD <span>&</span> RC</span>
+  <a href="index.html" class="logo">
+    <img src="logo-horizontal-white.svg" height="38" alt="EOD &amp; RC" class="logo-img">
   </a>
   <ul class="nav-links">
-    <li><a href="eod-rc-prototype.html#services"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
-    <li><a href="eod-rc-prototype.html#operations"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
-    <li><a href="eod-rc-prototype.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
-    <li><a href="#" class="active"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
+    <li><a href="index.html#services"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
+    <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
+    <li><a href="eod-rc-partners.html" class="active"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
     <li><a href="#">Media</a></li>
   </ul>
   <div class="nav-right">
@@ -196,7 +253,7 @@
       <button class="lang-btn active" onclick="setLang('ua')">UA</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
     </div>
-    <a href="eod-rc-prototype.html#contact" class="btn-nav">
+    <a href="index.html#contact" class="btn-nav">
       <span class="inline-ua">Зв'язатися</span>
       <span class="inline-en">Contact</span>
     </a>
@@ -259,7 +316,7 @@
   </h2>
   <div class="why-grid">
     <div class="why-card">
-      <div class="why-icon">🏛️</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7L12 2z"/><polyline points="9 12 11 14 15 10"/></svg></div>
       <div class="why-title"><span class="inline-ua">Легітимність</span><span class="inline-en">Legitimacy</span></div>
       <div class="why-desc">
         <span data-ua>Державна сертифікація ДСНС України на всі 4 види послуг гуманітарного розмінування. Офіційна реєстрація в реєстрі операторів ПМД.</span>
@@ -267,7 +324,7 @@
       </div>
     </div>
     <div class="why-card">
-      <div class="why-icon">📋</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></div>
       <div class="why-title"><span class="inline-ua">Стандарти</span><span class="inline-en">Standards</span></div>
       <div class="why-desc">
         <span data-ua>Повна відповідність міжнародним стандартам протимінної діяльності (IMAS). Внутрішня система управління якістю. Незалежна інспекція після кожної операції.</span>
@@ -275,7 +332,7 @@
       </div>
     </div>
     <div class="why-card">
-      <div class="why-icon">📍</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
       <div class="why-title"><span class="inline-ua">Присутність</span><span class="inline-en">Presence</span></div>
       <div class="why-desc">
         <span data-ua>Активні операції в Харківській та Сумській областях — регіонах з найбільшим рівнем мінного забруднення. Команда на місці, без субпідряду.</span>
@@ -283,7 +340,7 @@
       </div>
     </div>
     <div class="why-card">
-      <div class="why-icon">👥</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><circle cx="17" cy="7" r="3"/><path d="M21 21v-2a4 4 0 00-3-3.87"/></svg></div>
       <div class="why-title"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></div>
       <div class="why-desc">
         <span data-ua>25 фахівців. Серед них — ветерани бойових дій, розробники державних стандартів для саперів, фахівці ДСНС з 30-річним досвідом.</span>
@@ -291,7 +348,7 @@
       </div>
     </div>
     <div class="why-card">
-      <div class="why-icon">📊</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/><path d="M2 12h2M20 12h2M12 2v2M12 20v2"/></svg></div>
       <div class="why-title"><span class="inline-ua">Прозорість</span><span class="inline-en">Transparency</span></div>
       <div class="why-desc">
         <span data-ua>Повна документація кожної операції. Звіти для донорів. Відкритість до аудиту. Всі очищені ділянки вносяться до державного реєстру.</span>
@@ -299,7 +356,7 @@
       </div>
     </div>
     <div class="why-card">
-      <div class="why-icon">🌱</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 7 4 3 6c3 1 5 4 5 6"/><path d="M12 12c0-5 5-8 9-6-3 1-5 4-5 6"/></svg></div>
       <div class="why-title"><span class="inline-ua">Рекультивація</span><span class="inline-en">Recultivation</span></div>
       <div class="why-desc">
         <span data-ua>Унікальний напрям: відновлення сільськогосподарських земель після розмінування. Повний цикл — від небезпечної зони до придатного поля.</span>
@@ -389,7 +446,7 @@
       </div>
       <h2 class="section-title">
         <span data-ua>Відкритість<br>та звітність</span>
-        <span data-en">Transparency<br>& reporting</span>
+        <span data-en>Transparency<br>& reporting</span>
       </h2>
       <p class="section-desc" style="margin-bottom:40px;">
         <span data-ua>Для потенційних партнерів та донорів ми надаємо повний пакет документів.</span>
@@ -397,7 +454,7 @@
       </p>
       <div class="doc-list">
         <div class="doc-item">
-          <div class="doc-icon">📄</div>
+          <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg></div>
           <div class="doc-info">
             <div class="doc-name"><span class="inline-ua">Державні сертифікати відповідності</span><span class="inline-en">State conformity certificates</span></div>
             <div class="doc-meta">ДСНС України · №080, 081, 082, 083</div>
@@ -405,7 +462,7 @@
           <span class="doc-status doc-available"><span class="inline-ua">Доступно</span><span class="inline-en">Available</span></span>
         </div>
         <div class="doc-item">
-          <div class="doc-icon">🏢</div>
+          <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="1"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9.5" y1="14.5" x2="14.5" y2="14.5"/></svg></div>
           <div class="doc-info">
             <div class="doc-name"><span class="inline-ua">Реєстраційні документи ТОВ</span><span class="inline-en">LLC registration documents</span></div>
             <div class="doc-meta"><span class="inline-ua">Код ЄДРПОУ · Статут</span><span class="inline-en">EDRPOU code · Charter</span></div>
@@ -413,7 +470,7 @@
           <span class="doc-status doc-available"><span class="inline-ua">Доступно</span><span class="inline-en">Available</span></span>
         </div>
         <div class="doc-item">
-          <div class="doc-icon">📊</div>
+          <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
           <div class="doc-info">
             <div class="doc-name"><span class="inline-ua">Звіти по завершених операціях</span><span class="inline-en">Completed operations reports</span></div>
             <div class="doc-meta"><span class="inline-ua">с. Явірське · Листопад 2024</span><span class="inline-en">Yavirske village · November 2024</span></div>
@@ -421,7 +478,7 @@
           <span class="doc-status doc-available"><span class="inline-ua">Доступно</span><span class="inline-en">Available</span></span>
         </div>
         <div class="doc-item">
-          <div class="doc-icon">📋</div>
+          <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
           <div class="doc-info">
             <div class="doc-name"><span class="inline-ua">Фінансова звітність</span><span class="inline-en">Financial reporting</span></div>
             <div class="doc-meta"><span class="inline-ua">Надається за запитом</span><span class="inline-en">Provided upon request</span></div>
@@ -429,7 +486,7 @@
           <span class="doc-status doc-request"><span class="inline-ua">За запитом</span><span class="inline-en">On request</span></span>
         </div>
         <div class="doc-item">
-          <div class="doc-icon">🤝</div>
+          <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
           <div class="doc-info">
             <div class="doc-name"><span class="inline-ua">Презентація для партнерів</span><span class="inline-en">Partner presentation</span></div>
             <div class="doc-meta"><span class="inline-ua">EN/UA · PDF</span><span class="inline-en">EN/UA · PDF</span></div>
@@ -467,7 +524,7 @@
         <div class="imas-item">
           <span class="imas-check">✓</span>
           <span data-ua>Засоби захисту відповідають міжнародним стандартам (IMAS)</span>
-          <span data-en">Protective equipment meets international IMAS standards</span>
+          <span data-en>Protective equipment meets international IMAS standards</span>
         </div>
         <div class="imas-item">
           <span class="imas-check">✓</span>
@@ -497,14 +554,14 @@
     </div>
     <h2 class="cta-title">
       <span data-ua>Готові<br>до <span class="accent">розмови</span></span>
-      <span data-en">Ready for<br>a <span class="accent">conversation</span></span>
+      <span data-en>Ready for<br>a <span class="accent">conversation</span></span>
     </h2>
     <p class="cta-desc">
       <span data-ua>Зв'яжіться з нами для отримання повного пакету документів, обговорення формату співпраці або відповідей на будь-які запитання.</span>
       <span data-en>Contact us to receive the full documentation package, discuss cooperation formats or get answers to any questions.</span>
     </p>
     <div class="cta-actions">
-      <a href="eod-rc-prototype.html#contact" class="btn-primary">
+      <a href="index.html#contact" class="btn-primary">
         <span class="inline-ua">Зв'язатися →</span>
         <span class="inline-en">Get in touch →</span>
       </a>
@@ -520,21 +577,21 @@
       <span class="inline-en">Direct contact</span>
     </div>
     <div class="contact-row">
-      <div class="contact-ico">✉️</div>
+      <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
       <div>
         <div class="contact-lbl">Email</div>
-        <a href="/cdn-cgi/l/email-protection#6d04030b022d080209401f0e430e0200" class="contact-val"><span class="__cf_email__" data-cfemail="274e494148674248430a55440944484a">[email&#160;protected]</span></a>
+        <a href="mailto:info@eod-rc.com" class="contact-val">info@eod-rc.com</a>
       </div>
     </div>
     <div class="contact-row">
-      <div class="contact-ico">📞</div>
+      <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
       <div>
         <div class="contact-lbl"><span class="inline-ua">Телефон</span><span class="inline-en">Phone</span></div>
         <a href="tel:+380677773579" class="contact-val">+38 067 777 35 79</a>
       </div>
     </div>
     <div class="contact-row">
-      <div class="contact-ico">📷</div>
+      <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
       <div>
         <div class="contact-lbl">Instagram</div>
         <a href="https://instagram.com/eod_and_rc" class="contact-val">@eod_and_rc</a>
@@ -547,9 +604,83 @@
   </div>
 </section>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<!-- FOOTER -->
+<footer>
+  <div>
+    <img src="logo-horizontal-white.svg" alt="EOD & RC" class="footer-logo-img">
+    <div class="footer-tagline">
+      <span class="inline-ua">Ваша безпека — наш пріоритет</span>
+      <span class="inline-en">Your safety is our priority</span>
+    </div>
+    <div style="font-size:12px; color:var(--gray); line-height:1.7;">
+      <span data-ua>ТОВ «Центр знешкодження вибухонебезпечних предметів та рекультивації»</span>
+      <span data-en>Center for Explosive Ordnance Disposal and Recultivation LLC</span>
+    </div>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Послуги</span>
+      <span class="inline-en">Services</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="eod-rc-service-nts.html"><span class="inline-ua">Нетехнічне обстеження</span><span class="inline-en">Non-Technical Survey</span></a></li>
+      <li><a href="eod-rc-service-ts.html"><span class="inline-ua">Технічне обстеження</span><span class="inline-en">Technical Survey</span></a></li>
+      <li><a href="eod-rc-service-manual.html"><span class="inline-ua">Розмінування вручну</span><span class="inline-en">Manual Demining</span></a></li>
+      <li><a href="eod-rc-service-clearance.html"><span class="inline-ua">Очищення районів БД</span><span class="inline-en">Battlefield Clearance</span></a></li>
+      <li><a href="eod-rc-service-recultivation.html"><span class="inline-ua">Рекультивація</span><span class="inline-en">Recultivation</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Компанія</span>
+      <span class="inline-en">Company</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About us</span></a></li>
+      <li><a href="eod-rc-team.html"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></a></li>
+      <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
+      <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Контакти</span>
+      <span class="inline-en">Contact</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://eod-rc.com">eod-rc.com</a></li>
+      <li><a href="https://instagram.com/eod_and_rc">@eod_and_rc</a></li>
+      <li><a href="mailto:info@eod-rc.com">info@eod-rc.com</a></li>
+      <li><a href="tel:+380677773579">+38 067 777 35 79</a></li>
+      <li style="color:var(--gray); font-size:12px; line-height:1.5; margin-top:4px;">
+        <span class="inline-ua">с. Циркуни, вул. Кооперативна, 1<br>Харківська обл., 62441</span>
+        <span class="inline-en">1 Kooperatyvna St., Tsyrkuny<br>Kharkiv region, 62441</span>
+      </li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span class="footer-bottom-text">© 2026 EOD & RC.
+    <span class="inline-ua">Всі права захищені.</span>
+    <span class="inline-en">All rights reserved.</span>
+  </span>
+  <span class="footer-bottom-text" style="color:rgba(255,255,255,0.2);">
+    <span class="inline-ua">Харків, Україна</span>
+    <span class="inline-en">Kharkiv, Ukraine</span>
+  </span>
+</div>
+
+<script>
   function setLang(lang) {
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     if (lang === 'en') {
       document.body.classList.add('en');
-      document.
+      document.querySelector('.lang-btn:last-child').classList.add('active');
+    } else {
+      document.body.classList.remove('en');
+      document.querySelector('.lang-btn:first-child').classList.add('active');
+    }
+  }
+</script>
+</body>
+</html>
