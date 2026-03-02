@@ -113,6 +113,10 @@
     background: var(--yellow);
     box-shadow: 0 0 0 3px rgba(255,200,0,0.15);
   }
+  .legend-dot.dot-mine {
+    background: #e03030;
+    box-shadow: 0 0 0 3px rgba(200,40,40,0.2);
+  }
   .legend-line {
     width: 22px; height: 2px;
     flex-shrink: 0;
@@ -616,17 +620,61 @@
   }
   .logo-img { height: 38px; width: auto; display: block; filter: brightness(1); }
   .logo { gap: 0; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark-2);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+    border-top: 1px solid rgba(85,191,120,0.07);
+  }
+  .footer-logo-img { height: 32px; width: auto; margin-bottom: 16px; display: block; }
+  .footer-tagline {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 600; color: var(--green);
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .footer-tagline::before {
+    content: ''; display: block; width: 20px; height: 1px;
+    background: var(--green); flex-shrink: 0; opacity: 0.7;
+  }
+  .footer-col-title {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 16px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    background: var(--dark);
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-bottom-text { font-size: 12px; color: var(--gray); }
+
+  /* MOBILE: legend + footer */
+  @media (max-width: 768px) {
+    .legend-block { display: none; }
+    footer { grid-template-columns: 1fr 1fr; padding: 32px 20px; gap: 32px; }
+    .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    footer { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="eod-rc-prototype.html" class="logo">
+  <a href="index.html" class="logo">
     <img src="logo-horizontal-white.svg" height="38" alt="EOD &amp; RC" class="logo-img">
   </a>
   <ul class="nav-links">
-    <li><a href="eod-rc-prototype.html#services"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
-    <li><a href="#" class="active"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    <li><a href="index.html#services"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
+    <li><a href="eod-rc-operations.html" class="active"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
     <li><a href="eod-rc-team.html"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
     <li><a href="#">Media</a></li>
@@ -636,7 +684,7 @@
       <button class="lang-btn active" onclick="setLang('ua')">UA</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
     </div>
-    <a href="eod-rc-prototype.html#contact" class="btn-nav">
+    <a href="index.html#contact" class="btn-nav">
       <span class="inline-ua">Зв'язатися</span>
       <span class="inline-en">Contact</span>
     </a>
@@ -821,6 +869,13 @@
         <span class="legend-item-label">
           <span class="inline-ua">Межа — активна</span>
           <span class="inline-en">Oblast — active</span>
+        </span>
+      </div>
+      <div class="legend-item" id="legend-sha-item" style="display:none">
+        <span class="legend-dot dot-mine"></span>
+        <span class="legend-item-label">
+          <span class="inline-ua">SHA · Зона мінної небезпеки</span>
+          <span class="inline-en">SHA · Contamination zone</span>
         </span>
       </div>
     </div>
@@ -1229,12 +1284,15 @@ const MineZoneControl = L.Control.extend({
     L.DomEvent.disableClickPropagation(div);
     L.DomEvent.on(div, 'click', function() {
       mineVisible = !mineVisible;
+      const shaLegend = document.getElementById('legend-sha-item');
       if (mineVisible) {
         mineLayerGroup.addTo(map);
         div.classList.add('mzc-on');
+        if (shaLegend) shaLegend.style.display = '';
       } else {
         map.removeLayer(mineLayerGroup);
         div.classList.remove('mzc-on');
+        if (shaLegend) shaLegend.style.display = 'none';
       }
     });
     return div;
@@ -1348,5 +1406,72 @@ function setLang(lang) {
 // Auto-open first marker on load
 setTimeout(() => selectObject('yavirske'), 600);
 </script>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <img src="logo-horizontal-white.svg" alt="EOD & RC" class="footer-logo-img">
+    <div class="footer-tagline">
+      <span data-ua>Ваша безпека — наш пріоритет</span>
+      <span data-en>Your safety is our priority</span>
+    </div>
+    <div style="font-size:12px; color:var(--gray); line-height:1.7;">
+      <span data-ua>ТОВ «Центр знешкодження вибухонебезпечних предметів та рекультивації»</span>
+      <span data-en>Center for Explosive Ordnance Disposal and Recultivation LLC</span>
+    </div>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Послуги</span>
+      <span class="inline-en">Services</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="eod-rc-service-nts.html"><span class="inline-ua">Нетехнічне обстеження</span><span class="inline-en">Non-Technical Survey</span></a></li>
+      <li><a href="eod-rc-service-ts.html"><span class="inline-ua">Технічне обстеження</span><span class="inline-en">Technical Survey</span></a></li>
+      <li><a href="eod-rc-service-manual.html"><span class="inline-ua">Розмінування вручну</span><span class="inline-en">Manual Demining</span></a></li>
+      <li><a href="eod-rc-service-clearance.html"><span class="inline-ua">Очищення районів БД</span><span class="inline-en">Battlefield Clearance</span></a></li>
+      <li><a href="eod-rc-service-recultivation.html"><span class="inline-ua">Рекультивація</span><span class="inline-en">Recultivation</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Компанія</span>
+      <span class="inline-en">Company</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About us</span></a></li>
+      <li><a href="eod-rc-team.html"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></a></li>
+      <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнери</span><span class="inline-en">Partners</span></a></li>
+      <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">
+      <span class="inline-ua">Контакти</span>
+      <span class="inline-en">Contact</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://eod-rc.com">eod-rc.com</a></li>
+      <li><a href="https://instagram.com/eod_and_rc">@eod_and_rc</a></li>
+      <li><a href="mailto:info@eod-rc.com">info@eod-rc.com</a></li>
+      <li><a href="tel:+380677773579">+38 067 777 35 79</a></li>
+      <li style="color:var(--gray); font-size:12px; line-height:1.5; margin-top:4px;">
+        <span class="inline-ua">с. Циркуни, вул. Кооперативна, 1<br>Харківська обл., 62441</span>
+        <span class="inline-en">1 Kooperatyvna St., Tsyrkuny<br>Kharkiv region, 62441</span>
+      </li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span class="footer-bottom-text">© 2026 EOD & RC.
+    <span class="inline-ua">Всі права захищені.</span>
+    <span class="inline-en">All rights reserved.</span>
+  </span>
+  <span class="footer-bottom-text" style="color:rgba(255,255,255,0.2);">
+    <span class="inline-ua">Харків, Україна</span>
+    <span class="inline-en">Kharkiv, Ukraine</span>
+  </span>
+</div>
+
 </body>
 </html>
