@@ -40,6 +40,11 @@
   .lang-btn { padding: 4px 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; border: none; border-radius: 2px; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--gray); }
   .lang-btn.active { background: var(--green); color: var(--dark); }
   .btn-nav { padding: 8px 20px; background: var(--green); color: var(--dark); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+  .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; background: transparent; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; height: 2px; background: var(--white); border-radius: 1px; transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* LANG */
   [data-en] { display: none; }
@@ -601,7 +606,11 @@
 
   @media (max-width: 768px) {
     nav { padding: 0 16px; height: 60px; }
-    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: rgba(8,12,10,0.98); padding: 16px 0; border-bottom: 1px solid rgba(85,191,120,0.12); gap: 0; z-index: 999; }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { padding: 14px 20px; display: block; font-size: 14px; letter-spacing: 0.06em; border-bottom: 1px solid rgba(255,255,255,0.04); }
     .btn-nav { display: none; }
     .page-hero { padding: 72px 16px 20px; }
     .hero-left h1 { font-size: clamp(32px, 8vw, 52px); }
@@ -715,8 +724,11 @@
     <li><a href="eod-rc-operations.html" class="active"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
     <li><a href="eod-rc-team.html"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
-    <li><a href="#">Media</a></li>
+    <li style="display:none"><a href="#">Media</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <div class="nav-right">
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLang('ua')">UA</button>
@@ -1443,6 +1455,24 @@ function setLang(lang) {
 
 // Auto-open first marker on load
 setTimeout(() => selectObject('yavirske'), 600);
+
+// ── HAMBURGER ──────────────────────────────────────────────
+var _hbtn = document.getElementById('hamburger');
+var _hnav = document.querySelector('.nav-links');
+if (_hbtn && _hnav) {
+  _hbtn.addEventListener('click', function() {
+    var o = _hnav.classList.toggle('open');
+    _hbtn.classList.toggle('open', o);
+    _hbtn.setAttribute('aria-expanded', o);
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('nav')) {
+      _hnav.classList.remove('open');
+      _hbtn.classList.remove('open');
+      _hbtn.setAttribute('aria-expanded', false);
+    }
+  });
+}
 </script>
 
 <!-- FOOTER -->
