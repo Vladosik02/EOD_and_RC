@@ -230,6 +230,71 @@
   .join-req { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--gray-light); line-height: 1.6; }
   .req-check { color: var(--green); flex-shrink: 0; font-size: 14px; }
 
+  /* HAMBURGER */
+  .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 38px; height: 38px; background: none; border: none; cursor: pointer; padding: 6px; }
+  .hamburger span { display: block; height: 1.5px; background: var(--gray-light); border-radius: 2px; transition: transform 0.25s ease, opacity 0.2s ease; }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .member-featured { grid-template-columns: 1fr; }
+    .member-photo { min-height: 320px; }
+    .team-row { grid-template-columns: 1fr 1fr; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .join-section { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  @media (max-width: 768px) {
+    /* Nav */
+    nav { padding: 0 20px; height: 60px; }
+    .nav-links {
+      display: none; position: fixed;
+      top: 60px; left: 0; right: 0;
+      background: rgba(8,12,10,0.98); backdrop-filter: blur(16px);
+      flex-direction: column; padding: 16px 24px 24px;
+      gap: 0; border-bottom: 1px solid rgba(85,191,120,0.1);
+      z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links li:last-child { border-bottom: none; }
+    .nav-links a { font-size: 14px; letter-spacing: 0.06em; }
+    .nav-right { display: none; }
+    .hamburger { display: flex; }
+
+    /* Hero */
+    .page-hero { padding: 80px 20px 48px; }
+    .page-hero h1 { font-size: clamp(40px, 10vw, 64px); }
+    .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+    .hero-stat-row { gap: 24px; flex-wrap: wrap; }
+
+    /* Leadership */
+    .leadership-section { padding: 56px 20px; }
+    .member-featured { grid-template-columns: 1fr; }
+    .member-photo { min-height: 260px; }
+    .member-info { padding: 28px 24px; }
+
+    /* Team row */
+    .team-row { grid-template-columns: 1fr 1fr; }
+
+    /* Values */
+    .values-section { padding: 56px 20px; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+
+    /* Join */
+    .join-section { padding: 56px 20px; grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 480px) {
+    .team-row { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .hero-stat-row { gap: 16px; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; display: block; }
+  }
+
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--dark); }
   ::-webkit-scrollbar-thumb { background: var(--dark-4); }
@@ -295,7 +360,7 @@
     <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
     <li><a href="#" class="active"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
-    <li><a href="#">Media</a></li>
+    <li style="display:none"><a href="#">Media</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-switcher">
@@ -307,6 +372,9 @@
       <span class="inline-en">Contact</span>
     </a>
   </div>
+  <button class="hamburger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
