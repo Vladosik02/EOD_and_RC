@@ -1,0 +1,82 @@
+/* ===== EOD & RC — shared site stylesheet =====
+ * Loaded on every page via <link rel="stylesheet" href="assets/styles.css">.
+ * Keeps the visually-identical building blocks in one place so they are
+ * cached across page navigations and easy to update in one spot.
+ */
+
+/* ── Reset & focus ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--green, #55BF78);
+  outline-offset: 3px;
+}
+
+/* ── <picture> wrappers ─────────────────────────────────────── */
+picture { display: contents; }
+
+/* ── Skip-to-content (a11y) ─────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  padding: 12px 20px;
+  background: var(--green, #55BF78);
+  color: var(--dark, #080C0A);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+  outline: 2px solid var(--white, #F0F5F2);
+  outline-offset: 2px;
+}
+
+/* ── Print ──────────────────────────────────────────────────── */
+@media print {
+  *, *::before, *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  body { font-size: 11pt; line-height: 1.45; }
+  nav,
+  .skip-link,
+  .hamburger,
+  .lang-switcher,
+  .btn-contact,
+  .btn-nav,
+  .form-submit,
+  .contact-form-wrap,
+  .cert-lightbox,
+  .cta-section,
+  .hero-img-overlay,
+  #homeMap,
+  .map-section,
+  .service-nav { display: none !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  a[href^="http"]::after,
+  a[href^="mailto"]::after,
+  a[href^="tel"]::after {
+    content: " (" attr(href) ")";
+    font-size: 80%;
+    word-break: break-all;
+  }
+  img, picture, svg { max-width: 100% !important; page-break-inside: avoid; }
+  h1, h2, h3 { page-break-after: avoid; }
+  section, article { page-break-inside: avoid; }
+}
+
+/* ── Reduced motion (a11y / vestibular safety) ─────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

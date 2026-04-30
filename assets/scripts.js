@@ -49,9 +49,34 @@
     }
   }
 
+  // Generic scroll-reveal: opt-in via [data-reveal] attribute on any element.
+  // Triggers a "is-visible" class once the element scrolls into view. Pages
+  // may pair this with their own CSS, e.g.:
+  //   [data-reveal] { opacity: 0; transform: translateY(12px); transition: ... }
+  //   [data-reveal].is-visible { opacity: 1; transform: none; }
+  function initReveal() {
+    var nodes = document.querySelectorAll('[data-reveal]:not(.is-visible)');
+    if (!nodes.length) return;
+    if (!('IntersectionObserver' in window) ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      nodes.forEach(function(n) { n.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        var delay = parseInt(e.target.getAttribute('data-reveal-delay'), 10) || 0;
+        setTimeout(function() { e.target.classList.add('is-visible'); }, delay);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    nodes.forEach(function(n) { io.observe(n); });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', function() { init(); initReveal(); });
   } else {
     init();
+    initReveal();
   }
 })();
