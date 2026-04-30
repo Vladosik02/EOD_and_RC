@@ -25,7 +25,49 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EOD & RC",
+  "alternateName": "ТОВ «Центр знешкодження вибухонебезпечних предметів та рекультивації»",
+  "url": "https://eod-rc.com/",
+  "logo": "https://eod-rc.com/logo-horizontal-main.png",
+  "image": "https://eod-rc.com/main-logo-background.png",
+  "description": "Сертифікований оператор гуманітарного розмінування. Нетехнічне та технічне обстеження, ручне розмінування, очищення районів бойових дій, рекультивація земель.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "вул. Кооперативна, 1, с. Циркуни",
+    "addressLocality": "Харківський район",
+    "addressRegion": "Харківська область",
+    "postalCode": "62441",
+    "addressCountry": "UA"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+380677773579",
+    "email": "info@eod-rc.com",
+    "contactType": "customer service",
+    "availableLanguage": ["uk", "en"]
+  },
+  "sameAs": [
+    "https://instagram.com/eod_and_rc"
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "Ukraine"
+  },
+  "knowsAbout": [
+    "Humanitarian Demining",
+    "Non-Technical Survey",
+    "Technical Survey",
+    "Manual Demining",
+    "Battlefield Area Clearance",
+    "Land Recultivation"
+  ]
+}
+</script>
 <style>
   :root {
     --green: #55BF78;
@@ -1274,9 +1316,12 @@
     .contact-form-wrap { padding: 24px 16px; }
   }
 
+  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; padding: 12px 20px; background: var(--green); color: var(--dark); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+  .skip-link:focus { left: 16px; top: 16px; outline: 2px solid var(--white); outline-offset: 2px; }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link"><span class="inline-ua">До основного вмісту</span><span class="inline-en">To main content</span></a>
 
 <!-- NAVIGATION -->
 <nav>
@@ -1310,7 +1355,7 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="padding:0;">
+<section class="hero" style="padding:0;" id="main-content" tabindex="-1">
 
   <!-- Wheat ear / Колос — brand identity decorative element -->
   <svg class="wheat-bg" viewBox="0 0 60 700" xmlns="http://www.w3.org/2000/svg">
@@ -2054,7 +2099,7 @@
   })();
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   // Mini home map
   if (document.getElementById('homeMap')) {
