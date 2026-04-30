@@ -25,6 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
 <script src="assets/scripts.js" defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <script type="application/ld+json">
@@ -85,11 +86,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :focus-visible {
-    outline: 2px solid var(--green);
-    outline-offset: 3px;
-  }
 
   html { scroll-behavior: smooth; }
 
@@ -1316,10 +1312,6 @@
     section     { padding: 48px 16px; }
     .contact-form-wrap { padding: 24px 16px; }
   }
-
-  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; padding: 12px 20px; background: var(--green); color: var(--dark); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
-  .skip-link:focus { left: 16px; top: 16px; outline: 2px solid var(--white); outline-offset: 2px; }
-  picture { display: contents; }
 </style>
 </head>
 <body>
@@ -1928,7 +1920,7 @@
         <span class="inline-ua">Форма зворотнього зв'язку</span>
         <span class="inline-en">Contact form</span>
       </h3>
-      <form id="contactForm" class="contact-form-fields" novalidate>
+      <form id="contactForm" class="contact-form-fields" novalidate data-formspree-id="YOUR_FORMSPREE_ID">
         <div class="form-field">
           <label class="form-label" for="cf-name"><span class="inline-ua">Ім'я</span><span class="inline-en">Name</span></label>
           <input id="cf-name" name="name" type="text" class="form-input" placeholder="Ваше ім'я / Your name" required minlength="2" maxlength="100" autocomplete="name">
@@ -2031,43 +2023,77 @@
     var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     var PHONE_RE = /^[+()\-\s\d]{7,}$/;
 
+    function t(uk, en) {
+      return document.body.classList.contains('en') ? en : uk;
+    }
+    function setStatus(msg, type) {
+      status.textContent = msg;
+      status.className = 'form-status' + (type ? ' ' + type : '');
+    }
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      var isEn = document.body.classList.contains('en');
       var name = form.elements['name'].value.trim();
       var contact = form.elements['contact'].value.trim();
       var message = form.elements['message'].value.trim();
 
       if (name.length < 2 || message.length < 10) {
-        status.textContent = isEn
-          ? 'Please fill in your name and message (min 10 characters).'
-          : 'Заповніть, будь ласка, ім\'я та повідомлення (мінімум 10 символів).';
-        status.className = 'form-status error';
+        setStatus(t(
+          'Заповніть, будь ласка, ім\'я та повідомлення (мінімум 10 символів).',
+          'Please fill in your name and message (min 10 characters).'
+        ), 'error');
         return;
       }
       if (!EMAIL_RE.test(contact) && !PHONE_RE.test(contact)) {
-        status.textContent = isEn
-          ? 'Please enter a valid email or phone number.'
-          : 'Введіть, будь ласка, коректний email або номер телефону.';
-        status.className = 'form-status error';
+        setStatus(t(
+          'Введіть, будь ласка, коректний email або номер телефону.',
+          'Please enter a valid email or phone number.'
+        ), 'error');
         return;
       }
 
-      var subject = isEn
-        ? 'Contact form: ' + name
-        : 'Форма зв\'язку: ' + name;
-      var body = (isEn ? 'Name' : 'Ім\'я') + ': ' + name + '\n'
-        + (isEn ? 'Contact' : 'Контакт') + ': ' + contact + '\n\n'
+      submitBtn.disabled = true;
+      var formspreeId = form.dataset.formspreeId;
+
+      if (formspreeId && formspreeId !== 'YOUR_FORMSPREE_ID') {
+        setStatus(t('Надсилаємо…', 'Sending…'), '');
+        fetch('https://formspree.io/f/' + formspreeId, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        }).then(function(r) {
+          if (r.ok) {
+            form.reset();
+            setStatus(t(
+              'Дякуємо! Ваше повідомлення надіслано.',
+              'Thank you! Your message has been sent.'
+            ), 'success');
+          } else {
+            throw new Error('Formspree returned ' + r.status);
+          }
+        }).catch(function() {
+          setStatus(t(
+            'Не вдалось надіслати. Спробуйте ще раз або напишіть на info@eod-rc.com.',
+            'Could not send. Please try again or email info@eod-rc.com.'
+          ), 'error');
+        }).finally(function() {
+          setTimeout(function() { submitBtn.disabled = false; }, 1500);
+        });
+        return;
+      }
+
+      var subject = t('Форма зв\'язку: ' + name, 'Contact form: ' + name);
+      var body = t('Ім\'я', 'Name') + ': ' + name + '\n'
+        + t('Контакт', 'Contact') + ': ' + contact + '\n\n'
         + message;
       var mailto = 'mailto:info@eod-rc.com'
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(body);
 
-      submitBtn.disabled = true;
-      status.textContent = isEn
-        ? 'Opening your email client...'
-        : 'Відкриваємо ваш поштовий клієнт...';
-      status.className = 'form-status success';
+      setStatus(t(
+        'Відкриваємо ваш поштовий клієнт…',
+        'Opening your email client…'
+      ), 'success');
       window.location.href = mailto;
       setTimeout(function() { submitBtn.disabled = false; }, 2000);
     });

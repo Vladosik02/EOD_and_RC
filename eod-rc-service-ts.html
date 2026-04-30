@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
 <script src="assets/scripts.js" defer></script>
 <script type="application/ld+json">
 {
@@ -60,6 +61,46 @@
   "provider": { "@type": "Organization", "name": "EOD & RC", "url": "https://eod-rc.com/" },
   "areaServed": { "@type": "Country", "name": "Ukraine" },
   "serviceOutput": "Уточнена карта мінного забруднення з визначеними небезпечними ділянками"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке технічне обстеження (ТО)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ТО — це часткове або повне фізичне обстеження підозрілих ділянок з метою підтвердити чи виключити мінне забруднення території."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чим ТО відрізняється від ручного розмінування?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Технічне обстеження спрямоване на визначення меж забрудненої території та виявлення характеру забруднення. Розмінування — це наступний етап, на якому виявлені ВНП знешкоджуються."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Які методи застосовуються під час ТО?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Робота міношукачів, металодетекторів, кінологічних команд, а в окремих випадках — механізованих засобів. Метод обирається відповідно до характеристик ділянки."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що відбувається після ТО?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Складається уточнена карта забруднення з межами небезпечних ділянок. Чисті ділянки виключаються з підозри, а небезпечні передаються на ручне розмінування."
+      }
+    }
+  ]
 }
 </script>
 <style>
@@ -344,10 +385,6 @@
     .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; }
   }
   @media (max-width: 480px)  { .site-footer { grid-template-columns: 1fr; } }
-
-  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; padding: 12px 20px; background: var(--green); color: var(--dark); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
-  .skip-link:focus { left: 16px; top: 16px; outline: 2px solid var(--white); outline-offset: 2px; }
-  picture { display: contents; }
 </style>
 </head>
 <body>
