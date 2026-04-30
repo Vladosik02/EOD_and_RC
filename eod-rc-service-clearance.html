@@ -10,15 +10,6 @@
 <link rel="icon" href="favicon-main.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon-main.png" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="EOD & RC">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="msapplication-TileColor" content="#080C0A">
-<meta name="msapplication-TileImage" content="icon-192.png">
-<meta name="msapplication-config" content="browserconfig.xml">
-<meta name="format-detection" content="telephone=no">
-<meta name="color-scheme" content="dark">
 <link rel="manifest" href="manifest.webmanifest">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="EOD & RC">
@@ -161,7 +152,43 @@
   @media(max-width:480px){.service-hero{padding:120px 16px 0;}.what-section,.process-section,.results-section,.order-section{padding:40px 16px;}.next-service{padding:32px 16px;}nav,.service-nav{padding:0 16px;}.hero-left>div:last-child{flex-direction:column;}.btn-primary,.btn-secondary{width:100%;text-align:center;}.contact-mini{padding:20px;}.cert-section{padding:40px 16px;}.cert-lightbox-inner{width:95%;}}
 
   /* ─── SITE FOOTER ─── */
-
+  .site-footer {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+  .footer-brand .footer-logo-img {
+    height: 32px; width: auto;
+    margin-bottom: 16px; display: block;
+  }
+  .footer-tagline {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 600;
+    color: var(--green); letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .footer-tagline::before {
+    content: ''; display: block;
+    width: 20px; height: 1px;
+    background: var(--green); flex-shrink: 0; opacity: 0.7;
+  }
+  .footer-col-title {
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 16px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    background: var(--dark);
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-bottom-text { font-size: 12px; color: var(--gray); }
 
   @media (max-width: 1024px) { .site-footer { grid-template-columns: 1fr 1fr; gap: 32px; } }
   @media (max-width: 768px)  {
