@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /cert-*.jpg
+
+Sitemap: https://eod-rc.com/sitemap.xml

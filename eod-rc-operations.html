@@ -3,13 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Операції / Operations</title>
-<link rel="icon" href="favicon.png" type="image/png">
+<title>Операції — EOD & RC | Карта виконаних робіт з розмінування</title>
+<meta name="description" content="Карта операцій EOD & RC: виконані проєкти з гуманітарного розмінування, нетехнічного й технічного обстеження, рекультивації земель в Україні.">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
+<link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Операції — EOD & RC">
+<meta property="og:description" content="Карта операцій EOD & RC: виконані проєкти з гуманітарного розмінування в Україні.">
+<meta property="og:image" content="main-logo-background.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Операції — EOD & RC">
+<meta name="twitter:description" content="Карта операцій EOD & RC з гуманітарного розмінування в Україні.">
+<meta name="twitter:image" content="main-logo-background.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css"/>
+<script src="assets/scripts.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://eod-rc.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Operations",
+      "item": "https://eod-rc.com/eod-rc-operations.html"
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" integrity="sha512-mQ77VzAakzdpWdgfL/lM1ksNy89uFgibRQANsNneSTMD/bj0Y/8+94XMwYhnbzx8eki2hrbPpDm0vD0CiT2lcg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" integrity="sha512-6ZCLMiYwTeli2rVh3XAPxy3YoR5fVxGdH/pz+KMCzRY2M65Emgkw00Yqmhh8qLGeYQ3LbVZGdmOX9KUjSKr0TA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <style>
   :root {
     --green: #55BF78;
@@ -711,9 +747,13 @@
   @media (max-width: 480px) {
     footer { grid-template-columns: 1fr; }
   }
+  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; padding: 12px 20px; background: var(--green); color: var(--dark); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+  .skip-link:focus { left: 16px; top: 16px; outline: 2px solid var(--white); outline-offset: 2px; }
+  picture { display: contents; }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link"><span class="inline-ua">До основного вмісту</span><span class="inline-en">To main content</span></a>
 
 <nav>
   <a href="index.html" class="logo">
@@ -724,7 +764,6 @@
     <li><a href="eod-rc-operations.html" class="active"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
     <li><a href="eod-rc-team.html"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
-    <li style="display:none"><a href="#">Media</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -742,7 +781,7 @@
 </nav>
 
 <!-- HERO -->
-<section class="page-hero">
+<section class="page-hero" id="main-content" tabindex="-1">
   <div class="hero-left">
     <div class="section-tag">
       <span class="inline-ua">Карта операцій EOD & RC</span>
@@ -932,8 +971,8 @@
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js" integrity="sha512-OFs3W4DIZ5ZkrDhBFtsCP6JXtMEDGmhl0QPlmWYBJay40TT1n3gt2Xuw8Pf/iezgW9CdabjkNChRqozl/YADmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 // ── DATA ──────────────────────────────────────────────────
 const objects = {
@@ -1390,7 +1429,7 @@ function selectObject(id) {
   `).join('');
 
   const photoHtml = obj.photo
-    ? `<img src="${obj.photo}" alt="${name}">`
+    ? `<img loading="lazy" src="${obj.photo}" alt="${name}">`
     : `<div class="detail-photo-placeholder">[ ${isEn ? 'PHOTO' : 'ФОТО'} — ${name.toUpperCase()} ]</div>`;
 
   document.getElementById('detailContent').innerHTML = `
@@ -1420,16 +1459,9 @@ function closeDetail() {
 // Close detail panel on map background click
 map.on('click', () => { if (!_layerClicked) closeDetail(); _layerClicked = false; });
 
-// ── LANG ──────────────────────────────────────────────────
-function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-  if (lang === 'en') {
-    document.body.classList.add('en');
-    document.querySelector('.lang-btn:last-child').classList.add('active');
-  } else {
-    document.body.classList.remove('en');
-    document.querySelector('.lang-btn:first-child').classList.add('active');
-  }
+// ── LANG: react to language change from shared scripts.js ─
+document.addEventListener('langchange', function(e) {
+  var lang = e.detail.lang;
   // Refresh tooltips
   Object.entries(objects).forEach(([id, obj]) => {
     const m = markers[id];
@@ -1444,35 +1476,15 @@ function setLang(lang) {
     : '<b>Сумська обл.</b><br>Активна операція · Розмінування';
   kharkivPoly.setTooltipContent(khTip);
   sumyPoly.setTooltipContent(suTip);
-  // Refresh SHA marker tooltips
   const isEn = lang === 'en';
   mineLayerGroup.getLayers().forEach(function(m) {
     if (m._sha) m.setTooltipContent(buildShaTip(m._sha, isEn));
   });
-  // Refresh detail if open
   if (currentId) selectObject(currentId);
-}
+});
 
 // Auto-open first marker on load
 setTimeout(() => selectObject('yavirske'), 600);
-
-// ── HAMBURGER ──────────────────────────────────────────────
-var _hbtn = document.getElementById('hamburger');
-var _hnav = document.querySelector('.nav-links');
-if (_hbtn && _hnav) {
-  _hbtn.addEventListener('click', function() {
-    var o = _hnav.classList.toggle('open');
-    _hbtn.classList.toggle('open', o);
-    _hbtn.setAttribute('aria-expanded', o);
-  });
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('nav')) {
-      _hnav.classList.remove('open');
-      _hbtn.classList.remove('open');
-      _hbtn.setAttribute('aria-expanded', false);
-    }
-  });
-}
 </script>
 
 <!-- FOOTER -->

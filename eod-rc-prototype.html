@@ -3,11 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Your Safety Is Our Priority</title>
+<title>EOD & RC — Гуманітарне розмінування в Україні</title>
+<meta name="description" content="EOD & RC — сертифікований оператор гуманітарного розмінування. Нетехнічне та технічне обстеження, ручне розмінування, очищення районів бойових дій, рекультивація земель. Харків, Україна.">
+<meta name="keywords" content="розмінування, гуманітарне розмінування, EOD, NTS, рекультивація, очищення територій, Україна, Харків, demining, mine action">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
 <link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="EOD & RC — Гуманітарне розмінування в Україні">
+<meta property="og:description" content="Сертифікований оператор гуманітарного розмінування. НТО, ТО, ручне розмінування, очищення районів БД, рекультивація земель.">
+<meta property="og:image" content="main-logo-background.png">
+<meta property="og:image:alt" content="EOD & RC — Your Safety Is Our Priority">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EOD & RC — Гуманітарне розмінування в Україні">
+<meta name="twitter:description" content="Сертифікований оператор гуманітарного розмінування. НТО, ТО, ручне розмінування, очищення районів БД, рекультивація земель.">
+<meta name="twitter:image" content="main-logo-background.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="assets/scripts.js" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EOD & RC",
+  "alternateName": "ТОВ «Центр знешкодження вибухонебезпечних предметів та рекультивації»",
+  "url": "https://eod-rc.com/",
+  "logo": "https://eod-rc.com/logo-horizontal-main.png",
+  "image": "https://eod-rc.com/main-logo-background.png",
+  "description": "Сертифікований оператор гуманітарного розмінування. Нетехнічне та технічне обстеження, ручне розмінування, очищення районів бойових дій, рекультивація земель.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "вул. Кооперативна, 1, с. Циркуни",
+    "addressLocality": "Харківський район",
+    "addressRegion": "Харківська область",
+    "postalCode": "62441",
+    "addressCountry": "UA"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+380677773579",
+    "email": "info@eod-rc.com",
+    "contactType": "customer service",
+    "availableLanguage": ["uk", "en"]
+  },
+  "sameAs": [
+    "https://instagram.com/eod_and_rc"
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "Ukraine"
+  },
+  "knowsAbout": [
+    "Humanitarian Demining",
+    "Non-Technical Survey",
+    "Technical Survey",
+    "Manual Demining",
+    "Battlefield Area Clearance",
+    "Land Recultivation"
+  ]
+}
+</script>
 <style>
   :root {
     --green: #55BF78;
@@ -1052,6 +1113,21 @@
     background: rgba(85,191,120,0.12);
     border-color: var(--green);
   }
+  .form-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .form-input:invalid:not(:placeholder-shown) {
+    border-color: rgba(255,68,68,0.5);
+  }
+  .form-status {
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.5;
+    min-height: 18px;
+  }
+  .form-status.success { color: var(--green); }
+  .form-status.error { color: var(--danger); }
   .form-note {
     font-size: 11px;
     color: var(--gray);
@@ -1241,9 +1317,13 @@
     .contact-form-wrap { padding: 24px 16px; }
   }
 
+  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; padding: 12px 20px; background: var(--green); color: var(--dark); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+  .skip-link:focus { left: 16px; top: 16px; outline: 2px solid var(--white); outline-offset: 2px; }
+  picture { display: contents; }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link"><span class="inline-ua">До основного вмісту</span><span class="inline-en">To main content</span></a>
 
 <!-- NAVIGATION -->
 <nav>
@@ -1277,7 +1357,7 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="padding:0;">
+<section class="hero" style="padding:0;" id="main-content" tabindex="-1">
 
   <!-- Wheat ear / Колос — brand identity decorative element -->
   <svg class="wheat-bg" viewBox="0 0 60 700" xmlns="http://www.w3.org/2000/svg">
@@ -1392,7 +1472,7 @@
   </div>
 
   <div class="hero-right">
-    <img src="photo_team.png" alt="Команда EOD&RC на польовому брифінгу" class="hero-img">
+    <picture><source srcset="photo_team.webp" type="image/webp"><img width="719" height="900" loading="lazy" src="photo_team.png" alt="Команда EOD&RC на польовому брифінгу" class="hero-img"></picture>
     <div class="hero-img-overlay"></div>
   </div>
 </section>
@@ -1639,7 +1719,7 @@
     <!-- Vyunyk -->
     <div class="team-card">
       <div class="team-photo">
-        <img src="photo_vyunyk.jpg" alt="Вьюник Володимир">
+        <picture><source srcset="photo_vyunyk.webp" type="image/webp"><img width="781" height="1280" loading="lazy" src="photo_vyunyk.jpg" alt="Вьюник Володимир"></picture>
       </div>
       <div class="team-info">
         <div class="team-name">
@@ -1659,7 +1739,7 @@
     <!-- Semyonov -->
     <div class="team-card">
       <div class="team-photo">
-        <img src="photo_semyonov.jpg" alt="Семенов Антон">
+        <picture><source srcset="photo_semyonov.webp" type="image/webp"><img width="640" height="873" loading="lazy" src="photo_semyonov.jpg" alt="Семенов Антон"></picture>
       </div>
       <div class="team-info">
         <div class="team-name">
@@ -1679,7 +1759,7 @@
     <!-- Pudrovsky -->
     <div class="team-card">
       <div class="team-photo">
-        <img src="photo_pundrovskyi.jpg" alt="Пундровський Євген">
+        <picture><source srcset="photo_pundrovskyi.webp" type="image/webp"><img width="658" height="886" loading="lazy" src="photo_pundrovskyi.jpg" alt="Пундровський Євген"></picture>
       </div>
       <div class="team-info">
         <div class="team-name">
@@ -1699,7 +1779,7 @@
     <!-- Vdovychenko -->
     <div class="team-card">
       <div class="team-photo">
-        <img src="photo_vdovychenko.jpg" alt="Вдовиченко Олександр">
+        <picture><source srcset="photo_vdovychenko.webp" type="image/webp"><img width="680" height="899" loading="lazy" src="photo_vdovychenko.jpg" alt="Вдовиченко Олександр"></picture>
       </div>
       <div class="team-info">
         <div class="team-name">
@@ -1777,10 +1857,6 @@
         <span class="inline-ua">Зв'язатися з нами</span>
         <span class="inline-en">Get in touch</span>
       </a>
-      <a href="#" class="btn-secondary" style="display:block; text-align:center;">
-        <span class="inline-ua">Завантажити прес-кіт</span>
-        <span class="inline-en">Download press kit</span>
-      </a>
     </div>
   </div>
 </section>
@@ -1848,31 +1924,32 @@
     </div>
 
     <div class="contact-form-wrap">
-      <div class="contact-form-title">
+      <h3 class="contact-form-title">
         <span class="inline-ua">Форма зворотнього зв'язку</span>
         <span class="inline-en">Contact form</span>
-      </div>
-      <div class="contact-form-fields">
+      </h3>
+      <form id="contactForm" class="contact-form-fields" novalidate>
         <div class="form-field">
-          <label class="form-label"><span class="inline-ua">Ім'я</span><span class="inline-en">Name</span></label>
-          <input type="text" class="form-input" placeholder="Ваше ім'я / Your name">
+          <label class="form-label" for="cf-name"><span class="inline-ua">Ім'я</span><span class="inline-en">Name</span></label>
+          <input id="cf-name" name="name" type="text" class="form-input" placeholder="Ваше ім'я / Your name" required minlength="2" maxlength="100" autocomplete="name">
         </div>
         <div class="form-field">
-          <label class="form-label"><span class="inline-ua">Телефон / Email</span><span class="inline-en">Phone / Email</span></label>
-          <input type="text" class="form-input" placeholder="+380... / info@...">
+          <label class="form-label" for="cf-contact"><span class="inline-ua">Телефон / Email</span><span class="inline-en">Phone / Email</span></label>
+          <input id="cf-contact" name="contact" type="text" class="form-input" placeholder="+380... / info@..." required maxlength="120" autocomplete="email" inputmode="email">
         </div>
         <div class="form-field">
-          <label class="form-label"><span class="inline-ua">Повідомлення</span><span class="inline-en">Message</span></label>
-          <textarea class="form-input" placeholder="..."></textarea>
+          <label class="form-label" for="cf-message"><span class="inline-ua">Повідомлення</span><span class="inline-en">Message</span></label>
+          <textarea id="cf-message" name="message" class="form-input" placeholder="..." required minlength="10" maxlength="2000"></textarea>
         </div>
-        <button class="form-submit">
+        <button type="submit" class="form-submit">
           <span class="inline-ua">Надіслати →</span><span class="inline-en">Send →</span>
         </button>
+        <div id="contactFormStatus" class="form-status" role="status" aria-live="polite"></div>
         <div class="form-note">
-          <span data-ua>Або напишіть нам в Instagram: <a href="https://instagram.com/eod_and_rc">@eod_and_rc</a></span>
-          <span data-en>Or message us on Instagram: <a href="https://instagram.com/eod_and_rc">@eod_and_rc</a></span>
+          <span data-ua>Або напишіть нам в Instagram: <a href="https://instagram.com/eod_and_rc" target="_blank" rel="noopener noreferrer">@eod_and_rc</a></span>
+          <span data-en>Or message us on Instagram: <a href="https://instagram.com/eod_and_rc" target="_blank" rel="noopener noreferrer">@eod_and_rc</a></span>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </section>
@@ -1913,7 +1990,6 @@
       <li><a href="eod-rc-team.html"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></a></li>
       <li><a href="#services"><span class="inline-ua">Сертифікати</span><span class="inline-en">Certificates</span></a></li>
       <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
-      <li><a href="#"><span class="inline-ua">Новини</span><span class="inline-en">News</span></a></li>
     </ul>
   </div>
   <div>
@@ -1946,19 +2022,59 @@
 </div>
 
 <script>
-  function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    if (lang === 'en') {
-      document.body.classList.add('en');
-      document.querySelector('.lang-btn:last-child').classList.add('active');
-    } else {
-      document.body.classList.remove('en');
-      document.querySelector('.lang-btn:first-child').classList.add('active');
-    }
-  }
+  /* ── CONTACT FORM ── */
+  (function() {
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+    var status = document.getElementById('contactFormStatus');
+    var submitBtn = form.querySelector('.form-submit');
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var PHONE_RE = /^[+()\-\s\d]{7,}$/;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var isEn = document.body.classList.contains('en');
+      var name = form.elements['name'].value.trim();
+      var contact = form.elements['contact'].value.trim();
+      var message = form.elements['message'].value.trim();
+
+      if (name.length < 2 || message.length < 10) {
+        status.textContent = isEn
+          ? 'Please fill in your name and message (min 10 characters).'
+          : 'Заповніть, будь ласка, ім\'я та повідомлення (мінімум 10 символів).';
+        status.className = 'form-status error';
+        return;
+      }
+      if (!EMAIL_RE.test(contact) && !PHONE_RE.test(contact)) {
+        status.textContent = isEn
+          ? 'Please enter a valid email or phone number.'
+          : 'Введіть, будь ласка, коректний email або номер телефону.';
+        status.className = 'form-status error';
+        return;
+      }
+
+      var subject = isEn
+        ? 'Contact form: ' + name
+        : 'Форма зв\'язку: ' + name;
+      var body = (isEn ? 'Name' : 'Ім\'я') + ': ' + name + '\n'
+        + (isEn ? 'Contact' : 'Контакт') + ': ' + contact + '\n\n'
+        + message;
+      var mailto = 'mailto:info@eod-rc.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+
+      submitBtn.disabled = true;
+      status.textContent = isEn
+        ? 'Opening your email client...'
+        : 'Відкриваємо ваш поштовий клієнт...';
+      status.className = 'form-status success';
+      window.location.href = mailto;
+      setTimeout(function() { submitBtn.disabled = false; }, 2000);
+    });
+  })();
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   // Mini home map
   if (document.getElementById('homeMap')) {

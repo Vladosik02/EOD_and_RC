@@ -3,10 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Рекультивація / Recultivation</title>
+<title>Рекультивація земель — EOD & RC | Land Recultivation</title>
+<meta name="description" content="Рекультивація земель після розмінування від EOD & RC: відновлення сільськогосподарських та інших територій до стану, придатного для безпечного використання.">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
 <link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Рекультивація земель — EOD & RC">
+<meta property="og:description" content="Відновлення територій після розмінування для безпечного використання.">
+<meta property="og:image" content="main-logo-background.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Рекультивація земель — EOD & RC">
+<meta name="twitter:description" content="Відновлення територій після розмінування.">
+<meta name="twitter:image" content="main-logo-background.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="assets/scripts.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://eod-rc.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://eod-rc.com/#services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Land Recultivation",
+      "item": "https://eod-rc.com/eod-rc-service-recultivation.html"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Land Recultivation",
+  "name": "Рекультивація земель",
+  "alternateName": "Land Recultivation",
+  "description": "Відновлення сільськогосподарських та інших територій після розмінування до стану, придатного для безпечного використання.",
+  "provider": { "@type": "Organization", "name": "EOD & RC", "url": "https://eod-rc.com/" },
+  "areaServed": { "@type": "Country", "name": "Ukraine" },
+  "serviceOutput": "Відновлена ділянка, готова для повернення в господарський обіг"
+}
+</script>
 <style>
   :root{--green:#55BF78;--green-light:#81F2A9;--green-dim:#075B35;--dark:#080C0A;--dark-2:#0D1410;--dark-3:#131A15;--dark-4:#1A2420;--gray:#8A9E94;--gray-light:#C2D4CC;--white:#F0F5F2;}
   *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:var(--dark);color:var(--white);font-family:'Barlow',sans-serif;font-weight:400;overflow-x:hidden;}
@@ -121,9 +176,13 @@
   }
   @media (max-width: 480px)  { .site-footer { grid-template-columns: 1fr; } }
 
+  .skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:12px 20px;background:var(--green);color:var(--dark);font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;}
+  .skip-link:focus{left:16px;top:16px;outline:2px solid var(--white);outline-offset:2px;}
+  picture { display: contents; }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link"><span class="inline-ua">До основного вмісту</span><span class="inline-en">To main content</span></a>
 
 <nav>
   <a href="index.html" class="logo">
@@ -134,7 +193,6 @@
     <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
     <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
-    <li><a href="#">Media</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
   <div class="nav-right">
@@ -154,7 +212,7 @@
   <a href="eod-rc-service-recultivation.html" class="svc-step active"><div class="svc-step-inner"><span class="svc-step-num">05</span><span class="inline-ua">Рекультивація</span><span class="inline-en">Recultivation</span></div></a>
 </div>
 
-<section class="service-hero">
+<section class="service-hero" id="main-content" tabindex="-1">
   <div class="hero-left">
     <div class="step-badge">
       <span class="step-badge-num"><span class="inline-ua">КРОК 05</span><span class="inline-en">STEP 05</span></span>
@@ -403,12 +461,8 @@
 </section>
 
 <script>
-  function setLang(lang){document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});if(lang==='en'){document.body.classList.add('en');document.querySelector('.lang-btn:last-child').classList.add('active');}else{document.body.classList.remove('en');document.querySelector('.lang-btn:first-child').classList.add('active');}}
-  var nav=document.querySelector('nav');window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
-  var btn=document.getElementById('hamburger'),links=document.querySelector('.nav-links');if(btn&&links){btn.addEventListener('click',function(){var o=links.classList.toggle('open');btn.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);});}
   var rt=document.querySelectorAll('.goal-item,.process-step,.result-card,.order-step,.contact-mini,.what-section>div,.process-section .section-tag,.results-section .section-tag,.cycle-step');rt.forEach(function(el,i){el.setAttribute('data-animate','');el._animDelay=(i%5)*70;});
   var ro=new IntersectionObserver(function(entries){entries.forEach(function(e){if(!e.isIntersecting)return;var d=e.target._animDelay||0;setTimeout(function(){e.target.classList.add('visible');},d);ro.unobserve(e.target);});},{threshold:0.08});rt.forEach(function(el){ro.observe(el);});
-  document.querySelectorAll('img').forEach(function(img){if(!img.classList.contains('logo-img'))img.setAttribute('loading','lazy');});
   document.querySelectorAll('[data-animate]').forEach(function(el,i){el._animDelay=i*100;ro.observe(el);});
 </script>
 
@@ -448,7 +502,6 @@
       <li><a href="eod-rc-team.html"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></a></li>
       <li><a href="index.html#services"><span class="inline-ua">Сертифікати</span><span class="inline-en">Certificates</span></a></li>
       <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
-      <li><a href="#"><span class="inline-ua">Новини</span><span class="inline-en">News</span></a></li>
     </ul>
   </div>
   <div>

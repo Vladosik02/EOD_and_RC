@@ -3,10 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Партнерам / For Partners</title>
-<link rel="icon" href="favicon.png" type="image/png">
+<title>Партнерам — EOD & RC | Співпраця та благодійні внески</title>
+<meta name="description" content="Інформація для партнерів EOD & RC: можливості співпраці, благодійні внески, сертифікати та реквізити для організацій, що підтримують розмінування України.">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
+<link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Партнерам — EOD & RC">
+<meta property="og:description" content="Інформація для партнерів EOD & RC: співпраця, благодійні внески, сертифікати.">
+<meta property="og:image" content="main-logo-background.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Партнерам — EOD & RC">
+<meta name="twitter:description" content="Можливості співпраці з EOD & RC.">
+<meta name="twitter:image" content="main-logo-background.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="assets/scripts.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://eod-rc.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Partners",
+      "item": "https://eod-rc.com/eod-rc-partners.html"
+    }
+  ]
+}
+</script>
 <style>
   :root {
     --green: #55BF78;
@@ -244,9 +280,13 @@
     footer { grid-template-columns: 1fr; }
     .hero-stats { flex-direction: column; gap: 20px; }
   }
+  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; padding: 12px 20px; background: var(--green); color: var(--dark); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+  .skip-link:focus { left: 16px; top: 16px; outline: 2px solid var(--white); outline-offset: 2px; }
+  picture { display: contents; }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link"><span class="inline-ua">До основного вмісту</span><span class="inline-en">To main content</span></a>
 
 <nav>
   <a href="index.html" class="logo">
@@ -257,7 +297,6 @@
     <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
     <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html" class="active"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
-    <li style="display:none"><a href="#">Media</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -275,7 +314,7 @@
 </nav>
 
 <!-- PAGE HERO -->
-<section class="page-hero">
+<section class="page-hero" id="main-content" tabindex="-1">
   <div>
     <div class="page-hero-eyebrow">
       <span class="inline-ua">Міжнародне співробітництво</span>
@@ -579,10 +618,6 @@
         <span class="inline-ua">Зв'язатися →</span>
         <span class="inline-en">Get in touch →</span>
       </a>
-      <a href="#" class="btn-secondary">
-        <span class="inline-ua">[ Завантажити презентацію ]</span>
-        <span class="inline-en">[ Download presentation ]</span>
-      </a>
     </div>
   </div>
   <div class="contact-card">
@@ -684,35 +719,5 @@
   </span>
 </div>
 
-<script>
-  function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    if (lang === 'en') {
-      document.body.classList.add('en');
-      document.querySelector('.lang-btn:last-child').classList.add('active');
-    } else {
-      document.body.classList.remove('en');
-      document.querySelector('.lang-btn:first-child').classList.add('active');
-    }
-  }
-
-  // ── HAMBURGER ──────────────────────────────────────────────
-  var _hbtn = document.getElementById('hamburger');
-  var _hnav = document.querySelector('.nav-links');
-  if (_hbtn && _hnav) {
-    _hbtn.addEventListener('click', function() {
-      var o = _hnav.classList.toggle('open');
-      _hbtn.classList.toggle('open', o);
-      _hbtn.setAttribute('aria-expanded', o);
-    });
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('nav')) {
-        _hnav.classList.remove('open');
-        _hbtn.classList.remove('open');
-        _hbtn.setAttribute('aria-expanded', false);
-      }
-    });
-  }
-</script>
 </body>
 </html>

@@ -3,10 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Технічне обстеження / Technical Survey</title>
+<title>Технічне обстеження (ТО) — EOD & RC | Technical Survey</title>
+<meta name="description" content="Технічне обстеження території від EOD & RC: підтвердження або виключення мінного забруднення з частковим або повним фізичним обстеженням підозрілих ділянок.">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
 <link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Технічне обстеження (ТО) — EOD & RC">
+<meta property="og:description" content="Підтвердження або виключення мінного забруднення території.">
+<meta property="og:image" content="main-logo-background.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Технічне обстеження (ТО) — EOD & RC">
+<meta name="twitter:description" content="Технічне обстеження території.">
+<meta name="twitter:image" content="main-logo-background.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="assets/scripts.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://eod-rc.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://eod-rc.com/#services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Technical Survey",
+      "item": "https://eod-rc.com/eod-rc-service-ts.html"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Technical Survey",
+  "name": "Технічне обстеження (ТО)",
+  "alternateName": "Technical Survey",
+  "description": "Підтвердження або виключення мінного забруднення території з частковим або повним фізичним обстеженням підозрілих ділянок.",
+  "provider": { "@type": "Organization", "name": "EOD & RC", "url": "https://eod-rc.com/" },
+  "areaServed": { "@type": "Country", "name": "Ukraine" },
+  "serviceOutput": "Уточнена карта мінного забруднення з визначеними небезпечними ділянками"
+}
+</script>
 <style>
   :root {
     --green: #55BF78;
@@ -290,9 +345,13 @@
   }
   @media (max-width: 480px)  { .site-footer { grid-template-columns: 1fr; } }
 
+  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; padding: 12px 20px; background: var(--green); color: var(--dark); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+  .skip-link:focus { left: 16px; top: 16px; outline: 2px solid var(--white); outline-offset: 2px; }
+  picture { display: contents; }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link"><span class="inline-ua">До основного вмісту</span><span class="inline-en">To main content</span></a>
 
 <nav>
   <a href="index.html" class="logo">
@@ -303,7 +362,6 @@
     <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
     <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
-    <li><a href="#">Media</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -358,7 +416,7 @@
   </a>
 </div>
 
-<section class="service-hero">
+<section class="service-hero" id="main-content" tabindex="-1">
   <div class="hero-left">
     <div class="step-badge">
       <span class="step-badge-num"><span class="inline-ua">КРОК 02</span><span class="inline-en">STEP 02</span></span>
@@ -593,7 +651,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
-    <img class="cert-lightbox-img" src="certs/cert-081.jpg" alt="Сертифікат EOD&RC №081 — Технічне обстеження" loading="lazy">
+    <picture><source srcset="cert-081.webp" type="image/webp"><img width="1236" height="1600" class="cert-lightbox-img" src="cert-081.jpg" alt="Сертифікат EOD&RC №081 — Технічне обстеження" loading="lazy"></picture>
     <div class="cert-lightbox-footer">
       <div class="cert-lightbox-note">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -751,27 +809,6 @@
 </section>
 
 <script>
-  function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
-    if (lang === 'en') {
-      document.body.classList.add('en');
-      document.querySelector('.lang-btn:last-child').classList.add('active');
-    } else {
-      document.body.classList.remove('en');
-      document.querySelector('.lang-btn:first-child').classList.add('active');
-    }
-  }
-  var nav = document.querySelector('nav');
-  window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
-  var btn = document.getElementById('hamburger');
-  var links = document.querySelector('.nav-links');
-  if (btn && links) {
-    btn.addEventListener('click', function() {
-      var open = links.classList.toggle('open');
-      btn.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', open);
-    });
-  }
   var revealTargets = document.querySelectorAll('.goal-item, .process-step, .result-card, .order-step, .contact-mini, .what-section > div, .process-section .section-tag, .results-section .section-tag');
   revealTargets.forEach(function(el, i) { el.setAttribute('data-animate', ''); el._animDelay = (i % 4) * 80; });
   var revealObserver = new IntersectionObserver(function(entries) {
@@ -783,7 +820,6 @@
     });
   }, { threshold: 0.08 });
   revealTargets.forEach(function(el) { revealObserver.observe(el); });
-  document.querySelectorAll('img').forEach(function(img) { if (!img.classList.contains('logo-img')) img.setAttribute('loading', 'lazy'); });
   function openCertLightbox() {
     var lb = document.getElementById('certLightbox');
     lb.classList.add('open');
@@ -834,7 +870,6 @@
       <li><a href="eod-rc-team.html"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></a></li>
       <li><a href="index.html#services"><span class="inline-ua">Сертифікати</span><span class="inline-en">Certificates</span></a></li>
       <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
-      <li><a href="#"><span class="inline-ua">Новини</span><span class="inline-en">News</span></a></li>
     </ul>
   </div>
   <div>

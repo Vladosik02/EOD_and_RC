@@ -3,10 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Команда / Team</title>
-<link rel="icon" href="favicon.png" type="image/png">
+<title>Команда — EOD & RC | Сертифіковані фахівці з розмінування</title>
+<meta name="description" content="Команда EOD & RC: сертифіковані фахівці-сапери, керівники операцій, інженери та аналітики з досвідом гуманітарного розмінування в Україні.">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
+<link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Команда — EOD & RC">
+<meta property="og:description" content="Сертифіковані фахівці EOD & RC з досвідом гуманітарного розмінування в Україні.">
+<meta property="og:image" content="photo_team.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Команда — EOD & RC">
+<meta name="twitter:description" content="Сертифіковані фахівці з розмінування.">
+<meta name="twitter:image" content="photo_team.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="assets/scripts.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://eod-rc.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Team",
+      "item": "https://eod-rc.com/eod-rc-team.html"
+    }
+  ]
+}
+</script>
 <style>
   :root {
     --green: #55BF78;
@@ -348,9 +384,13 @@
   }
   @media (max-width: 480px)  { .site-footer { grid-template-columns: 1fr; } }
 
+  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; padding: 12px 20px; background: var(--green); color: var(--dark); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+  .skip-link:focus { left: 16px; top: 16px; outline: 2px solid var(--white); outline-offset: 2px; }
+  picture { display: contents; }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link"><span class="inline-ua">До основного вмісту</span><span class="inline-en">To main content</span></a>
 
 <nav>
   <a href="index.html" class="logo">
@@ -359,9 +399,8 @@
   <ul class="nav-links">
     <li><a href="index.html#services"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
     <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
-    <li><a href="#" class="active"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
+    <li><a href="eod-rc-team.html" class="active" aria-current="page"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
-    <li style="display:none"><a href="#">Media</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-switcher">
@@ -379,10 +418,10 @@
 </nav>
 
 <!-- HERO -->
-<section class="page-hero">
+<section class="page-hero" id="main-content" tabindex="-1">
   <!-- TEAM PHOTO BANNER -->
   <div style="position:relative; overflow:hidden; height:340px; margin-bottom:0;">
-    <img src="photo_team.png" alt="Команда EOD & RC на операції" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:brightness(0.55);">
+    <picture><source srcset="photo_team.webp" type="image/webp"><img width="719" height="900" loading="lazy" src="photo_team.png" alt="Команда EOD & RC на операції" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:brightness(0.55);"></picture>
     <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(8,12,10,0.7) 0%, transparent 50%, rgba(8,12,10,0.3) 100%);"></div>
     <div style="position:absolute;bottom:32px;left:48px;">
       <div style="font-size:11px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">EOD & RC · <span class="inline-ua">Харківська область</span><span class="inline-en">Kharkiv region</span></div>
@@ -438,7 +477,7 @@
   <!-- VYUNYK — Director -->
   <div class="member-featured">
     <div class="member-photo">
-      <img src="photo_vyunyk.jpg" alt="Вьюник Володимир — Директор EOD & RC" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <picture><source srcset="photo_vyunyk.webp" type="image/webp"><img width="781" height="1280" loading="lazy" src="photo_vyunyk.jpg" alt="Вьюник Володимир — Директор EOD & RC" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></picture>
       <div class="photo-overlay"></div>
     </div>
     <div class="member-info">
@@ -477,7 +516,7 @@
   <!-- SEMYONOV — Deputy Director -->
   <div class="member-featured" style="margin-top:1px;">
     <div class="member-photo">
-      <img src="photo_semyonov.jpg" alt="Семенов Антон — Перший заступник директора EOD & RC" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <picture><source srcset="photo_semyonov.webp" type="image/webp"><img width="640" height="873" loading="lazy" src="photo_semyonov.jpg" alt="Семенов Антон — Перший заступник директора EOD & RC" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></picture>
       <div class="photo-overlay"></div>
     </div>
     <div class="member-info">
@@ -526,7 +565,7 @@
     <!-- PUNDROVSKYI -->
     <div class="member-card">
       <div class="card-photo">
-        <img src="photo_pundrovskyi.jpg" alt="Пундровський Євген" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <picture><source srcset="photo_pundrovskyi.webp" type="image/webp"><img width="658" height="886" loading="lazy" src="photo_pundrovskyi.jpg" alt="Пундровський Євген" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></picture>
         <div class="card-overlay"></div>
       </div>
       <div class="card-info">
@@ -553,7 +592,7 @@
     <!-- VDOVYCHENKO -->
     <div class="member-card">
       <div class="card-photo">
-        <img src="photo_vdovychenko.jpg" alt="Вдовиченко Олександр" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <picture><source srcset="photo_vdovychenko.webp" type="image/webp"><img width="680" height="899" loading="lazy" src="photo_vdovychenko.jpg" alt="Вдовиченко Олександр" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></picture>
         <div class="card-overlay"></div>
       </div>
       <div class="card-info">
@@ -580,7 +619,7 @@
     <!-- FURSA -->
     <div class="member-card">
       <div class="card-photo">
-        <img src="photo_fursa.png" alt="Фурса Андрій" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <picture><source srcset="photo_fursa.webp" type="image/webp"><img width="674" height="898" loading="lazy" src="photo_fursa.png" alt="Фурса Андрій" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></picture>
         <div class="card-overlay"></div>
       </div>
       <div class="card-info">
@@ -612,7 +651,7 @@
     <!-- LYKHYKH -->
     <div class="member-card">
       <div class="card-photo">
-        <img src="photo_lykhykh.png" alt="Лихих Валерій" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <picture><source srcset="photo_lykhykh.webp" type="image/webp"><img width="715" height="896" loading="lazy" src="photo_lykhykh.png" alt="Лихих Валерій" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></picture>
         <div class="card-overlay"></div>
       </div>
       <div class="card-info">
@@ -639,7 +678,7 @@
     <!-- KRYVONOSOV -->
     <div class="member-card">
       <div class="card-photo">
-        <img src="photo_kryvonosov.png" alt="Кривоносов Роман" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <picture><source srcset="photo_kryvonosov.webp" type="image/webp"><img width="340" height="587" loading="lazy" src="photo_kryvonosov.png" alt="Кривоносов Роман" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></picture>
         <div class="card-overlay"></div>
       </div>
       <div class="card-info">
@@ -809,7 +848,6 @@
       <li><a href="eod-rc-team.html"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></a></li>
       <li><a href="index.html#services"><span class="inline-ua">Сертифікати</span><span class="inline-en">Certificates</span></a></li>
       <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
-      <li><a href="#"><span class="inline-ua">Новини</span><span class="inline-en">News</span></a></li>
     </ul>
   </div>
   <div>
@@ -841,36 +879,5 @@
   </span>
 </div>
 
-<script>
-  function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
-    if (lang === 'en') {
-      document.body.classList.add('en');
-      var btns = document.querySelectorAll('.lang-btn');
-      if (btns.length > 1) btns[btns.length - 1].classList.add('active');
-    } else {
-      document.body.classList.remove('en');
-      var btns = document.querySelectorAll('.lang-btn');
-      if (btns.length > 0) btns[0].classList.add('active');
-    }
-    try { localStorage.setItem('lang', lang); } catch(e) {}
-  }
-  (function() {
-    try {
-      var saved = localStorage.getItem('lang');
-      if (saved === 'en') setLang('en');
-    } catch(e) {}
-  })();
-
-  /* ── HAMBURGER ── */
-  var hamburger = document.querySelector('.hamburger');
-  var navLinks  = document.querySelector('.nav-links');
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', function() {
-      hamburger.classList.toggle('open');
-      navLinks.classList.toggle('open');
-    });
-  }
-</script>
 </body>
 </html>
