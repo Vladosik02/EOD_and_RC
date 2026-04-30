@@ -79,4 +79,12 @@
     init();
     initReveal();
   }
+
+  // Register service worker (PWA + offline). Skipped on file:// and localhost-without-https.
+  if ('serviceWorker' in navigator &&
+      (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/service-worker.js').catch(function() {});
+    });
+  }
 })();

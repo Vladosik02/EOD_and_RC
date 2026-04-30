@@ -4,6 +4,21 @@
  * cached across page navigations and easy to update in one spot.
  */
 
+/* ── Brand tokens ──────────────────────────────────────────── */
+:root {
+  --green: #55BF78;
+  --green-light: #81F2A9;
+  --green-dim: #075B35;
+  --dark: #080C0A;
+  --dark-2: #0D1410;
+  --dark-3: #131A15;
+  --dark-4: #1A2420;
+  --gray: #8A9E94;
+  --gray-light: #C2D4CC;
+  --white: #F0F5F2;
+  --danger: #FF4444;
+}
+
 /* ── Reset & focus ─────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--green, #55BF78);
