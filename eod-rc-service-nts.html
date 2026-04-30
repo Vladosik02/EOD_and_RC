@@ -22,6 +22,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="assets/scripts.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Non-Technical Survey",
+  "name": "Нетехнічне обстеження (НТО)",
+  "alternateName": "Non-Technical Survey",
+  "description": "Збір та аналіз інформації про підозру на мінне забруднення території без фізичного контакту з потенційно небезпечними предметами.",
+  "provider": { "@type": "Organization", "name": "EOD & RC", "url": "https://eod-rc.com/" },
+  "areaServed": { "@type": "Country", "name": "Ukraine" },
+  "serviceOutput": "Звіт із класифікацією території як забрудненої або чистої"
+}
+</script>
 <style>
   :root {
     --green: #55BF78;
@@ -940,7 +954,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
-    <img class="cert-lightbox-img" src="certs/cert-080.jpg" alt="Сертифікат EOD&RC №080 — Нетехнічне обстеження" loading="lazy">
+    <picture><source srcset="cert-080.webp" type="image/webp"><img width="1236" height="1600" class="cert-lightbox-img" src="cert-080.jpg" alt="Сертифікат EOD&RC №080 — Нетехнічне обстеження" loading="lazy"></picture>
     <div class="cert-lightbox-footer">
       <div class="cert-lightbox-note">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -1119,46 +1133,6 @@
 </section>
 
 <script>
-  /* ── LANG SWITCHER ── */
-  function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
-    if (lang === 'en') {
-      document.body.classList.add('en');
-      document.documentElement.lang = 'en';
-      var btns = document.querySelectorAll('.lang-btn');
-      if (btns.length > 1) btns[btns.length - 1].classList.add('active');
-    } else {
-      document.body.classList.remove('en');
-      document.documentElement.lang = 'uk';
-      var btns = document.querySelectorAll('.lang-btn');
-      if (btns.length > 0) btns[0].classList.add('active');
-    }
-    try { localStorage.setItem('lang', lang); } catch(e) {}
-  }
-  (function() {
-    try {
-      var saved = localStorage.getItem('lang');
-      if (saved === 'en') setLang('en');
-    } catch(e) {}
-  })();
-
-  /* ── NAVBAR SCROLL ── */
-  var nav = document.querySelector('nav');
-  window.addEventListener('scroll', function() {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
-
-  /* ── HAMBURGER ── */
-  var btn = document.getElementById('hamburger');
-  var links = document.querySelector('.nav-links');
-  if (btn && links) {
-    btn.addEventListener('click', function() {
-      var open = links.classList.toggle('open');
-      btn.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', open);
-    });
-  }
-
   /* ── SCROLL REVEAL ── */
   var revealTargets = document.querySelectorAll('.goal-item, .process-step, .result-card, .order-step, .contact-mini, .what-section > div, .process-section .section-tag, .results-section .section-tag');
   revealTargets.forEach(function(el, i) {
@@ -1174,13 +1148,6 @@
     });
   }, { threshold: 0.08 });
   revealTargets.forEach(function(el) { revealObserver.observe(el); });
-
-  /* ── LAZY LOADING ── */
-  document.querySelectorAll('img').forEach(function(img) {
-    if (!img.classList.contains('logo-img')) {
-      img.setAttribute('loading', 'lazy');
-    }
-  });
 
   /* ── CERTIFICATE LIGHTBOX ── */
   function openCertLightbox() {

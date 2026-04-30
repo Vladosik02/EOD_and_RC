@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="assets/scripts.js" defer></script>
 <style>
   :root {
     --green: #55BF78;
@@ -697,46 +698,5 @@
   </span>
 </div>
 
-<script>
-  function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
-    if (lang === 'en') {
-      document.body.classList.add('en');
-      document.documentElement.lang = 'en';
-      var btns = document.querySelectorAll('.lang-btn');
-      if (btns.length > 1) btns[btns.length - 1].classList.add('active');
-    } else {
-      document.body.classList.remove('en');
-      document.documentElement.lang = 'uk';
-      var btns = document.querySelectorAll('.lang-btn');
-      if (btns.length > 0) btns[0].classList.add('active');
-    }
-    try { localStorage.setItem('lang', lang); } catch(e) {}
-  }
-  (function() {
-    try {
-      var saved = localStorage.getItem('lang');
-      if (saved === 'en') setLang('en');
-    } catch(e) {}
-  })();
-
-  // ── HAMBURGER ──────────────────────────────────────────────
-  var _hbtn = document.getElementById('hamburger');
-  var _hnav = document.querySelector('.nav-links');
-  if (_hbtn && _hnav) {
-    _hbtn.addEventListener('click', function() {
-      var o = _hnav.classList.toggle('open');
-      _hbtn.classList.toggle('open', o);
-      _hbtn.setAttribute('aria-expanded', o);
-    });
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('nav')) {
-        _hnav.classList.remove('open');
-        _hbtn.classList.remove('open');
-        _hbtn.setAttribute('aria-expanded', false);
-      }
-    });
-  }
-</script>
 </body>
 </html>

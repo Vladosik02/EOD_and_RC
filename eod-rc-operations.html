@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="assets/scripts.js" defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" integrity="sha512-mQ77VzAakzdpWdgfL/lM1ksNy89uFgibRQANsNneSTMD/bj0Y/8+94XMwYhnbzx8eki2hrbPpDm0vD0CiT2lcg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" integrity="sha512-6ZCLMiYwTeli2rVh3XAPxy3YoR5fVxGdH/pz+KMCzRY2M65Emgkw00Yqmhh8qLGeYQ3LbVZGdmOX9KUjSKr0TA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -1407,7 +1408,7 @@ function selectObject(id) {
   `).join('');
 
   const photoHtml = obj.photo
-    ? `<img src="${obj.photo}" alt="${name}">`
+    ? `<img loading="lazy" src="${obj.photo}" alt="${name}">`
     : `<div class="detail-photo-placeholder">[ ${isEn ? 'PHOTO' : 'ФОТО'} — ${name.toUpperCase()} ]</div>`;
 
   document.getElementById('detailContent').innerHTML = `
@@ -1437,21 +1438,9 @@ function closeDetail() {
 // Close detail panel on map background click
 map.on('click', () => { if (!_layerClicked) closeDetail(); _layerClicked = false; });
 
-// ── LANG ──────────────────────────────────────────────────
-function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-  if (lang === 'en') {
-    document.body.classList.add('en');
-    document.documentElement.lang = 'en';
-    const btns = document.querySelectorAll('.lang-btn');
-    if (btns.length > 1) btns[btns.length - 1].classList.add('active');
-  } else {
-    document.body.classList.remove('en');
-    document.documentElement.lang = 'uk';
-    const btns = document.querySelectorAll('.lang-btn');
-    if (btns.length > 0) btns[0].classList.add('active');
-  }
-  try { localStorage.setItem('lang', lang); } catch(e) {}
+// ── LANG: react to language change from shared scripts.js ─
+document.addEventListener('langchange', function(e) {
+  var lang = e.detail.lang;
   // Refresh tooltips
   Object.entries(objects).forEach(([id, obj]) => {
     const m = markers[id];
@@ -1466,41 +1455,15 @@ function setLang(lang) {
     : '<b>Сумська обл.</b><br>Активна операція · Розмінування';
   kharkivPoly.setTooltipContent(khTip);
   sumyPoly.setTooltipContent(suTip);
-  // Refresh SHA marker tooltips
   const isEn = lang === 'en';
   mineLayerGroup.getLayers().forEach(function(m) {
     if (m._sha) m.setTooltipContent(buildShaTip(m._sha, isEn));
   });
-  // Refresh detail if open
   if (currentId) selectObject(currentId);
-}
-(function() {
-  try {
-    var saved = localStorage.getItem('lang');
-    if (saved === 'en') setLang('en');
-  } catch(e) {}
-})();
+});
 
 // Auto-open first marker on load
 setTimeout(() => selectObject('yavirske'), 600);
-
-// ── HAMBURGER ──────────────────────────────────────────────
-var _hbtn = document.getElementById('hamburger');
-var _hnav = document.querySelector('.nav-links');
-if (_hbtn && _hnav) {
-  _hbtn.addEventListener('click', function() {
-    var o = _hnav.classList.toggle('open');
-    _hbtn.classList.toggle('open', o);
-    _hbtn.setAttribute('aria-expanded', o);
-  });
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('nav')) {
-      _hnav.classList.remove('open');
-      _hbtn.classList.remove('open');
-      _hbtn.setAttribute('aria-expanded', false);
-    }
-  });
-}
 </script>
 
 <!-- FOOTER -->
