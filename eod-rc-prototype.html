@@ -3,9 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Your Safety Is Our Priority</title>
+<title>EOD & RC — Гуманітарне розмінування в Україні</title>
+<meta name="description" content="EOD & RC — сертифікований оператор гуманітарного розмінування. Нетехнічне та технічне обстеження, ручне розмінування, очищення районів бойових дій, рекультивація земель. Харків, Україна.">
+<meta name="keywords" content="розмінування, гуманітарне розмінування, EOD, NTS, рекультивація, очищення територій, Україна, Харків, demining, mine action">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
 <link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="EOD & RC — Гуманітарне розмінування в Україні">
+<meta property="og:description" content="Сертифікований оператор гуманітарного розмінування. НТО, ТО, ручне розмінування, очищення районів БД, рекультивація земель.">
+<meta property="og:image" content="main-logo-background.png">
+<meta property="og:image:alt" content="EOD & RC — Your Safety Is Our Priority">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EOD & RC — Гуманітарне розмінування в Україні">
+<meta name="twitter:description" content="Сертифікований оператор гуманітарного розмінування. НТО, ТО, ручне розмінування, очищення районів БД, рекультивація земель.">
+<meta name="twitter:image" content="main-logo-background.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <style>
@@ -1052,6 +1070,21 @@
     background: rgba(85,191,120,0.12);
     border-color: var(--green);
   }
+  .form-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .form-input:invalid:not(:placeholder-shown) {
+    border-color: rgba(255,68,68,0.5);
+  }
+  .form-status {
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.5;
+    min-height: 18px;
+  }
+  .form-status.success { color: var(--green); }
+  .form-status.error { color: var(--danger); }
   .form-note {
     font-size: 11px;
     color: var(--gray);
@@ -1848,31 +1881,32 @@
     </div>
 
     <div class="contact-form-wrap">
-      <div class="contact-form-title">
+      <h3 class="contact-form-title">
         <span class="inline-ua">Форма зворотнього зв'язку</span>
         <span class="inline-en">Contact form</span>
-      </div>
-      <div class="contact-form-fields">
+      </h3>
+      <form id="contactForm" class="contact-form-fields" novalidate>
         <div class="form-field">
-          <label class="form-label"><span class="inline-ua">Ім'я</span><span class="inline-en">Name</span></label>
-          <input type="text" class="form-input" placeholder="Ваше ім'я / Your name">
+          <label class="form-label" for="cf-name"><span class="inline-ua">Ім'я</span><span class="inline-en">Name</span></label>
+          <input id="cf-name" name="name" type="text" class="form-input" placeholder="Ваше ім'я / Your name" required minlength="2" maxlength="100" autocomplete="name">
         </div>
         <div class="form-field">
-          <label class="form-label"><span class="inline-ua">Телефон / Email</span><span class="inline-en">Phone / Email</span></label>
-          <input type="text" class="form-input" placeholder="+380... / info@...">
+          <label class="form-label" for="cf-contact"><span class="inline-ua">Телефон / Email</span><span class="inline-en">Phone / Email</span></label>
+          <input id="cf-contact" name="contact" type="text" class="form-input" placeholder="+380... / info@..." required maxlength="120" autocomplete="email" inputmode="email">
         </div>
         <div class="form-field">
-          <label class="form-label"><span class="inline-ua">Повідомлення</span><span class="inline-en">Message</span></label>
-          <textarea class="form-input" placeholder="..."></textarea>
+          <label class="form-label" for="cf-message"><span class="inline-ua">Повідомлення</span><span class="inline-en">Message</span></label>
+          <textarea id="cf-message" name="message" class="form-input" placeholder="..." required minlength="10" maxlength="2000"></textarea>
         </div>
-        <button class="form-submit">
+        <button type="submit" class="form-submit">
           <span class="inline-ua">Надіслати →</span><span class="inline-en">Send →</span>
         </button>
+        <div id="contactFormStatus" class="form-status" role="status" aria-live="polite"></div>
         <div class="form-note">
-          <span data-ua>Або напишіть нам в Instagram: <a href="https://instagram.com/eod_and_rc">@eod_and_rc</a></span>
-          <span data-en>Or message us on Instagram: <a href="https://instagram.com/eod_and_rc">@eod_and_rc</a></span>
+          <span data-ua>Або напишіть нам в Instagram: <a href="https://instagram.com/eod_and_rc" target="_blank" rel="noopener noreferrer">@eod_and_rc</a></span>
+          <span data-en>Or message us on Instagram: <a href="https://instagram.com/eod_and_rc" target="_blank" rel="noopener noreferrer">@eod_and_rc</a></span>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </section>
@@ -1947,15 +1981,77 @@
 
 <script>
   function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
     if (lang === 'en') {
       document.body.classList.add('en');
-      document.querySelector('.lang-btn:last-child').classList.add('active');
+      document.documentElement.lang = 'en';
+      var btns = document.querySelectorAll('.lang-btn');
+      if (btns.length > 1) btns[btns.length - 1].classList.add('active');
     } else {
       document.body.classList.remove('en');
-      document.querySelector('.lang-btn:first-child').classList.add('active');
+      document.documentElement.lang = 'uk';
+      var btns = document.querySelectorAll('.lang-btn');
+      if (btns.length > 0) btns[0].classList.add('active');
     }
+    try { localStorage.setItem('lang', lang); } catch(e) {}
   }
+  (function() {
+    try {
+      var saved = localStorage.getItem('lang');
+      if (saved === 'en') setLang('en');
+    } catch(e) {}
+  })();
+
+  /* ── CONTACT FORM ── */
+  (function() {
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+    var status = document.getElementById('contactFormStatus');
+    var submitBtn = form.querySelector('.form-submit');
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var PHONE_RE = /^[+()\-\s\d]{7,}$/;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var isEn = document.body.classList.contains('en');
+      var name = form.elements['name'].value.trim();
+      var contact = form.elements['contact'].value.trim();
+      var message = form.elements['message'].value.trim();
+
+      if (name.length < 2 || message.length < 10) {
+        status.textContent = isEn
+          ? 'Please fill in your name and message (min 10 characters).'
+          : 'Заповніть, будь ласка, ім\'я та повідомлення (мінімум 10 символів).';
+        status.className = 'form-status error';
+        return;
+      }
+      if (!EMAIL_RE.test(contact) && !PHONE_RE.test(contact)) {
+        status.textContent = isEn
+          ? 'Please enter a valid email or phone number.'
+          : 'Введіть, будь ласка, коректний email або номер телефону.';
+        status.className = 'form-status error';
+        return;
+      }
+
+      var subject = isEn
+        ? 'Contact form: ' + name
+        : 'Форма зв\'язку: ' + name;
+      var body = (isEn ? 'Name' : 'Ім\'я') + ': ' + name + '\n'
+        + (isEn ? 'Contact' : 'Контакт') + ': ' + contact + '\n\n'
+        + message;
+      var mailto = 'mailto:info@eod-rc.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+
+      submitBtn.disabled = true;
+      status.textContent = isEn
+        ? 'Opening your email client...'
+        : 'Відкриваємо ваш поштовий клієнт...';
+      status.className = 'form-status success';
+      window.location.href = mailto;
+      setTimeout(function() { submitBtn.disabled = false; }, 2000);
+    });
+  })();
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>

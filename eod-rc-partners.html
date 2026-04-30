@@ -3,9 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Партнерам / For Partners</title>
-<link rel="icon" href="favicon.png" type="image/png">
+<title>Партнерам — EOD & RC | Співпраця та благодійні внески</title>
+<meta name="description" content="Інформація для партнерів EOD & RC: можливості співпраці, благодійні внески, сертифікати та реквізити для організацій, що підтримують розмінування України.">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
+<link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Партнерам — EOD & RC">
+<meta property="og:description" content="Інформація для партнерів EOD & RC: співпраця, благодійні внески, сертифікати.">
+<meta property="og:image" content="main-logo-background.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Партнерам — EOD & RC">
+<meta name="twitter:description" content="Можливості співпраці з EOD & RC.">
+<meta name="twitter:image" content="main-logo-background.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -686,15 +701,26 @@
 
 <script>
   function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
     if (lang === 'en') {
       document.body.classList.add('en');
-      document.querySelector('.lang-btn:last-child').classList.add('active');
+      document.documentElement.lang = 'en';
+      var btns = document.querySelectorAll('.lang-btn');
+      if (btns.length > 1) btns[btns.length - 1].classList.add('active');
     } else {
       document.body.classList.remove('en');
-      document.querySelector('.lang-btn:first-child').classList.add('active');
+      document.documentElement.lang = 'uk';
+      var btns = document.querySelectorAll('.lang-btn');
+      if (btns.length > 0) btns[0].classList.add('active');
     }
+    try { localStorage.setItem('lang', lang); } catch(e) {}
   }
+  (function() {
+    try {
+      var saved = localStorage.getItem('lang');
+      if (saved === 'en') setLang('en');
+    } catch(e) {}
+  })();
 
   // ── HAMBURGER ──────────────────────────────────────────────
   var _hbtn = document.getElementById('hamburger');

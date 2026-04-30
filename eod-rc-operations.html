@@ -3,9 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Операції / Operations</title>
-<link rel="icon" href="favicon.png" type="image/png">
+<title>Операції — EOD & RC | Карта виконаних робіт з розмінування</title>
+<meta name="description" content="Карта операцій EOD & RC: виконані проєкти з гуманітарного розмінування, нетехнічного й технічного обстеження, рекультивації земель в Україні.">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
+<link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Операції — EOD & RC">
+<meta property="og:description" content="Карта операцій EOD & RC: виконані проєкти з гуманітарного розмінування в Україні.">
+<meta property="og:image" content="main-logo-background.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Операції — EOD & RC">
+<meta name="twitter:description" content="Карта операцій EOD & RC з гуманітарного розмінування в Україні.">
+<meta name="twitter:image" content="main-logo-background.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
@@ -1425,11 +1440,16 @@ function setLang(lang) {
   document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
   if (lang === 'en') {
     document.body.classList.add('en');
-    document.querySelector('.lang-btn:last-child').classList.add('active');
+    document.documentElement.lang = 'en';
+    const btns = document.querySelectorAll('.lang-btn');
+    if (btns.length > 1) btns[btns.length - 1].classList.add('active');
   } else {
     document.body.classList.remove('en');
-    document.querySelector('.lang-btn:first-child').classList.add('active');
+    document.documentElement.lang = 'uk';
+    const btns = document.querySelectorAll('.lang-btn');
+    if (btns.length > 0) btns[0].classList.add('active');
   }
+  try { localStorage.setItem('lang', lang); } catch(e) {}
   // Refresh tooltips
   Object.entries(objects).forEach(([id, obj]) => {
     const m = markers[id];
@@ -1452,6 +1472,12 @@ function setLang(lang) {
   // Refresh detail if open
   if (currentId) selectObject(currentId);
 }
+(function() {
+  try {
+    var saved = localStorage.getItem('lang');
+    if (saved === 'en') setLang('en');
+  } catch(e) {}
+})();
 
 // Auto-open first marker on load
 setTimeout(() => selectObject('yavirske'), 600);

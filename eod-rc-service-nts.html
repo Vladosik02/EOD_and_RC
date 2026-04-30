@@ -3,9 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Нетехнічне обстеження / Non-Technical Survey</title>
+<title>Нетехнічне обстеження (НТО) — EOD & RC | Non-Technical Survey</title>
+<meta name="description" content="Нетехнічне обстеження території від EOD & RC: збір та аналіз інформації про підозру на мінне забруднення без фізичного контакту з потенційно небезпечними предметами.">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
 <link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Нетехнічне обстеження (НТО) — EOD & RC">
+<meta property="og:description" content="Збір та аналіз інформації про мінне забруднення території.">
+<meta property="og:image" content="main-logo-background.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Нетехнічне обстеження (НТО) — EOD & RC">
+<meta name="twitter:description" content="Збір та аналіз інформації про мінне забруднення.">
+<meta name="twitter:image" content="main-logo-background.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1107,12 +1122,23 @@
     document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
     if (lang === 'en') {
       document.body.classList.add('en');
-      document.querySelector('.lang-btn:last-child').classList.add('active');
+      document.documentElement.lang = 'en';
+      var btns = document.querySelectorAll('.lang-btn');
+      if (btns.length > 1) btns[btns.length - 1].classList.add('active');
     } else {
       document.body.classList.remove('en');
-      document.querySelector('.lang-btn:first-child').classList.add('active');
+      document.documentElement.lang = 'uk';
+      var btns = document.querySelectorAll('.lang-btn');
+      if (btns.length > 0) btns[0].classList.add('active');
     }
+    try { localStorage.setItem('lang', lang); } catch(e) {}
   }
+  (function() {
+    try {
+      var saved = localStorage.getItem('lang');
+      if (saved === 'en') setLang('en');
+    } catch(e) {}
+  })();
 
   /* ── NAVBAR SCROLL ── */
   var nav = document.querySelector('nav');

@@ -3,9 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Розмінування вручну / Manual Demining</title>
+<title>Ручне розмінування — EOD & RC | Manual Demining</title>
+<meta name="description" content="Ручне розмінування території сертифікованими саперами EOD & RC: систематичний пошук, ідентифікація та знешкодження мін і ВНП за стандартами IMAS.">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
 <link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Ручне розмінування — EOD & RC">
+<meta property="og:description" content="Ручне розмінування території за стандартами IMAS.">
+<meta property="og:image" content="photo-manual-demining.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ручне розмінування — EOD & RC">
+<meta name="twitter:description" content="Ручне розмінування за стандартами IMAS.">
+<meta name="twitter:image" content="photo-manual-demining.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root { --green:#55BF78; --green-light:#81F2A9; --green-dim:#075B35; --dark:#080C0A; --dark-2:#0D1410; --dark-3:#131A15; --dark-4:#1A2420; --gray:#8A9E94; --gray-light:#C2D4CC; --white:#F0F5F2; }
@@ -365,7 +380,8 @@
 </section>
 
 <script>
-  function setLang(lang){document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});if(lang==='en'){document.body.classList.add('en');document.querySelector('.lang-btn:last-child').classList.add('active');}else{document.body.classList.remove('en');document.querySelector('.lang-btn:first-child').classList.add('active');}}
+  function setLang(lang){document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});if(lang==='en'){document.body.classList.add('en');document.documentElement.lang='en';var bs=document.querySelectorAll('.lang-btn');if(bs.length>1)bs[bs.length-1].classList.add('active');}else{document.body.classList.remove('en');document.documentElement.lang='uk';var bs=document.querySelectorAll('.lang-btn');if(bs.length>0)bs[0].classList.add('active');}try{localStorage.setItem('lang',lang);}catch(e){}}
+  (function(){try{var s=localStorage.getItem('lang');if(s==='en')setLang('en');}catch(e){}})();
   var nav=document.querySelector('nav');window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
   var btn=document.getElementById('hamburger'),links=document.querySelector('.nav-links');if(btn&&links){btn.addEventListener('click',function(){var o=links.classList.toggle('open');btn.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);});}
   var rt=document.querySelectorAll('.goal-item,.process-step,.result-card,.order-step,.contact-mini,.what-section>div,.process-section .section-tag,.results-section .section-tag');rt.forEach(function(el,i){el.setAttribute('data-animate','');el._animDelay=(i%4)*80;});

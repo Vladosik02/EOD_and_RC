@@ -3,9 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EOD & RC — Команда / Team</title>
-<link rel="icon" href="favicon.png" type="image/png">
+<title>Команда — EOD & RC | Сертифіковані фахівці з розмінування</title>
+<meta name="description" content="Команда EOD & RC: сертифіковані фахівці-сапери, керівники операцій, інженери та аналітики з досвідом гуманітарного розмінування в Україні.">
+<meta name="author" content="EOD & RC">
+<meta name="theme-color" content="#55BF78">
+<link rel="icon" href="favicon-main.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-main.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EOD & RC">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Команда — EOD & RC">
+<meta property="og:description" content="Сертифіковані фахівці EOD & RC з досвідом гуманітарного розмінування в Україні.">
+<meta property="og:image" content="photo_team.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Команда — EOD & RC">
+<meta name="twitter:description" content="Сертифіковані фахівці з розмінування.">
+<meta name="twitter:image" content="photo_team.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -846,10 +861,12 @@
     document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
     if (lang === 'en') {
       document.body.classList.add('en');
+      document.documentElement.lang = 'en';
       var btns = document.querySelectorAll('.lang-btn');
       if (btns.length > 1) btns[btns.length - 1].classList.add('active');
     } else {
       document.body.classList.remove('en');
+      document.documentElement.lang = 'uk';
       var btns = document.querySelectorAll('.lang-btn');
       if (btns.length > 0) btns[0].classList.add('active');
     }
