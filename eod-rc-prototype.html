@@ -1961,20 +1961,23 @@
       <form id="contactForm" class="contact-form-fields" novalidate data-formspree-id="YOUR_FORMSPREE_ID">
         <div class="form-field">
           <label class="form-label" for="cf-name"><span lang="uk" class="inline-ua">Ім'я</span><span lang="en" class="inline-en">Name</span></label>
-          <input id="cf-name" name="name" type="text" class="form-input" placeholder="Ваше ім'я / Your name" required minlength="2" maxlength="100" autocomplete="name">
+          <input id="cf-name" name="name" type="text" class="form-input" placeholder="Ваше ім'я / Your name" required aria-required="true" aria-describedby="cf-name-hint" minlength="2" maxlength="100" autocomplete="name">
+          <span id="cf-name-hint" class="sr-only"><span lang="uk" class="inline-ua">Мінімум 2 символи. Як до вас звертатися.</span><span lang="en" class="inline-en">At least 2 characters. How we should address you.</span></span>
         </div>
         <div class="form-field">
           <label class="form-label" for="cf-contact"><span lang="uk" class="inline-ua">Телефон / Email</span><span lang="en" class="inline-en">Phone / Email</span></label>
-          <input id="cf-contact" name="contact" type="text" class="form-input" placeholder="+380... / info@..." required maxlength="120" autocomplete="email" inputmode="email">
+          <input id="cf-contact" name="contact" type="text" class="form-input" placeholder="+380... / info@..." required aria-required="true" aria-describedby="cf-contact-hint" maxlength="120" autocomplete="email" inputmode="email">
+          <span id="cf-contact-hint" class="sr-only"><span lang="uk" class="inline-ua">Введіть email або номер телефону у міжнародному форматі.</span><span lang="en" class="inline-en">Enter an email or phone number in international format.</span></span>
         </div>
         <div class="form-field">
           <label class="form-label" for="cf-message"><span lang="uk" class="inline-ua">Повідомлення</span><span lang="en" class="inline-en">Message</span></label>
-          <textarea id="cf-message" name="message" class="form-input" placeholder="..." required minlength="10" maxlength="2000"></textarea>
+          <textarea id="cf-message" name="message" class="form-input" placeholder="..." required aria-required="true" aria-describedby="cf-message-hint" minlength="10" maxlength="2000"></textarea>
+          <span id="cf-message-hint" class="sr-only"><span lang="uk" class="inline-ua">Мінімум 10 символів. Опишіть, з якого приводу звертаєтесь.</span><span lang="en" class="inline-en">At least 10 characters. Describe what you would like to discuss.</span></span>
         </div>
         <button type="submit" class="form-submit">
           <span lang="uk" class="inline-ua">Надіслати →</span><span lang="en" class="inline-en">Send →</span>
         </button>
-        <div id="contactFormStatus" class="form-status" role="status" aria-live="polite"></div>
+        <div id="contactFormStatus" class="form-status" role="status" aria-live="polite" aria-atomic="true"></div>
         <div class="form-note">
           <span lang="uk" data-ua>Або напишіть нам в Instagram: <a href="https://instagram.com/eod_and_rc" target="_blank" rel="noopener noreferrer">@eod_and_rc</a></span>
           <span lang="en" data-en>Or message us on Instagram: <a href="https://instagram.com/eod_and_rc" target="_blank" rel="noopener noreferrer">@eod_and_rc</a></span>
