@@ -64,6 +64,8 @@ jobs:
           asset_files = set(os.listdir('.'))
           if os.path.isdir('assets'):
               asset_files.update('assets/' + a for a in os.listdir('assets'))
+          if os.path.isdir('splash'):
+              asset_files.update('splash/' + a for a in os.listdir('splash'))
           errs = []
           for f in sorted(html_files):
               with open(f, encoding='utf-8') as fp:
