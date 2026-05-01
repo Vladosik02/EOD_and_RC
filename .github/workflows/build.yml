@@ -1,0 +1,53 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Validate sources
+        run: npm run validate
+
+      - name: Build production bundle
+        run: npm run build:report
+
+      - name: Smoke-test dist/
+        run: |
+          # Make sure all the headline pages exist and have <html> in them
+          for f in index.html eod-rc-prototype.html eod-rc-operations.html \
+                   eod-rc-team.html eod-rc-partners.html \
+                   eod-rc-service-nts.html eod-rc-service-ts.html \
+                   eod-rc-service-manual.html eod-rc-service-clearance.html \
+                   eod-rc-service-recultivation.html \
+                   privacy.html terms.html \
+                   manifest.webmanifest sitemap.xml robots.txt \
+                   assets/styles.css assets/scripts.js service-worker.js; do
+            if [ ! -s "dist/$f" ]; then
+              echo "::error::dist/$f missing or empty"
+              exit 1
+            fi
+          done
+          echo "All key files present in dist/"
+
+      - name: Upload dist/ as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 14
+          compression-level: 9
