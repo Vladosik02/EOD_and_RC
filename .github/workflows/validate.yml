@@ -1,0 +1,114 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: HTML tag balance + JSON-LD validity
+        run: |
+          python3 - <<'PY'
+          import json, re, os, sys
+          errs = []
+          for f in sorted(os.listdir('.')):
+              if not f.endswith('.html'):
+                  continue
+              with open(f, encoding='utf-8') as fp:
+                  c = fp.read()
+              for tag in ('script', 'style', 'picture', 'form'):
+                  o = c.count(f'<{tag}')
+                  cl = c.count(f'</{tag}>')
+                  if o != cl:
+                      errs.append(f'{f}: <{tag}> open {o} != close {cl}')
+              for m in re.finditer(
+                  r'<script type="application/ld\+json">\s*(\{.*?\})\s*</script>',
+                  c, re.DOTALL):
+                  try:
+                      json.loads(m.group(1))
+                  except Exception as e:
+                      errs.append(f'{f}: invalid JSON-LD: {e}')
+          if errs:
+              for e in errs:
+                  print(f'::error::{e}')
+              sys.exit(1)
+          print('All HTML balanced and JSON-LD valid.')
+          PY
+
+      - name: Manifest and sitemap validity
+        run: |
+          python3 -c "import json; json.load(open('manifest.webmanifest'))"
+          python3 -c "
+          import xml.etree.ElementTree as ET
+          ET.parse('sitemap.xml')
+          ET.parse('browserconfig.xml')
+          print('Manifest + sitemap + browserconfig parsed OK')
+          "
+
+      - name: Internal link checker
+        run: |
+          python3 - <<'PY'
+          import os, re, sys
+          html_files = {f for f in os.listdir('.') if f.endswith('.html')}
+          asset_files = set(os.listdir('.'))
+          if os.path.isdir('assets'):
+              asset_files.update('assets/' + a for a in os.listdir('assets'))
+          errs = []
+          for f in sorted(html_files):
+              with open(f, encoding='utf-8') as fp:
+                  c = fp.read()
+              for m in re.finditer(r'(?:href|src|srcset)="([^"]+)"', c):
+                  raw = m.group(1)
+                  # Skip JS template literals like ${obj.photo}
+                  if '${' in raw or '{{' in raw:
+                      continue
+                  url = raw.split('#')[0].strip()
+                  if (not url
+                          or url.startswith(('http://', 'https://', 'mailto:',
+                                             'tel:', 'data:', '/'))):
+                      continue
+                  # Strip query
+                  url = url.split('?')[0]
+                  # srcset can have multiple
+                  for candidate in url.split(','):
+                      candidate = candidate.strip().split(' ')[0]
+                      if not candidate:
+                          continue
+                      if candidate not in asset_files and candidate not in html_files:
+                          errs.append(f'{f}: missing target "{candidate}"')
+          if errs:
+              for e in errs:
+                  print(f'::error::{e}')
+              sys.exit(1)
+          print('All internal links resolve.')
+          PY
+
+      - name: Forbid placeholder dead links
+        run: |
+          python3 - <<'PY'
+          import os, re, sys
+          errs = []
+          for f in sorted(os.listdir('.')):
+              if not f.endswith('.html'):
+                  continue
+              with open(f, encoding='utf-8') as fp:
+                  c = fp.read()
+              for m in re.finditer(r'href="#"', c):
+                  errs.append(f'{f}: dead href="#" — replace with real target or remove the link')
+          if errs:
+              for e in errs:
+                  print(f'::error::{e}')
+              sys.exit(1)
+          print('No dead href="#" links.')
+          PY

@@ -777,7 +777,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="index.html#services"><span lang="uk" class="inline-ua">Послуги</span><span lang="en" class="inline-en">Services</span></a></li>
-    <li><a href="eod-rc-operations.html" class="active"aria-current="page"><span lang="uk" class="inline-ua">Операції</span><span lang="en" class="inline-en">Operations</span></a></li>
+    <li><a href="eod-rc-operations.html" class="active" aria-current="page"><span lang="uk" class="inline-ua">Операції</span><span lang="en" class="inline-en">Operations</span></a></li>
     <li><a href="eod-rc-team.html"><span lang="uk" class="inline-ua">Про нас</span><span lang="en" class="inline-en">About</span></a></li>
     <li><a href="eod-rc-partners.html"><span lang="uk" class="inline-ua">Партнерам</span><span lang="en" class="inline-en">Partners</span></a></li>
   </ul>
@@ -848,7 +848,7 @@
     <div class="panel-list">
 
       <!-- Yavirske — completed -->
-      <div class="obj-card" id="card-yavirske" onclick="selectObject('yavirske')">
+      <div class="obj-card" id="card-yavirske" role="button" tabindex="0" aria-label="Відкрити деталі: с. Явірське, Ізюмський р-н, завершено" onclick="selectObject('yavirske')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectObject('yavirske')}">
         <div class="obj-card-status s-completed">
           <div class="dot"></div>
           <span lang="uk" class="inline-ua">Завершено</span>
@@ -866,7 +866,7 @@
       </div>
 
       <!-- Kharkiv region — active -->
-      <div class="obj-card" id="card-kharkiv" onclick="selectObject('kharkiv')">
+      <div class="obj-card" id="card-kharkiv" role="button" tabindex="0" aria-label="Відкрити деталі: Харківська область, активна операція" onclick="selectObject('kharkiv')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectObject('kharkiv')}">
         <div class="obj-card-status s-active">
           <div class="dot"></div>
           <span lang="uk" class="inline-ua">Активна операція</span>
@@ -884,7 +884,7 @@
       </div>
 
       <!-- Sumy region — active -->
-      <div class="obj-card" id="card-sumy" onclick="selectObject('sumy')">
+      <div class="obj-card" id="card-sumy" role="button" tabindex="0" aria-label="Відкрити деталі: Сумська область, активна операція" onclick="selectObject('sumy')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectObject('sumy')}">
         <div class="obj-card-status s-active">
           <div class="dot"></div>
           <span lang="uk" class="inline-ua">Активна операція</span>
@@ -906,7 +906,7 @@
     <!-- DETAIL PANEL — slides in -->
     <div class="detail-panel" id="detailPanel">
 
-      <div class="detail-back" onclick="closeDetail()">
+      <div class="detail-back" role="button" tabindex="0" aria-label="Повернутися до списку об'єктів" onclick="closeDetail()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();closeDetail()}">
         ← <span lang="uk" class="inline-ua">Всі об'єкти</span><span lang="en" class="inline-en">All sites</span>
       </div>
 
@@ -1445,7 +1445,7 @@ function selectObject(id) {
   `).join('');
 
   const photoHtml = obj.photo
-    ? `<img loading="lazy" src="${obj.photo}" alt="${name}">`
+    ? `<img loading="lazy" decoding="async" src="${obj.photo}" alt="${name}">`
     : `<div class="detail-photo-placeholder">[ ${isEn ? 'PHOTO' : 'ФОТО'} — ${name.toUpperCase()} ]</div>`;
 
   document.getElementById('detailContent').innerHTML = `
