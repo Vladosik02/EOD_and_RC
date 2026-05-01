@@ -37,6 +37,97 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Вьюник Володимир",
+      "alternateName": "Volodymyr Viunyk",
+      "jobTitle": "Директор",
+      "image": "https://eod-rc.com/photo_vyunyk.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EOD & RC",
+        "url": "https://eod-rc.com/"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Семенов Антон",
+      "alternateName": "Anton Semenov",
+      "jobTitle": "Перший заступник директора",
+      "image": "https://eod-rc.com/photo_semyonov.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EOD & RC",
+        "url": "https://eod-rc.com/"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Пундровський Євген",
+      "alternateName": "Yevhen Pundrovskyi",
+      "jobTitle": "Член команди",
+      "image": "https://eod-rc.com/photo_pundrovskyi.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EOD & RC",
+        "url": "https://eod-rc.com/"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Вдовиченко Олександр",
+      "alternateName": "Oleksandr Vdovychenko",
+      "jobTitle": "Член команди",
+      "image": "https://eod-rc.com/photo_vdovychenko.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EOD & RC",
+        "url": "https://eod-rc.com/"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Фурса Андрій",
+      "alternateName": "Andrii Fursa",
+      "jobTitle": "Член команди",
+      "image": "https://eod-rc.com/photo_fursa.png",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EOD & RC",
+        "url": "https://eod-rc.com/"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Лихих Валерій",
+      "alternateName": "Valerii Lykhykh",
+      "jobTitle": "Член команди",
+      "image": "https://eod-rc.com/photo_lykhykh.png",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EOD & RC",
+        "url": "https://eod-rc.com/"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Кривоносов Роман",
+      "alternateName": "Roman Kryvonosov",
+      "jobTitle": "Член команди",
+      "image": "https://eod-rc.com/photo_kryvonosov.png",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EOD & RC",
+        "url": "https://eod-rc.com/"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     {
@@ -387,17 +478,17 @@
 </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link"><span class="inline-ua">До основного вмісту</span><span class="inline-en">To main content</span></a>
+<a href="#main-content" class="skip-link"><span lang="uk" class="inline-ua">До основного вмісту</span><span lang="en" class="inline-en">To main content</span></a>
 
 <nav>
   <a href="index.html" class="logo">
     <img src="logo-horizontal-white.svg" height="38" alt="EOD &amp; RC" class="logo-img">
   </a>
   <ul class="nav-links">
-    <li><a href="index.html#services"><span class="inline-ua">Послуги</span><span class="inline-en">Services</span></a></li>
-    <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
-    <li><a href="eod-rc-team.html" class="active" aria-current="page"><span class="inline-ua">Про нас</span><span class="inline-en">About</span></a></li>
-    <li><a href="eod-rc-partners.html"><span class="inline-ua">Партнерам</span><span class="inline-en">Partners</span></a></li>
+    <li><a href="index.html#services"><span lang="uk" class="inline-ua">Послуги</span><span lang="en" class="inline-en">Services</span></a></li>
+    <li><a href="eod-rc-operations.html"><span lang="uk" class="inline-ua">Операції</span><span lang="en" class="inline-en">Operations</span></a></li>
+    <li><a href="eod-rc-team.html" class="active" aria-current="page"><span lang="uk" class="inline-ua">Про нас</span><span lang="en" class="inline-en">About</span></a></li>
+    <li><a href="eod-rc-partners.html"><span lang="uk" class="inline-ua">Партнерам</span><span lang="en" class="inline-en">Partners</span></a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-switcher">
@@ -405,8 +496,8 @@
       <button class="lang-btn" onclick="setLang('en')">EN</button>
     </div>
     <a href="index.html#contact" class="btn-nav">
-      <span class="inline-ua">Зв'язатися</span>
-      <span class="inline-en">Contact</span>
+      <span lang="uk" class="inline-ua">Зв'язатися</span>
+      <span lang="en" class="inline-en">Contact</span>
     </a>
   </div>
   <button class="hamburger" aria-label="Меню">
@@ -421,39 +512,39 @@
     <picture><source srcset="photo_team.webp" type="image/webp"><img width="719" height="900" loading="lazy" src="photo_team.png" alt="Команда EOD & RC на операції" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:brightness(0.55);"></picture>
     <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(8,12,10,0.7) 0%, transparent 50%, rgba(8,12,10,0.3) 100%);"></div>
     <div style="position:absolute;bottom:32px;left:48px;">
-      <div style="font-size:11px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">EOD & RC · <span class="inline-ua">Харківська область</span><span class="inline-en">Kharkiv region</span></div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;"><span class="inline-ua">Інструктаж перед виходом на об'єкт</span><span class="inline-en">Briefing before field operation</span></div>
+      <div style="font-size:11px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">EOD & RC · <span lang="uk" class="inline-ua">Харківська область</span><span lang="en" class="inline-en">Kharkiv region</span></div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;"><span lang="uk" class="inline-ua">Інструктаж перед виходом на об'єкт</span><span lang="en" class="inline-en">Briefing before field operation</span></div>
     </div>
   </div>
 
   <div class="hero-inner">
     <div>
       <div class="section-tag">
-        <span class="inline-ua">Команда EOD & RC</span>
-        <span class="inline-en">EOD & RC Team</span>
+        <span lang="uk" class="inline-ua">Команда EOD & RC</span>
+        <span lang="en" class="inline-en">EOD & RC Team</span>
       </div>
       <h1>
-        <span data-ua>Люди,<br>що роблять<br>землю<br><span class="accent">безпечною</span></span>
-        <span data-en>People<br>who make<br>land<br><span class="accent">safe</span></span>
+        <span lang="uk" data-ua>Люди,<br>що роблять<br>землю<br><span class="accent">безпечною</span></span>
+        <span lang="en" data-en>People<br>who make<br>land<br><span class="accent">safe</span></span>
       </h1>
     </div>
     <div class="hero-right-text">
       <p style="font-size:16px; color:var(--gray-light); line-height:1.7; margin-bottom:32px;">
-        <span data-ua>25 фахівців. Ветерани бойових дій, розробники державних стандартів, досвідчені сапери. Кожен — профі у своїй справі. Разом — команда, якій довіряють своє поле, свою землю, своє майбутнє.</span>
-        <span data-en>25 specialists. Combat veterans, state standards developers, experienced deminers. Each a professional. Together — a team trusted with fields, land, and futures.</span>
+        <span lang="uk" data-ua>25 фахівців. Ветерани бойових дій, розробники державних стандартів, досвідчені сапери. Кожен — профі у своїй справі. Разом — команда, якій довіряють своє поле, свою землю, своє майбутнє.</span>
+        <span lang="en" data-en>25 specialists. Combat veterans, state standards developers, experienced deminers. Each a professional. Together — a team trusted with fields, land, and futures.</span>
       </p>
       <div class="hero-stat-row">
         <div>
           <div class="hero-stat-val">25</div>
-          <div class="hero-stat-label"><span class="inline-ua">Фахівців</span><span class="inline-en">Specialists</span></div>
+          <div class="hero-stat-label"><span lang="uk" class="inline-ua">Фахівців</span><span lang="en" class="inline-en">Specialists</span></div>
         </div>
         <div>
           <div class="hero-stat-val">35+</div>
-          <div class="hero-stat-label"><span class="inline-ua">Років досвіду (макс.)</span><span class="inline-en">Years max. exp.</span></div>
+          <div class="hero-stat-label"><span lang="uk" class="inline-ua">Років досвіду (макс.)</span><span lang="en" class="inline-en">Years max. exp.</span></div>
         </div>
         <div>
           <div class="hero-stat-val">2+</div>
-          <div class="hero-stat-label"><span class="inline-ua">Роки мін. досвіду</span><span class="inline-en">Years min. exp.</span></div>
+          <div class="hero-stat-label"><span lang="uk" class="inline-ua">Роки мін. досвіду</span><span lang="en" class="inline-en">Years min. exp.</span></div>
         </div>
       </div>
     </div>
@@ -463,12 +554,12 @@
 <!-- LEADERSHIP -->
 <section class="leadership-section">
   <div class="section-tag">
-    <span class="inline-ua">Керівництво</span>
-    <span class="inline-en">Leadership</span>
+    <span lang="uk" class="inline-ua">Керівництво</span>
+    <span lang="en" class="inline-en">Leadership</span>
   </div>
   <h2 class="section-title" style="margin-bottom:48px;">
-    <span data-ua>Хто веде<br>команду</span>
-    <span data-en>Who leads<br>the team</span>
+    <span lang="uk" data-ua>Хто веде<br>команду</span>
+    <span lang="en" data-en>Who leads<br>the team</span>
   </h2>
 
   <!-- VYUNYK — Director -->
@@ -480,32 +571,32 @@
     <div class="member-info">
       <div>
         <div class="member-role-tag">
-          <span class="inline-ua">Директор</span>
-          <span class="inline-en">Director</span>
+          <span lang="uk" class="inline-ua">Директор</span>
+          <span lang="en" class="inline-en">Director</span>
         </div>
         <div class="member-name">
-          <span class="inline-ua">Вьюник<br>Володимир</span>
-          <span class="inline-en">Volodymyr<br>Vyunyk</span>
+          <span lang="uk" class="inline-ua">Вьюник<br>Володимир</span>
+          <span lang="en" class="inline-en">Volodymyr<br>Vyunyk</span>
         </div>
         <div class="member-name-en">
-          <span class="inline-ua">Volodymyr Vyunyk</span>
-          <span class="inline-en">Вьюник Володимир</span>
+          <span lang="uk" class="inline-ua">Volodymyr Vyunyk</span>
+          <span lang="en" class="inline-en">Вьюник Володимир</span>
         </div>
         <p class="member-bio">
-          <span data-ua>Харків'янин. З квітня 2022 року — доброволець А0501 (92 ОМБр), командир мотопіхотної роти 22-го ОМПБ. Пройшов оборону Харкова від с. Циркуни, контрнаступ до с. Стельмахівка на Луганщині. У 2023 році отримав поранення. Демобілізувався у квітні 2024 року і став директором EOD & RC. Відповідає за операційну діяльність, документообіг та внутрішню звітність.</span>
-          <span data-en>Kharkiv native. From April 2022 — volunteer A0501 (92nd OMBr), infantry company commander of 22nd OMPB. Participated in Kharkiv defense from Tsyrkuny village, counteroffensive to Stelmakhivka in Luhansk region. Wounded in 2023. Demobilized April 2024 and became EOD & RC Director. Responsible for operational management, documentation and internal reporting.</span>
+          <span lang="uk" data-ua>Харків'янин. З квітня 2022 року — доброволець А0501 (92 ОМБр), командир мотопіхотної роти 22-го ОМПБ. Пройшов оборону Харкова від с. Циркуни, контрнаступ до с. Стельмахівка на Луганщині. У 2023 році отримав поранення. Демобілізувався у квітні 2024 року і став директором EOD & RC. Відповідає за операційну діяльність, документообіг та внутрішню звітність.</span>
+          <span lang="en" data-en>Kharkiv native. From April 2022 — volunteer A0501 (92nd OMBr), infantry company commander of 22nd OMPB. Participated in Kharkiv defense from Tsyrkuny village, counteroffensive to Stelmakhivka in Luhansk region. Wounded in 2023. Demobilized April 2024 and became EOD & RC Director. Responsible for operational management, documentation and internal reporting.</span>
         </p>
         <div class="member-tags">
-          <span class="tag"><span class="inline-ua">Учасник бойових дій</span><span class="inline-en">Combat veteran</span></span>
-          <span class="tag"><span class="inline-ua">92 ОМБр</span><span class="inline-en">92nd OMBr</span></span>
-          <span class="tag"><span class="inline-ua">Операційне управління</span><span class="inline-en">Operations management</span></span>
-          <span class="tag"><span class="inline-ua">Командир роти</span><span class="inline-en">Company commander</span></span>
+          <span class="tag"><span lang="uk" class="inline-ua">Учасник бойових дій</span><span lang="en" class="inline-en">Combat veteran</span></span>
+          <span class="tag"><span lang="uk" class="inline-ua">92 ОМБр</span><span lang="en" class="inline-en">92nd OMBr</span></span>
+          <span class="tag"><span lang="uk" class="inline-ua">Операційне управління</span><span lang="en" class="inline-en">Operations management</span></span>
+          <span class="tag"><span lang="uk" class="inline-ua">Командир роти</span><span lang="en" class="inline-en">Company commander</span></span>
         </div>
       </div>
       <div class="member-quote">
-        <span data-ua>Досвід організації роботи ротою в бойових умовах допомагає ефективно керувати процесами розмінування сьогодні.</span>
-        <span data-en>Experience organizing company operations in combat conditions helps effectively manage demining processes today.</span>
-        <cite>— <span class="inline-ua">Про підхід до керівництва</span><span class="inline-en">On leadership approach</span></cite>
+        <span lang="uk" data-ua>Досвід організації роботи ротою в бойових умовах допомагає ефективно керувати процесами розмінування сьогодні.</span>
+        <span lang="en" data-en>Experience organizing company operations in combat conditions helps effectively manage demining processes today.</span>
+        <cite>— <span lang="uk" class="inline-ua">Про підхід до керівництва</span><span lang="en" class="inline-en">On leadership approach</span></cite>
       </div>
     </div>
   </div>
@@ -519,33 +610,33 @@
     <div class="member-info">
       <div>
         <div class="member-role-tag">
-          <span class="inline-ua">Перший заступник директора</span>
-          <span class="inline-en">First Deputy Director</span>
+          <span lang="uk" class="inline-ua">Перший заступник директора</span>
+          <span lang="en" class="inline-en">First Deputy Director</span>
         </div>
         <div class="member-name">
-          <span class="inline-ua">Семенов<br>Антон</span>
-          <span class="inline-en">Anton<br>Semyonov</span>
+          <span lang="uk" class="inline-ua">Семенов<br>Антон</span>
+          <span lang="en" class="inline-en">Anton<br>Semyonov</span>
         </div>
         <div class="member-name-en">
-          <span class="inline-ua">Anton Semyonov</span>
-          <span class="inline-en">Семенов Антон</span>
+          <span lang="uk" class="inline-ua">Anton Semyonov</span>
+          <span lang="en" class="inline-en">Семенов Антон</span>
         </div>
         <p class="member-bio">
-          <span data-ua>Кандидат економічних наук. 20+ років у фінансовому менеджменті, ІТ, оборонних проєктах, будівництві, банківській справі. Генеральний директор URIDT — Українського науково-дослідного інституту оборонних технологій. Заступник директора Харківського заводу засобів індивідуального захисту. Колишній заступник голови правління Львівського оборонного кластеру, який передав 100 000 бронежилетів ЗСУ. Відзнака Київського міського голови «Честь. Слава. Держава».</span>
-          <span data-en>PhD in Economics. 20+ years in financial management, IT, defense projects, construction, banking. CEO of URIDT — Ukrainian Research Institute of Defense Technologies. Deputy Director of Kharkiv PPE Manufacturing Plant. Former Deputy Chairman of Lviv Defense Cluster, which donated 100,000 body armors to the Ukrainian Armed Forces. Kyiv Mayor's Award "Honor. Glory. State."</span>
+          <span lang="uk" data-ua>Кандидат економічних наук. 20+ років у фінансовому менеджменті, ІТ, оборонних проєктах, будівництві, банківській справі. Генеральний директор URIDT — Українського науково-дослідного інституту оборонних технологій. Заступник директора Харківського заводу засобів індивідуального захисту. Колишній заступник голови правління Львівського оборонного кластеру, який передав 100 000 бронежилетів ЗСУ. Відзнака Київського міського голови «Честь. Слава. Держава».</span>
+          <span lang="en" data-en>PhD in Economics. 20+ years in financial management, IT, defense projects, construction, banking. CEO of URIDT — Ukrainian Research Institute of Defense Technologies. Deputy Director of Kharkiv PPE Manufacturing Plant. Former Deputy Chairman of Lviv Defense Cluster, which donated 100,000 body armors to the Ukrainian Armed Forces. Kyiv Mayor's Award "Honor. Glory. State."</span>
         </p>
         <div class="member-tags">
-          <span class="tag"><span class="inline-ua">Канд. екон. наук</span><span class="inline-en">PhD Economics</span></span>
+          <span class="tag"><span lang="uk" class="inline-ua">Канд. екон. наук</span><span lang="en" class="inline-en">PhD Economics</span></span>
           <span class="tag">URIDT</span>
-          <span class="tag"><span class="inline-ua">Оборонні технології</span><span class="inline-en">Defense tech</span></span>
-          <span class="tag"><span class="inline-ua">Міжнародні партнери</span><span class="inline-en">Intl. partners</span></span>
-          <span class="tag"><span class="inline-ua">ІТ-інновації</span><span class="inline-en">IT innovations</span></span>
+          <span class="tag"><span lang="uk" class="inline-ua">Оборонні технології</span><span lang="en" class="inline-en">Defense tech</span></span>
+          <span class="tag"><span lang="uk" class="inline-ua">Міжнародні партнери</span><span lang="en" class="inline-en">Intl. partners</span></span>
+          <span class="tag"><span lang="uk" class="inline-ua">ІТ-інновації</span><span lang="en" class="inline-en">IT innovations</span></span>
         </div>
       </div>
       <div class="member-quote">
-        <span data-ua>Разом ми робимо нашу землю безпечною.</span>
-        <span data-en>Together we make our land safe.</span>
-        <cite>— <span class="inline-ua">На конференції DEMINING TECH 2024</span><span class="inline-en">At DEMINING TECH 2024 conference</span></cite>
+        <span lang="uk" data-ua>Разом ми робимо нашу землю безпечною.</span>
+        <span lang="en" data-en>Together we make our land safe.</span>
+        <cite>— <span lang="uk" class="inline-ua">На конференції DEMINING TECH 2024</span><span lang="en" class="inline-en">At DEMINING TECH 2024 conference</span></cite>
       </div>
     </div>
   </div>
@@ -554,8 +645,8 @@
 <!-- CORE TEAM -->
 <section style="padding: 0 48px 96px; background: var(--dark);">
   <div class="section-tag" style="padding-top:0; margin-bottom:32px;">
-    <span class="inline-ua">Ключові фахівці</span>
-    <span class="inline-en">Key specialists</span>
+    <span lang="uk" class="inline-ua">Ключові фахівці</span>
+    <span lang="en" class="inline-en">Key specialists</span>
   </div>
   <div class="team-row">
 
@@ -567,21 +658,21 @@
       </div>
       <div class="card-info">
         <div class="card-role">
-          <span class="inline-ua">Заступник директора · Керівник саперних робіт</span>
-          <span class="inline-en">Deputy Director · EOD Operations Lead</span>
+          <span lang="uk" class="inline-ua">Заступник директора · Керівник саперних робіт</span>
+          <span lang="en" class="inline-en">Deputy Director · EOD Operations Lead</span>
         </div>
         <div class="card-name">
-          <span class="inline-ua">Євген Пундровський</span>
-          <span class="inline-en">Yevhen Pundrovskyi</span>
+          <span lang="uk" class="inline-ua">Євген Пундровський</span>
+          <span lang="en" class="inline-en">Yevhen Pundrovskyi</span>
         </div>
         <p class="card-bio">
-          <span data-ua>30+ років в інженерно-саперній справі. Командир взводу підготовки саперів, начальник штабу батальйону, заступник начальника Навчального центру ДСНС. Розробляв кваліфікаційні характеристики професії «сапер розмінування» та СОПи для гуманітарного розмінування. Керував очищенням 61 арсеналу у м. Лозова.</span>
-          <span data-en>30+ years in EOD engineering. Sapper training platoon commander, battalion chief of staff, Deputy Head of SESU Training Center. Developed qualification standards for "demining sapper" and SOPs for humanitarian demining. Led clearance of Arsenal 61 in Lozova.</span>
+          <span lang="uk" data-ua>30+ років в інженерно-саперній справі. Командир взводу підготовки саперів, начальник штабу батальйону, заступник начальника Навчального центру ДСНС. Розробляв кваліфікаційні характеристики професії «сапер розмінування» та СОПи для гуманітарного розмінування. Керував очищенням 61 арсеналу у м. Лозова.</span>
+          <span lang="en" data-en>30+ years in EOD engineering. Sapper training platoon commander, battalion chief of staff, Deputy Head of SESU Training Center. Developed qualification standards for "demining sapper" and SOPs for humanitarian demining. Led clearance of Arsenal 61 in Lozova.</span>
         </p>
         <div class="card-tags">
-          <span class="card-tag">30+ <span class="inline-ua">років</span><span class="inline-en">years</span></span>
+          <span class="card-tag">30+ <span lang="uk" class="inline-ua">років</span><span lang="en" class="inline-en">years</span></span>
           <span class="card-tag">ДСНС</span>
-          <span class="card-tag"><span class="inline-ua">СОПи</span><span class="inline-en">SOPs</span></span>
+          <span class="card-tag"><span lang="uk" class="inline-ua">СОПи</span><span lang="en" class="inline-en">SOPs</span></span>
         </div>
       </div>
     </div>
@@ -594,21 +685,21 @@
       </div>
       <div class="card-info">
         <div class="card-role">
-          <span class="inline-ua">Інженер з якості</span>
-          <span class="inline-en">Quality Engineer</span>
+          <span lang="uk" class="inline-ua">Інженер з якості</span>
+          <span lang="en" class="inline-en">Quality Engineer</span>
         </div>
         <div class="card-name">
-          <span class="inline-ua">Олександр Вдовиченко</span>
-          <span class="inline-en">Oleksandr Vdovychenko</span>
+          <span lang="uk" class="inline-ua">Олександр Вдовиченко</span>
+          <span lang="en" class="inline-en">Oleksandr Vdovychenko</span>
         </div>
         <p class="card-bio">
-          <span data-ua>10+ років розмінування, включно з залишками Другої світової. 10 років у навчальному центрі ДСНС — підготовка піротехніків, розробка навчальних планів і держстандарту «Сапер (розмінування)». 6 років у Харківському НДЕКЦ МВС — судова вибухотехнічна експертиза. Учасник бойових дій.</span>
-          <span data-en>10+ years demining including WWII remnants. 10 years at SESU Training Center — pyrotechnician training, curriculum and state standard "Demining Sapper" development. 6 years at Kharkiv FSEC MIA — forensic explosive examination. Combat veteran.</span>
+          <span lang="uk" data-ua>10+ років розмінування, включно з залишками Другої світової. 10 років у навчальному центрі ДСНС — підготовка піротехніків, розробка навчальних планів і держстандарту «Сапер (розмінування)». 6 років у Харківському НДЕКЦ МВС — судова вибухотехнічна експертиза. Учасник бойових дій.</span>
+          <span lang="en" data-en>10+ years demining including WWII remnants. 10 years at SESU Training Center — pyrotechnician training, curriculum and state standard "Demining Sapper" development. 6 years at Kharkiv FSEC MIA — forensic explosive examination. Combat veteran.</span>
         </p>
         <div class="card-tags">
-          <span class="card-tag">10+ <span class="inline-ua">років</span><span class="inline-en">years</span></span>
+          <span class="card-tag">10+ <span lang="uk" class="inline-ua">років</span><span lang="en" class="inline-en">years</span></span>
           <span class="card-tag">IMAS</span>
-          <span class="card-tag"><span class="inline-ua">Держстандарт</span><span class="inline-en">State standard</span></span>
+          <span class="card-tag"><span lang="uk" class="inline-ua">Держстандарт</span><span lang="en" class="inline-en">State standard</span></span>
         </div>
       </div>
     </div>
@@ -621,21 +712,21 @@
       </div>
       <div class="card-info">
         <div class="card-role">
-          <span class="inline-ua">Діловод · Помічник директора</span>
-          <span class="inline-en">Records Officer · Director's Assistant</span>
+          <span lang="uk" class="inline-ua">Діловод · Помічник директора</span>
+          <span lang="en" class="inline-en">Records Officer · Director's Assistant</span>
         </div>
         <div class="card-name">
-          <span class="inline-ua">Андрій Фурса</span>
-          <span class="inline-en">Andriy Fursa</span>
+          <span lang="uk" class="inline-ua">Андрій Фурса</span>
+          <span lang="en" class="inline-en">Andriy Fursa</span>
         </div>
         <p class="card-bio">
-          <span data-ua>Дві вищі освіти — військово-політична та психологічна. Служив у ракетних військах стратегічного призначення. Викладав у Харківському педуніверситеті. З 2015 року — доброволець 5-ї Слобожанської бригади НГУ, пройшов шлях від заступника командира роти до заступника командира батальйону. Учасник бойових дій.</span>
-          <span data-en>Two higher degrees — military-political and psychology. Served in Strategic Missile Forces. Taught at Kharkiv Pedagogical University. From 2015 — volunteer in 5th Slobozhan Brigade NGU, from company deputy commander to battalion deputy commander. Combat veteran.</span>
+          <span lang="uk" data-ua>Дві вищі освіти — військово-політична та психологічна. Служив у ракетних військах стратегічного призначення. Викладав у Харківському педуніверситеті. З 2015 року — доброволець 5-ї Слобожанської бригади НГУ, пройшов шлях від заступника командира роти до заступника командира батальйону. Учасник бойових дій.</span>
+          <span lang="en" data-en>Two higher degrees — military-political and psychology. Served in Strategic Missile Forces. Taught at Kharkiv Pedagogical University. From 2015 — volunteer in 5th Slobozhan Brigade NGU, from company deputy commander to battalion deputy commander. Combat veteran.</span>
         </p>
         <div class="card-tags">
-          <span class="card-tag"><span class="inline-ua">УБД</span><span class="inline-en">Combat vet.</span></span>
-          <span class="card-tag"><span class="inline-ua">Психологія</span><span class="inline-en">Psychology</span></span>
-          <span class="card-tag"><span class="inline-ua">НГУ</span><span class="inline-en">NGU</span></span>
+          <span class="card-tag"><span lang="uk" class="inline-ua">УБД</span><span lang="en" class="inline-en">Combat vet.</span></span>
+          <span class="card-tag"><span lang="uk" class="inline-ua">Психологія</span><span lang="en" class="inline-en">Psychology</span></span>
+          <span class="card-tag"><span lang="uk" class="inline-ua">НГУ</span><span lang="en" class="inline-en">NGU</span></span>
         </div>
       </div>
     </div>
@@ -653,21 +744,21 @@
       </div>
       <div class="card-info">
         <div class="card-role">
-          <span class="inline-ua">Штатний медик</span>
-          <span class="inline-en">Medical Officer</span>
+          <span lang="uk" class="inline-ua">Штатний медик</span>
+          <span lang="en" class="inline-en">Medical Officer</span>
         </div>
         <div class="card-name">
-          <span class="inline-ua">Валерій Лихих</span>
-          <span class="inline-en">Valeriy Lykhykh</span>
+          <span lang="uk" class="inline-ua">Валерій Лихих</span>
+          <span lang="en" class="inline-en">Valeriy Lykhykh</span>
         </div>
         <p class="card-bio">
-          <span data-ua>Фельдшер (Лебединське медучилище, 1990). Служив на Флоті в аварійно-рятувальному підрозділі. Завідувач фельдшерського пункту в Сумщині. Відповідає за медичне забезпечення команди: щоденний огляд, домедична підготовка, план медевакуації, взаємодія з медзакладами в зоні операцій.</span>
-          <span data-en>Paramedic (Lebedyn Medical College, 1990). Served in Navy emergency rescue unit. Head of paramedic station in Sumy region. Responsible for team medical support: daily checks, first aid training, medevac plan, coordination with medical facilities in operations zone.</span>
+          <span lang="uk" data-ua>Фельдшер (Лебединське медучилище, 1990). Служив на Флоті в аварійно-рятувальному підрозділі. Завідувач фельдшерського пункту в Сумщині. Відповідає за медичне забезпечення команди: щоденний огляд, домедична підготовка, план медевакуації, взаємодія з медзакладами в зоні операцій.</span>
+          <span lang="en" data-en>Paramedic (Lebedyn Medical College, 1990). Served in Navy emergency rescue unit. Head of paramedic station in Sumy region. Responsible for team medical support: daily checks, first aid training, medevac plan, coordination with medical facilities in operations zone.</span>
         </p>
         <div class="card-tags">
-          <span class="card-tag"><span class="inline-ua">Фельдшер</span><span class="inline-en">Paramedic</span></span>
-          <span class="card-tag"><span class="inline-ua">Медевакуація</span><span class="inline-en">Medevac</span></span>
-          <span class="card-tag"><span class="inline-ua">Флот</span><span class="inline-en">Navy</span></span>
+          <span class="card-tag"><span lang="uk" class="inline-ua">Фельдшер</span><span lang="en" class="inline-en">Paramedic</span></span>
+          <span class="card-tag"><span lang="uk" class="inline-ua">Медевакуація</span><span lang="en" class="inline-en">Medevac</span></span>
+          <span class="card-tag"><span lang="uk" class="inline-ua">Флот</span><span lang="en" class="inline-en">Navy</span></span>
         </div>
       </div>
     </div>
@@ -680,21 +771,21 @@
       </div>
       <div class="card-info">
         <div class="card-role">
-          <span class="inline-ua">Фахівець з управління інформацією</span>
-          <span class="inline-en">Information Management Specialist</span>
+          <span lang="uk" class="inline-ua">Фахівець з управління інформацією</span>
+          <span lang="en" class="inline-en">Information Management Specialist</span>
         </div>
         <div class="card-name">
-          <span class="inline-ua">Роман Кривоносов</span>
-          <span class="inline-en">Roman Kryvonosov</span>
+          <span lang="uk" class="inline-ua">Роман Кривоносов</span>
+          <span lang="en" class="inline-en">Roman Kryvonosov</span>
         </div>
         <p class="card-bio">
-          <span data-ua>Геодезист і картограф (ХНУМГ ім. Бекетова). Спеціаліст з оцінки землі та нерухомості. 5 років у Національній поліції. Відповідає за систему управління інформацією в гуманітарному розмінуванні: координати, карти, внесення даних до IMSMA.</span>
-          <span data-en>Geodesist and cartographer (O.M. Beketov NUWEE). Land and real estate assessment specialist. 5 years in National Police. Responsible for information management in humanitarian demining: coordinates, maps, IMSMA data entry.</span>
+          <span lang="uk" data-ua>Геодезист і картограф (ХНУМГ ім. Бекетова). Спеціаліст з оцінки землі та нерухомості. 5 років у Національній поліції. Відповідає за систему управління інформацією в гуманітарному розмінуванні: координати, карти, внесення даних до IMSMA.</span>
+          <span lang="en" data-en>Geodesist and cartographer (O.M. Beketov NUWEE). Land and real estate assessment specialist. 5 years in National Police. Responsible for information management in humanitarian demining: coordinates, maps, IMSMA data entry.</span>
         </p>
         <div class="card-tags">
-          <span class="card-tag"><span class="inline-ua">Геодезія</span><span class="inline-en">Geodesy</span></span>
+          <span class="card-tag"><span lang="uk" class="inline-ua">Геодезія</span><span lang="en" class="inline-en">Geodesy</span></span>
           <span class="card-tag">IMSMA</span>
-          <span class="card-tag"><span class="inline-ua">Картографія</span><span class="inline-en">Cartography</span></span>
+          <span class="card-tag"><span lang="uk" class="inline-ua">Картографія</span><span lang="en" class="inline-en">Cartography</span></span>
         </div>
       </div>
     </div>
@@ -704,8 +795,8 @@
       <div style="text-align:center; padding:40px;">
         <div style="font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:800; color:rgba(85,191,120,0.30); line-height:1; margin-bottom:16px;">+19</div>
         <div style="font-size:12px; color:var(--gray); letter-spacing:0.1em; text-transform:uppercase; line-height:1.7;">
-          <span data-ua>Фахівців команди.<br>Сапери, піротехніки,<br>польовий персонал.</span>
-          <span data-en>Team specialists.<br>Sappers, pyrotechnicians,<br>field personnel.</span>
+          <span lang="uk" data-ua>Фахівців команди.<br>Сапери, піротехніки,<br>польовий персонал.</span>
+          <span lang="en" data-en>Team specialists.<br>Sappers, pyrotechnicians,<br>field personnel.</span>
         </div>
       </div>
     </div>
@@ -716,44 +807,44 @@
 <!-- VALUES -->
 <section class="values-section">
   <div class="section-tag">
-    <span class="inline-ua">Чому вони тут</span>
-    <span class="inline-en">Why they're here</span>
+    <span lang="uk" class="inline-ua">Чому вони тут</span>
+    <span lang="en" class="inline-en">Why they're here</span>
   </div>
   <h2 class="section-title">
-    <span data-ua>Що об'єднує<br>команду</span>
-    <span data-en>What unites<br>the team</span>
+    <span lang="uk" data-ua>Що об'єднує<br>команду</span>
+    <span lang="en" data-en>What unites<br>the team</span>
   </h2>
   <div class="values-grid">
     <div class="value-card">
       <div class="value-num">01</div>
-      <div class="value-title"><span class="inline-ua">Досвід</span><span class="inline-en">Experience</span></div>
+      <div class="value-title"><span lang="uk" class="inline-ua">Досвід</span><span lang="en" class="inline-en">Experience</span></div>
       <div class="value-desc">
-        <span data-ua>Кожен член команди має реальний польовий досвід. Ніхто не прийшов з теорії — тільки практика.</span>
-        <span data-en>Every team member has real field experience. No one came from theory — only practice.</span>
+        <span lang="uk" data-ua>Кожен член команди має реальний польовий досвід. Ніхто не прийшов з теорії — тільки практика.</span>
+        <span lang="en" data-en>Every team member has real field experience. No one came from theory — only practice.</span>
       </div>
     </div>
     <div class="value-card">
       <div class="value-num">02</div>
-      <div class="value-title"><span class="inline-ua">Місія</span><span class="inline-en">Mission</span></div>
+      <div class="value-title"><span lang="uk" class="inline-ua">Місія</span><span lang="en" class="inline-en">Mission</span></div>
       <div class="value-desc">
-        <span data-ua>Однодумці з єдиною метою — зробити українські землі безпечними і повернути людей до нормального життя.</span>
-        <span data-en>Like-minded people with one goal — make Ukrainian land safe and return people to normal life.</span>
+        <span lang="uk" data-ua>Однодумці з єдиною метою — зробити українські землі безпечними і повернути людей до нормального життя.</span>
+        <span lang="en" data-en>Like-minded people with one goal — make Ukrainian land safe and return people to normal life.</span>
       </div>
     </div>
     <div class="value-card">
       <div class="value-num">03</div>
-      <div class="value-title"><span class="inline-ua">Стандарти</span><span class="inline-en">Standards</span></div>
+      <div class="value-title"><span lang="uk" class="inline-ua">Стандарти</span><span lang="en" class="inline-en">Standards</span></div>
       <div class="value-desc">
-        <span data-ua>Робота за міжнародними стандартами IMAS — не формальність, а принцип. Помилка тут коштує занадто дорого.</span>
-        <span data-en>Working to IMAS international standards is not a formality but a principle. A mistake here costs too much.</span>
+        <span lang="uk" data-ua>Робота за міжнародними стандартами IMAS — не формальність, а принцип. Помилка тут коштує занадто дорого.</span>
+        <span lang="en" data-en>Working to IMAS international standards is not a formality but a principle. A mistake here costs too much.</span>
       </div>
     </div>
     <div class="value-card">
       <div class="value-num">04</div>
-      <div class="value-title"><span class="inline-ua">Відповідальність</span><span class="inline-en">Responsibility</span></div>
+      <div class="value-title"><span lang="uk" class="inline-ua">Відповідальність</span><span lang="en" class="inline-en">Responsibility</span></div>
       <div class="value-desc">
-        <span data-ua>Кожна підписана ділянка — це гарантія безпеки. Команда несе особисту відповідальність за результат.</span>
-        <span data-en>Every cleared area signed off is a safety guarantee. The team bears personal responsibility for results.</span>
+        <span lang="uk" data-ua>Кожна підписана ділянка — це гарантія безпеки. Команда несе особисту відповідальність за результат.</span>
+        <span lang="en" data-en>Every cleared area signed off is a safety guarantee. The team bears personal responsibility for results.</span>
       </div>
     </div>
   </div>
@@ -763,48 +854,48 @@
 <section class="join-section">
   <div>
     <div class="section-tag">
-      <span class="inline-ua">Вакансії</span>
-      <span class="inline-en">Careers</span>
+      <span lang="uk" class="inline-ua">Вакансії</span>
+      <span lang="en" class="inline-en">Careers</span>
     </div>
     <h2 class="join-title">
-      <span data-ua>Приєднатись<br>до <span class="accent">команди</span></span>
-      <span data-en>Join<br>the <span class="accent">team</span></span>
+      <span lang="uk" data-ua>Приєднатись<br>до <span class="accent">команди</span></span>
+      <span lang="en" data-en>Join<br>the <span class="accent">team</span></span>
     </h2>
     <p class="join-desc">
-      <span data-ua>EOD & RC постійно розвивається. Якщо ви фахівець у сфері розмінування, піротехніки, геодезії або медицини — ми будемо раді поговорити.</span>
-      <span data-en>EOD & RC is constantly growing. If you are a specialist in demining, pyrotechnics, geodesy or medicine — we would be glad to talk.</span>
+      <span lang="uk" data-ua>EOD & RC постійно розвивається. Якщо ви фахівець у сфері розмінування, піротехніки, геодезії або медицини — ми будемо раді поговорити.</span>
+      <span lang="en" data-en>EOD & RC is constantly growing. If you are a specialist in demining, pyrotechnics, geodesy or medicine — we would be glad to talk.</span>
     </p>
     <div class="join-reqs">
       <div class="join-req">
         <span class="req-check">✓</span>
-        <span data-ua>Досвід роботи у сфері EOD/ПМД або суміжних галузях</span>
-        <span data-en>Experience in EOD/mine action or related fields</span>
+        <span lang="uk" data-ua>Досвід роботи у сфері EOD/ПМД або суміжних галузях</span>
+        <span lang="en" data-en>Experience in EOD/mine action or related fields</span>
       </div>
       <div class="join-req">
         <span class="req-check">✓</span>
-        <span data-ua>Відповідальність, дисципліна, командний дух</span>
-        <span data-en>Responsibility, discipline, team spirit</span>
+        <span lang="uk" data-ua>Відповідальність, дисципліна, командний дух</span>
+        <span lang="en" data-en>Responsibility, discipline, team spirit</span>
       </div>
       <div class="join-req">
         <span class="req-check">✓</span>
-        <span data-ua>Готовність працювати в Харківській та Сумській областях</span>
-        <span data-en>Readiness to work in Kharkiv and Sumy regions</span>
+        <span lang="uk" data-ua>Готовність працювати в Харківській та Сумській областях</span>
+        <span lang="en" data-en>Readiness to work in Kharkiv and Sumy regions</span>
       </div>
     </div>
   </div>
   <div>
     <p style="font-size:14px; color:var(--gray-light); line-height:1.7; margin-bottom:28px;">
-      <span data-ua>Напишіть нам — коротко про себе, досвід і чому хочете приєднатись до EOD & RC.</span>
-      <span data-en>Write to us — briefly about yourself, experience and why you want to join EOD & RC.</span>
+      <span lang="uk" data-ua>Напишіть нам — коротко про себе, досвід і чому хочете приєднатись до EOD & RC.</span>
+      <span lang="en" data-en>Write to us — briefly about yourself, experience and why you want to join EOD & RC.</span>
     </p>
     <div style="display:flex; gap:16px; flex-wrap:wrap;">
       <a href="mailto:info@eod-rc.com" class="btn-primary">
-        <span class="inline-ua">Написати нам →</span>
-        <span class="inline-en">Write to us →</span>
+        <span lang="uk" class="inline-ua">Написати нам →</span>
+        <span lang="en" class="inline-en">Write to us →</span>
       </a>
       <a href="index.html#contact" class="btn-secondary">
-        <span class="inline-ua">Форма зв'язку</span>
-        <span class="inline-en">Contact form</span>
+        <span lang="uk" class="inline-ua">Форма зв'язку</span>
+        <span lang="en" class="inline-en">Contact form</span>
       </a>
     </div>
   </div>
@@ -814,43 +905,43 @@
   <div class="footer-brand">
     <img src="logo-horizontal-white.svg" alt="EOD &amp; RC" class="footer-logo-img">
     <div class="footer-tagline">
-      <span data-ua>Ваша безпека — наш пріоритет</span>
-      <span data-en>Your safety is our priority</span>
+      <span lang="uk" data-ua>Ваша безпека — наш пріоритет</span>
+      <span lang="en" data-en>Your safety is our priority</span>
     </div>
     <div style="font-size:12px; color:var(--gray); line-height:1.7;">
-      <span data-ua>ТОВ «Центр знешкодження вибухонебезпечних предметів та рекультивації»</span>
-      <span data-en>Center for Explosive Ordnance Disposal and Recultivation LLC</span>
+      <span lang="uk" data-ua>ТОВ «Центр знешкодження вибухонебезпечних предметів та рекультивації»</span>
+      <span lang="en" data-en>Center for Explosive Ordnance Disposal and Recultivation LLC</span>
     </div>
   </div>
   <div>
     <div class="footer-col-title">
-      <span class="inline-ua">Послуги</span>
-      <span class="inline-en">Services</span>
+      <span lang="uk" class="inline-ua">Послуги</span>
+      <span lang="en" class="inline-en">Services</span>
     </div>
     <ul class="footer-links">
-      <li><a href="eod-rc-service-nts.html"><span class="inline-ua">Нетехнічне обстеження</span><span class="inline-en">Non-Technical Survey</span></a></li>
-      <li><a href="eod-rc-service-ts.html"><span class="inline-ua">Технічне обстеження</span><span class="inline-en">Technical Survey</span></a></li>
-      <li><a href="eod-rc-service-manual.html"><span class="inline-ua">Розмінування вручну</span><span class="inline-en">Manual Demining</span></a></li>
-      <li><a href="eod-rc-service-clearance.html"><span class="inline-ua">Очищення районів БД</span><span class="inline-en">Battlefield Clearance</span></a></li>
-      <li><a href="eod-rc-service-recultivation.html"><span class="inline-ua">Рекультивація</span><span class="inline-en">Recultivation</span></a></li>
+      <li><a href="eod-rc-service-nts.html"><span lang="uk" class="inline-ua">Нетехнічне обстеження</span><span lang="en" class="inline-en">Non-Technical Survey</span></a></li>
+      <li><a href="eod-rc-service-ts.html"><span lang="uk" class="inline-ua">Технічне обстеження</span><span lang="en" class="inline-en">Technical Survey</span></a></li>
+      <li><a href="eod-rc-service-manual.html"><span lang="uk" class="inline-ua">Розмінування вручну</span><span lang="en" class="inline-en">Manual Demining</span></a></li>
+      <li><a href="eod-rc-service-clearance.html"><span lang="uk" class="inline-ua">Очищення районів БД</span><span lang="en" class="inline-en">Battlefield Clearance</span></a></li>
+      <li><a href="eod-rc-service-recultivation.html"><span lang="uk" class="inline-ua">Рекультивація</span><span lang="en" class="inline-en">Recultivation</span></a></li>
     </ul>
   </div>
   <div>
     <div class="footer-col-title">
-      <span class="inline-ua">Компанія</span>
-      <span class="inline-en">Company</span>
+      <span lang="uk" class="inline-ua">Компанія</span>
+      <span lang="en" class="inline-en">Company</span>
     </div>
     <ul class="footer-links">
-      <li><a href="index.html#about"><span class="inline-ua">Про нас</span><span class="inline-en">About us</span></a></li>
-      <li><a href="eod-rc-team.html"><span class="inline-ua">Команда</span><span class="inline-en">Team</span></a></li>
-      <li><a href="index.html#services"><span class="inline-ua">Сертифікати</span><span class="inline-en">Certificates</span></a></li>
-      <li><a href="eod-rc-operations.html"><span class="inline-ua">Операції</span><span class="inline-en">Operations</span></a></li>
+      <li><a href="index.html#about"><span lang="uk" class="inline-ua">Про нас</span><span lang="en" class="inline-en">About us</span></a></li>
+      <li><a href="eod-rc-team.html"><span lang="uk" class="inline-ua">Команда</span><span lang="en" class="inline-en">Team</span></a></li>
+      <li><a href="index.html#services"><span lang="uk" class="inline-ua">Сертифікати</span><span lang="en" class="inline-en">Certificates</span></a></li>
+      <li><a href="eod-rc-operations.html"><span lang="uk" class="inline-ua">Операції</span><span lang="en" class="inline-en">Operations</span></a></li>
     </ul>
   </div>
   <div>
     <div class="footer-col-title">
-      <span class="inline-ua">Контакти</span>
-      <span class="inline-en">Contact</span>
+      <span lang="uk" class="inline-ua">Контакти</span>
+      <span lang="en" class="inline-en">Contact</span>
     </div>
     <ul class="footer-links">
       <li><a href="https://eod-rc.com">eod-rc.com</a></li>
@@ -858,8 +949,8 @@
       <li><a href="mailto:info@eod-rc.com">info@eod-rc.com</a></li>
       <li><a href="tel:+380677773579">+38 067 777 35 79</a></li>
       <li style="color:var(--gray); font-size:12px; line-height:1.5; margin-top:4px;">
-        <span class="inline-ua">с. Циркуни, вул. Кооперативна, 1<br>Харківська обл., 62441</span>
-        <span class="inline-en">1 Kooperatyvna St., Tsyrkuny<br>Kharkiv region, 62441</span>
+        <span lang="uk" class="inline-ua">с. Циркуни, вул. Кооперативна, 1<br>Харківська обл., 62441</span>
+        <span lang="en" class="inline-en">1 Kooperatyvna St., Tsyrkuny<br>Kharkiv region, 62441</span>
       </li>
     </ul>
   </div>
@@ -867,12 +958,12 @@
 
 <div class="footer-bottom">
   <span class="footer-bottom-text">© 2026 EOD &amp; RC.
-    <span class="inline-ua">Всі права захищені.</span>
-    <span class="inline-en">All rights reserved.</span>
+    <span lang="uk" class="inline-ua">Всі права захищені.</span>
+    <span lang="en" class="inline-en">All rights reserved.</span>
   </span>
   <span class="footer-bottom-text" style="color:rgba(255,255,255,0.2);">
-    <span class="inline-ua">Харків, Україна</span>
-    <span class="inline-en">Kharkiv, Ukraine</span>
+    <span lang="uk" class="inline-ua">Харків, Україна</span>
+    <span lang="en" class="inline-en">Kharkiv, Ukraine</span>
   </span>
 </div>
 
