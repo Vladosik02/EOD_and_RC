@@ -30,5 +30,35 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Замовити обстеження",
+      "short_name": "Обстеження",
+      "description": "Нетехнічне обстеження території",
+      "url": "/eod-rc-service-nts.html",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Карта операцій",
+      "short_name": "Операції",
+      "description": "Карта виконаних та активних робіт з розмінування",
+      "url": "/eod-rc-operations.html",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Зв'язатися",
+      "short_name": "Контакти",
+      "description": "Форма зворотного зв'язку",
+      "url": "/eod-rc-prototype.html#contact",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Партнерам",
+      "short_name": "Партнерам",
+      "description": "Інформація для організацій-партнерів",
+      "url": "/eod-rc-partners.html",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    }
   ]
 }
