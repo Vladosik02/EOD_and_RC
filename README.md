@@ -50,16 +50,33 @@
 Сайт повністю статичний — будь-який HTTP-сервер підійде.
 
 ```bash
-# Python (вже встановлений на більшості систем)
+# Найпростіше (Python, є майже всюди)
 python3 -m http.server 8000
 
-# Або
-npx --yes serve .
+# Або через npm
+npm run dev          # serve sources на http://localhost:8000
 ```
 
 Відкрити http://localhost:8000/
 
 > **Service Worker** працює тільки на `https://` або `localhost`. На `file://` він автоматично пропускається (див. `assets/scripts.js`).
+
+## Build для продакшну
+
+Опційно. Source files — самодостатні і працюють напряму. Build виключно
+для оптимізації (мініфікація HTML/CSS/JS, ~17% економії на текстових
+ресурсах).
+
+```bash
+npm install                # один раз — підтягнути devDependencies
+npm run validate           # перевірити HTML/JSON-LD/посилання
+npm run build              # збирає в ./dist/
+npm run build:report       # те саме з докладним звітом економії
+npm run preview            # serve dist на http://localhost:8001
+```
+
+`dist/` гнорується git'ом — це build artifact, не commitиться.
+Деплоїти можна або source root, або `dist/` — обидва робочі.
 
 ---
 
@@ -71,8 +88,9 @@ npx --yes serve .
 - **Leaflet MarkerCluster 1.5.3** — кластеризація маркерів
 - **Google Fonts** — Barlow + Barlow Condensed
 - **Pillow** — для оптимізації зображень (тільки для розробки, не у продакшні)
+- **Node.js 20+** — опційно, для запуску `npm run build` (мініфікація)
 
-Без Node.js, без bundler'ів, без build-кроку.
+Source files працюють напряму без жодного збору. Build pipeline — нашаровка.
 
 ---
 

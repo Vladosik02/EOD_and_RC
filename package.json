@@ -1,0 +1,22 @@
+{
+  "name": "eod-rc-site",
+  "version": "1.0.0",
+  "description": "Static site for EOD & RC — humanitarian demining operator in Ukraine",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "npx --yes serve . -p 8000",
+    "build": "node scripts/build.mjs",
+    "build:report": "node scripts/build.mjs --report",
+    "preview": "npx --yes serve dist -p 8001",
+    "validate": "node scripts/validate.mjs"
+  },
+  "devDependencies": {
+    "csso": "^5.0.5",
+    "html-minifier-terser": "^7.2.0",
+    "terser": "^5.36.0"
+  }
+}
