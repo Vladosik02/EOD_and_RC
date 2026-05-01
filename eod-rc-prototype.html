@@ -82,13 +82,23 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+  "@id": "https://eod-rc.com/#organization",
   "name": "EOD & RC",
   "alternateName": "ТОВ «Центр знешкодження вибухонебезпечних предметів та рекультивації»",
   "url": "https://eod-rc.com/",
   "logo": "https://eod-rc.com/logo-horizontal-main.png",
-  "image": "https://eod-rc.com/main-logo-background.png",
+  "image": [
+    "https://eod-rc.com/main-logo-background.png",
+    "https://eod-rc.com/og-image.jpg",
+    "https://eod-rc.com/photo_team.jpg"
+  ],
   "description": "Сертифікований оператор гуманітарного розмінування. Нетехнічне та технічне обстеження, ручне розмінування, очищення районів бойових дій, рекультивація земель.",
+  "telephone": "+380677773579",
+  "email": "info@eod-rc.com",
+  "priceRange": "$$",
+  "currenciesAccepted": "UAH",
+  "paymentAccepted": "Bank transfer",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "вул. Кооперативна, 1, с. Циркуни",
@@ -97,28 +107,68 @@
     "postalCode": "62441",
     "addressCountry": "UA"
   },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+380677773579",
-    "email": "info@eod-rc.com",
-    "contactType": "customer service",
-    "availableLanguage": ["uk", "en"]
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 50.0833,
+    "longitude": 36.3500
   },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+380677773579",
+      "email": "info@eod-rc.com",
+      "contactType": "customer service",
+      "availableLanguage": ["uk", "en"],
+      "areaServed": "UA"
+    },
+    {
+      "@type": "ContactPoint",
+      "email": "info@eod-rc.com",
+      "contactType": "partnerships",
+      "availableLanguage": ["uk", "en"]
+    }
+  ],
   "sameAs": [
     "https://instagram.com/eod_and_rc"
   ],
-  "areaServed": {
-    "@type": "Country",
-    "name": "Ukraine"
-  },
+  "areaServed": [
+    { "@type": "Country", "name": "Ukraine" },
+    { "@type": "AdministrativeArea", "name": "Харківська область" },
+    { "@type": "AdministrativeArea", "name": "Сумська область" }
+  ],
   "knowsAbout": [
     "Humanitarian Demining",
     "Non-Technical Survey",
     "Technical Survey",
     "Manual Demining",
     "Battlefield Area Clearance",
-    "Land Recultivation"
-  ]
+    "Land Recultivation",
+    "IMAS Standards",
+    "Mine Action"
+  ],
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Mine Action Operators of Ukraine"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Послуги розмінування",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Нетехнічне обстеження (НТО)", "url": "https://eod-rc.com/eod-rc-service-nts.html" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Технічне обстеження (ТО)", "url": "https://eod-rc.com/eod-rc-service-ts.html" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ручне розмінування", "url": "https://eod-rc.com/eod-rc-service-manual.html" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Очищення районів бойових дій", "url": "https://eod-rc.com/eod-rc-service-clearance.html" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Рекультивація земель", "url": "https://eod-rc.com/eod-rc-service-recultivation.html" } }
+    ]
+  }
 }
 </script>
 <style>
