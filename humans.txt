@@ -1,0 +1,26 @@
+/* TEAM */
+
+  Director: Volodymyr Viunyk
+  First Deputy Director: Anton Semenov
+
+  Sappers / EOD specialists:
+    Yevhen Pundrovskyi
+    Oleksandr Vdovychenko
+    Andrii Fursa
+    Valerii Lykhykh
+    Roman Kryvonosov
+
+  Site contact: info@eod-rc.com
+
+/* SITE */
+
+  Last update: 2026-05-01
+  Language: uk-UA primary, en-US alternate
+  Doctype: HTML5
+  Standards: WCAG 2.1 AA, IMAS, IMAS NSPD
+  Hosted on: TBD
+  Source: https://github.com/Vladosik02/EOD_and_RC
+
+/* THANKS */
+
+  Кожному саперу.
