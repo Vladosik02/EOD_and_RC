@@ -776,6 +776,52 @@
   @media (max-width: 480px) {
     footer { grid-template-columns: 1fr; }
   }
+
+  /* ════ R17 · DEPTH PASS — operations sidebar + map controls ════ */
+  .panel-list .obj-card {
+    box-shadow: 0 8px 16px -12px rgba(0,0,0,0.55);
+    transform: translateZ(0);
+    animation: ed-slideIn 0.45s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .panel-list .obj-card:nth-child(2) { animation-delay: 0.06s; }
+  .panel-list .obj-card:nth-child(3) { animation-delay: 0.12s; }
+  .panel-list .obj-card:nth-child(4) { animation-delay: 0.18s; }
+  .panel-list .obj-card.selected {
+    box-shadow:
+      0 14px 28px -18px rgba(0,0,0,0.7),
+      0 0 0 1px rgba(85,191,120,0.35);
+  }
+  /* Pulse-ring на активному статусі — 3 цикли, не infinite */
+  .obj-card .obj-card-status.s-active .dot {
+    box-shadow: 0 0 0 0 rgba(255,200,0,0.55);
+    animation: ed-pulseRing 1.8s ease-out 3;
+  }
+
+  /* Map zoom controls — glow на hover */
+  .leaflet-control-zoom a {
+    box-shadow: 0 6px 14px -8px rgba(0,0,0,0.7);
+    transition: background 0.2s, box-shadow 0.25s, color 0.2s;
+  }
+  .leaflet-control-zoom a:hover {
+    box-shadow:
+      0 10px 22px -10px rgba(85,191,120,0.45),
+      inset 0 0 0 1px rgba(85,191,120,0.35) !important;
+  }
+
+  @keyframes ed-slideIn {
+    from { opacity: 0; transform: translateX(8px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes ed-pulseRing {
+    0%   { box-shadow: 0 0 0 0 rgba(255,200,0,0.55); }
+    70%  { box-shadow: 0 0 0 8px rgba(255,200,0,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,200,0,0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel-list .obj-card { animation: none !important; }
+    .obj-card .obj-card-status.s-active .dot { animation: none !important; }
+  }
 </style>
 </head>
 <body>
