@@ -1401,6 +1401,160 @@
     section     { padding: 48px 16px; }
     .contact-form-wrap { padding: 24px 16px; }
   }
+
+  /* ════ R17 · DEPTH PASS (additive, no palette/font changes) ════ */
+
+  /* R17.01 — Глибинна радіальна підсвітка hero-left */
+  .hero-left { position: relative; }
+  .hero-left::before {
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(120% 80% at 0% 0%, rgba(85,191,120,0.06) 0%, transparent 55%),
+      radial-gradient(80% 60% at 100% 100%, rgba(0,0,0,0.45) 0%, transparent 60%);
+  }
+  .hero-left > * { position: relative; z-index: 1; }
+
+  /* R17.02 — SVG-зернинка ~3.5% на ключових секціях (knock out flatness) */
+  .hero { position: relative; }
+  .hero::after,
+  .cert-section::before,
+  .partners-section::before {
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:0; opacity:0.035;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  .cert-section, .partners-section { position: relative; }
+  .hero > *, .cert-section > *, .partners-section > * { position: relative; z-index: 1; }
+
+  /* R17.03 — Тонкі fade-розділювачі між секціями */
+  .ops-section, .team-section, .contact-section { position: relative; }
+  .ops-section::before,
+  .team-section::before,
+  .partners-section::before,
+  .contact-section::before {
+    content:""; position:absolute; top:0; left:8%; right:8%; height:1px; z-index:1;
+    background:linear-gradient(to right, transparent, rgba(85,191,120,0.16) 50%, transparent);
+  }
+
+  /* R17.04 — Service-картки (.cert-card): layered shadow + lift */
+  .cert-grid > .cert-card {
+    box-shadow:
+      inset 0 1px 0 rgba(85,191,120,0.04),
+      0 8px 18px -12px rgba(0,0,0,0.6);
+    transform: translateY(0);
+    transition: background .2s, border-top-color .25s, transform .25s ease, box-shadow .25s ease;
+  }
+  .cert-grid > .cert-card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 1px 0 rgba(85,191,120,0.16),
+      0 14px 28px -10px rgba(0,0,0,0.7),
+      0 0 0 1px rgba(85,191,120,0.12);
+  }
+
+  /* R17.05 — Team teaser cards (.team-card on homepage): mirror */
+  .team-grid > .team-card {
+    box-shadow: 0 8px 22px -16px rgba(0,0,0,0.7);
+    transition: background .2s, border-top-color .25s, transform .25s ease, box-shadow .25s ease;
+  }
+  .team-grid > .team-card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 16px 32px -14px rgba(0,0,0,0.8),
+      0 0 0 1px rgba(85,191,120,0.10);
+  }
+  .team-grid > .team-card .team-photo {
+    box-shadow: inset 0 -40px 60px -20px rgba(8,12,10,0.55);
+  }
+
+  /* R17.06 — CTA hover: border-glow (additive поверх існуючого transform/bg) */
+  .btn-primary, .btn-secondary, .btn-contact { position: relative; }
+  .btn-primary:hover, .btn-secondary:hover, .btn-contact:hover {
+    box-shadow:
+      0 0 0 1px rgba(85,191,120,0.35),
+      0 10px 24px -10px rgba(85,191,120,0.30),
+      0 2px 0 rgba(0,0,0,0.4);
+  }
+  .form-submit:hover {
+    box-shadow:
+      0 0 0 1px rgba(85,191,120,0.30),
+      0 8px 20px -10px rgba(85,191,120,0.20);
+  }
+
+  /* R17.07 — Подвійне focus-кільце через box-shadow (не замінює outline) */
+  .btn-primary:focus-visible,
+  .btn-secondary:focus-visible,
+  .btn-contact:focus-visible,
+  .form-submit:focus-visible,
+  .cert-card:focus-visible,
+  .team-card:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--dark),
+      0 0 0 4px rgba(85,191,120,0.55),
+      0 8px 22px -12px rgba(0,0,0,0.7);
+  }
+
+  /* R17.08 — Form inputs: inset shadow + м'яке зелене сяйво при focus */
+  .contact-form-fields .form-input {
+    box-shadow:
+      inset 0 1px 0 rgba(0,0,0,0.25),
+      inset 0 0 0 0 rgba(85,191,120,0);
+    transition: border-color .2s, box-shadow .25s ease;
+  }
+  .contact-form-fields .form-input:focus {
+    box-shadow:
+      inset 0 1px 0 rgba(0,0,0,0.25),
+      0 0 0 3px rgba(85,191,120,0.12),
+      inset 0 0 14px rgba(85,191,120,0.08);
+  }
+  .contact-form-fields .form-input:valid:not(:placeholder-shown) {
+    box-shadow:
+      inset 0 1px 0 rgba(0,0,0,0.25),
+      inset 2px 0 0 rgba(85,191,120,0.45);
+  }
+
+  /* R17.09 — Текстова глибина (1px text-shadow), акцент має ledve glow */
+  .hero-title, .section-title, .partners-cta-title { text-shadow: 0 1px 0 rgba(0,0,0,0.45); }
+  .hero-title .accent { text-shadow: 0 1px 0 rgba(0,0,0,0.55), 0 0 22px rgba(85,191,120,0.12); }
+
+  /* R17.10 — Contact form panel: gradient + deep drop-shadow */
+  .contact-form-wrap {
+    box-shadow:
+      inset 0 1px 0 rgba(85,191,120,0.06),
+      0 20px 40px -24px rgba(0,0,0,0.75);
+    background: linear-gradient(180deg, var(--dark-4) 0%, rgba(8,12,10,0.92) 100%);
+  }
+
+  /* R17.11 — Partners CTA panel */
+  .partners-cta {
+    box-shadow:
+      inset 0 1px 0 rgba(85,191,120,0.06),
+      0 18px 36px -22px rgba(0,0,0,0.7);
+    background: linear-gradient(180deg, var(--dark-3) 0%, var(--dark-2) 100%);
+  }
+
+  /* R17.12 — Stats bar: верхній radial glow */
+  .stats-bar { position: relative; }
+  .stats-bar::before {
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
+    background: radial-gradient(80% 50% at 50% 0%, rgba(85,191,120,0.04) 0%, transparent 70%);
+  }
+  .stats-bar > * { position: relative; z-index: 1; }
+
+  /* R17.13 — #homeMap outline-glow при hover */
+  #homeMap { transition: box-shadow .3s ease; }
+  #homeMap:hover {
+    box-shadow:
+      0 0 0 1px rgba(85,191,120,0.20),
+      0 18px 40px -22px rgba(0,0,0,0.75);
+  }
+
+  /* R17.14 — Standards check tiles: внутрішнє зелене світіння */
+  .standards-list .standard-check {
+    box-shadow:
+      inset 0 0 10px rgba(85,191,120,0.10),
+      0 1px 0 rgba(0,0,0,0.25);
+  }
 </style>
 </head>
 <body>
